@@ -3,7 +3,7 @@ import React from 'react';
 const BennerMEn = () => {
    return (
       <div
-         className="bg-cover bg-center md:w-full md:min-h-[860px] h-[405px]  flex justify-center items-center  "
+         className="bg-cover bg-center md:w-full md:min-h-[860px] h-[425px]  flex justify-center items-center  "
          style={{
             backgroundImage: `url("https://i.ibb.co/ZKcBXnk/h1-hero1-jpg.webp")`,
          }}

@@ -7,13 +7,13 @@ import { Pagination } from 'swiper/modules';
 
 import BennerT from './BennerT';
 import BennerMEn from './BennerMEn';
-import NAvbar from '../NavBar/NAvbar';
+
 
 
 const Benner = () => {
    return (
       <>
-      <NAvbar></NAvbar>
+      
       <Swiper
         pagination={{
           dynamicBullets: true,

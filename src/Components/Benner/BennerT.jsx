@@ -4,7 +4,7 @@ import React from 'react';
 const BennerT = ({img}) => {
   return (
     <div
-      className="bg-cover bg-center md:w-full md:min-h-[860px] h-[405px]  flex justify-center items-center  md:bg-opacity-90"
+      className="bg-cover bg-center md:w-full md:min-h-[860px] h-[425px]  flex justify-center items-center  md:bg-opacity-90"
       style={{
         backgroundImage: `url(${img})`,
       }}

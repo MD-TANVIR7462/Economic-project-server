@@ -9,6 +9,9 @@ const NAvbar = () => {
     <>
       <li className='text-xl font-semibold '><Link to={'/'}>Home</Link></li>
       <li className='text-xl font-semibold'><Link to={'/shop'}>Shop</Link></li>
+      <li className='text-xl font-semibold '><Link to={'/'}>Blog</Link></li>
+      <li className='text-xl font-semibold'><Link to={'/shop'}>Contact</Link></li>
+      <li className='text-xl font-semibold'><Link to={'/shop'}>About</Link></li>
     </>
   );
 
@@ -17,7 +20,7 @@ const NAvbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      if (scrollY > 0) {
+      if (scrollY > 10) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -46,7 +49,7 @@ const NAvbar = () => {
       </div>
       <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
    </div>
-   <div className="navbar-center hidden lg:flex">
+   <div className="navbar-start hidden lg:flex">
       <ul className="menu menu-horizontal px-1">
 {navOptions}
       </ul>
