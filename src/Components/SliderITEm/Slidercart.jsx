@@ -1,41 +1,63 @@
 import React from 'react';
-import { FaRegEye,FaCartPlus } from 'react-icons/fa';
+import { FaRegEye, FaCartPlus, FaStar } from 'react-icons/fa';
 
-const Slidercart = () => {
-   return (
-      <div className='mb-3 md:mb-0  '>
-         <div
+const StarRating = ({ rating }) => {
+  const totalStars = 5;
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating - fullStars >= 0.5;
 
-            className="relative  bg-white rounded-md overflow-hidden cursor-pointer hover:shadow-lg transition-transform duration-700"
-         >
-            <div className="group">
-               <img
-                  src="https://i.ibb.co/yRj0LXk/240-F-206745551-j-K5q-HRKl-T9o9-BCh-Tm1t09-K3-O5e-I4bwc-B.jpg"
-                  alt=""
-                  className="w-full  h-auto object-cover opacity-100 scale-100 group-hover:scale-105 transition-transform group-hover:opacity-100 duration-1000"
-               />
+  const renderStars = () => {
+    const stars = [];
 
-               <div className="pb-6 absolute bottom-0  left-0 right-0  transform translate-y-full group-hover:translate-y-0 transition-all duration-1000">
-                  
-               <span className='flex justify-center items-center gap-5'>
-               <button className="btn  pt-2 px-4 pb-1 text-2xl hover:text-blue-700 hover:scale-105 transition-all duration-500 "><FaRegEye></FaRegEye></button>
-               <button className="btn  pt-2 px-4 pb-1 text-2xl hover:text-red-700 hover:scale-105 transition-all duration-500 "><FaCartPlus></FaCartPlus></button>
-             
-               </span>
+    for (let i = 1; i <= totalStars; i++) {
+      if (i <= fullStars) {
+        stars.push(<FaStar key={i} className="text-yellow-500" />);
+      } else if (i === fullStars + 1 && hasHalfStar) {
+        stars.push(<FaStar key={i} className="text-yellow-500" />);
+      } else {
+        stars.push(<FaStar key={i} className="text-gray-400" />);
+      }
+    }
 
-               </div>
-            </div>
-         </div>
-         <div className='flex justify-between pt-4 '>
-           <span>
-           <p className='text-xl text-[#999]'>Name</p>
-            <p className='text-xl text-black'>Price</p>
-           </span>
-           <p>Rating</p>
-         </div>
+    return stars;
+  };
+
+  return <div className="flex">{renderStars()}</div>;
+};
+
+const Slidercart = ({ single }) => {
+  return (
+    <div className="mb-3 md:mb-0 shadow-md hover:shadow-lg transition-shadow duration-300">
+      <div className="relative bg-white rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition-transform duration-700">
+        <div className="group">
+          <img
+            src={single.image}
+            alt=""
+            className="w-full h-[250px] md:h-[380px] object-cover opacity-100 scale-100 group-hover:scale-110 transition-transform group-hover:opacity-100 duration-1000"
+          />
+          <div className="pb-8 absolute bottom-0 left-0 right-0 transform translate-y-full group-hover:translate-y-0 transition-all duration-1000">
+            <span className="flex justify-center items-center gap-5">
+              <button className="btn pt-2 px-4 pb-1 text-2xl hover:text-blue-700 hover:scale-110 transition-all duration-500">
+                <FaRegEye />
+              </button>
+              <button className="btn pt-2 px-4 pb-1 text-2xl hover:text-red-700 hover:scale-110 transition-all duration-500">
+                <FaCartPlus />
+              </button>
+            </span>
+          </div>
+        </div>
       </div>
-
-   );
+      <div className="flex justify-between py-6 px-2">
+        <span >
+          <p className="text-xl text-slate-600 font-semibold">{single.name}</p>
+          <p className="text-xl text-black hover:text-slate-500">
+            {single.price} <span className="text-green-700 font-semibold">$</span>
+          </p>
+        </span>
+        <StarRating rating={single.rating} />
+      </div>
+    </div>
+  );
 };
 
 export default Slidercart;

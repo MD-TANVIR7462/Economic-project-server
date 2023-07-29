@@ -10,7 +10,7 @@
          "material": "leather",
          "image": "https://i.ibb.co/27t7ddr/240-F-209822653-Fzoff04b-Z8-QHnse-FCHy7vk-Lm-Wl1m-IDHO.jpg",
          "brand": "Nike",
-         "rating": 4.6,
+         "rating": 4.2,
          "subcategory": "shoes",
          "category": "man"
       },
@@ -23,7 +23,7 @@
          "material": "denim",
          "image": "https://i.ibb.co/ns9LtTZ/240-F-309556383-wf-Aujx-KOTj-Ur-J8e6p-Xfb-VEo-Ie-Vv1-Mkm8.jpg",
          "brand": "Levi's",
-         "rating": 4.6,
+         "rating": 4.4,
          "subcategory": "jeans",
          "category": "man"
       },
@@ -36,7 +36,7 @@
          "material": "leather",
          "image": "https://i.ibb.co/FBKkLL4/240-F-202389840-Rt-Pc-E03-Pu-Fbdi-Af-AVi-DPTYWKr-Jw-Psa-N9.jpg",
          "brand": "Michael Kors",
-         "rating": 4.8,
+         "rating": 3.8,
          "subcategory": "handbags",
          "category": "women"
       },
@@ -49,7 +49,7 @@
          "material": "plastic",
          "image": "https://i.ibb.co/23pvkZm/240-F-604987216-sh8-YSpm-Gqa-Ek4-Ux2-Byd-HOa-Mmfb-UC2-FZ9.jpg",
          "brand": "Gucci",
-         "rating": 4.5,
+         "rating": 3.2,
          "subcategory": "sunglasses",
          "category": "women"
       },

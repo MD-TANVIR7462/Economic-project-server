@@ -1,19 +1,14 @@
 import React from 'react';
-import Benner from './Components/Benner/Benner';
-import NAvbar from './Components/NavBar/NAvbar';
-import CategoryMain from './Components/Cetegory/CategoryMain';
-import Slider from './Components/SliderITEm/Slider';
+import Homepage from './Pages/Home/Homepage';
+
 
 
 
 const App = () => {
   return (
     <div>
-      <NAvbar></NAvbar>
-      <Benner></Benner>
-      <CategoryMain></CategoryMain>
-      <Slider></Slider>
-      
+     
+      <Homepage></Homepage>
     
       
     </div>

@@ -15,7 +15,8 @@ import { Pagination, Navigation } from 'swiper/modules';
 import Slidercart from './Slidercart';
 
 
-const Slider = () => {
+const Slider = ({item}) => {
+ 
   const [setSwiperRef] = useState(null);
   const [slidesPerView, setSlidesPerView] = useState(3);
   const [Space,setSpace] =useState(40)
@@ -23,8 +24,8 @@ const Slider = () => {
     // Function to update slidesPerView based on window width
     const updateSlidesPerView = () => {
       if (window.innerWidth <= 768) {
-        setSlidesPerView(2); // Show only 1 slide on phone devices
-        setSpace(10)
+        setSlidesPerView(1); // Show only 1 slide on phone devices
+        setSpace(50)
       } else {
         setSlidesPerView(3); // Show 3 slides on other devices
         setSpace(40)
@@ -44,7 +45,7 @@ const Slider = () => {
 
 
   return (
-    <div className=' w-[90%] mx-auto '>
+    <div className='  mx-auto '>
       <div className=''>
         <Swiper
           onSwiper={setSwiperRef}
@@ -62,16 +63,10 @@ const Slider = () => {
         >
 
 
-          <SwiperSlide>
-
-            <Slidercart></Slidercart>
-
-          </SwiperSlide>
-          <SwiperSlide><Slidercart></Slidercart></SwiperSlide>
-          <SwiperSlide><Slidercart></Slidercart></SwiperSlide>
-          <SwiperSlide><Slidercart></Slidercart></SwiperSlide>
-          <SwiperSlide><Slidercart></Slidercart></SwiperSlide>
-
+        
+          {
+            item.map(single=><SwiperSlide><Slidercart  single={single} key={single.id}></Slidercart></SwiperSlide>)
+          }
 
         </Swiper>
 
