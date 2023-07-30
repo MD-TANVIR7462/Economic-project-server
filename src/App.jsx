@@ -1,5 +1,7 @@
-import React from 'react';
-import Homepage from './Pages/Home/Homepage';
+
+import NAvbar from './Components/NavBar/NAvbar';
+import Footer from './Components/Footer/Footer';
+import { Outlet } from 'react-router-dom';
 
 
 
@@ -8,8 +10,10 @@ const App = () => {
   return (
     <div>
      
-      <Homepage></Homepage>
-    
+   
+<NAvbar></NAvbar>
+<Outlet></Outlet>
+<Footer></Footer>    
       
     </div>
   );

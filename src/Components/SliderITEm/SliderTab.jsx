@@ -50,7 +50,7 @@ fetch("../../../public/products.json")
               Women
             </Tab>
             <Tab
-              className={`cursor-pointer text-md md:text-xl font-semibold px-4 py-2 transition-colors duration-300 ease-in-out border-b-4 border-transparent hover:border-[#FF2020] ${activeTabIndex === 3 ? ' border-[#FF2020] text-red-700 bg-red-50' : ''
+              className={`cursor-pointer text-md md:text-xl font-semibold px-4 py-2 transition-colors duration-300 ease-in-out border-b-4 border-transparent hover:border-[#FF2020] ${activeTabIndex === 3 ? ' border-[#FF2020] text-red-700 bg-red-150' : ''
                 }`}
             >
               Kid's
@@ -59,16 +59,16 @@ fetch("../../../public/products.json")
          </span>
 
           <TabPanel>
-            <Slider item={products}></Slider>
+            <Slider item={products} key={1}></Slider>
           </TabPanel>
           <TabPanel>
-            <Slider item={men}></Slider>
+            <Slider item={men} key={2}></Slider>
           </TabPanel>
           <TabPanel>
-            <Slider item={women}></Slider>
+            <Slider item={women} key={3}></Slider>
           </TabPanel>
           <TabPanel>
-            <Slider item={kid}></Slider>
+            <Slider item={kid} key={4}></Slider>
           </TabPanel>
         </Tabs>
       </div>

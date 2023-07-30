@@ -16,6 +16,7 @@ import Slidercart from './Slidercart';
 
 
 const Slider = ({item}) => {
+
  
   const [setSwiperRef] = useState(null);
   const [slidesPerView, setSlidesPerView] = useState(3);
@@ -65,7 +66,7 @@ const Slider = ({item}) => {
 
         
           {
-            item.map(single=><SwiperSlide><Slidercart  single={single} key={single.id}></Slidercart></SwiperSlide>)
+            item.map(product=><SwiperSlide key={product.id}><Slidercart  product={product} key={product.id}></Slidercart></SwiperSlide>)
           }
 
         </Swiper>
