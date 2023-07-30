@@ -25,10 +25,10 @@ fetch("../../../public/products.json")
  
 
   return (
-    <div className='w-[90%]  mt-16 md:mt-36 mb-12 mx-auto' >
+    <div className='w-[90%]  my-16 md:my-32 mx-auto' >
       <div>
         <Tabs selectedIndex={activeTabIndex} onSelect={handleTabSelect} >
-         <span className='md:flex md:justify-between border-b- border-gray-500'>
+         <span className='md:flex md:justify-between mb-8'>
          <h2 className=' text-2xl md:text-4xl font-bold text-center md:text-start'>Trending This Week</h2>
           <TabList className="flex justify-center md:justify-normal md:space-x-4 p-2 rounded-lg mb-5 ">
             <Tab

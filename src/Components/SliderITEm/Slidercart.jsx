@@ -50,9 +50,11 @@ const Slidercart = ({ single }) => {
       <div className="flex justify-between py-6 px-2">
         <span >
           <p className="text-xl text-slate-600 font-semibold">{single.name}</p>
+          <p className="text-xl text-slate-600 font-medium">For {single.category}</p>
           <p className="text-xl text-black hover:text-slate-500">
             {single.price} <span className="text-green-700 font-semibold">$</span>
           </p>
+         
         </span>
         <StarRating rating={single.rating} />
       </div>
