@@ -8,7 +8,7 @@ const NAvbar = () => {
    
     <>
       <li className='text-xl font-semibold '><Link to={'/'}>Home</Link></li>
-      <li className='text-xl font-semibold'><Link to={'/shop'}>Shop</Link></li>
+      <li className='text-xl font-semibold'><Link to={'/shop/all'}>Shop</Link></li>
       <li className='text-xl font-semibold '><Link to={'/'}>Blog</Link></li>
       <li className='text-xl font-semibold'><Link to={'/shop'}>Contact</Link></li>
       <li className='text-xl font-semibold'><Link to={'/shop'}>About</Link></li>
@@ -36,7 +36,7 @@ const NAvbar = () => {
 
   return (
    //  <div className={`navbar ${isScrolled ? 'bg-white shadow-md' : 'bg-none'} fixed top-0 left-0 right-0 z-50`}>
-   <div className={`navbar   ${isScrolled ? "bg-white shadow-md" : "bg-none"} md:py-6 md:px-16 fixed top-0 z-50`}>
+   <div className={`navbar   ${isScrolled ? "bg-white shadow-md" : "bg-none"} md:py-6 md:px-16 fixed top-0 z-10`}>
 
    <div className="navbar-start">
       <div className="dropdown">

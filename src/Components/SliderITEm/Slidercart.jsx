@@ -27,7 +27,7 @@ const Slidercart = ({ product }) => {
  
 
   return (
-    <div className="mb-3 md:mb-0 shadow-md hover:shadow-lg transition-shadow duration-300" 
+    <div className="mb-3 md:mb-0 shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg" 
   
     >
       <div className="relative bg-white rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition-transform duration-700">

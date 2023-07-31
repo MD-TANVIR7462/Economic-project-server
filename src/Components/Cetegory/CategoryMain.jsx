@@ -7,7 +7,7 @@ const CategoryMain = () => {
         image:
           "https://i.ibb.co/CKk6nYD/240-F-90886459-Yv7-Cyp3d-Hg-QUg-Yr-Ow-F6m-HQBt-Eohe1z3-P.jpghttps://i.ibb.co/CKk6nYD/240-F-90886459-Yv7-Cyp3d-Hg-QUg-Yr-Ow-F6m-HQBt-Eohe1z3-P.jpg",
         title: "Men's Fashion",
-        Cetegoryname: "men",
+        Cetegoryname: "man",
         id : 1
       },
       {
