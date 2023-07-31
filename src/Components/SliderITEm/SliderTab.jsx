@@ -21,6 +21,7 @@ fetch("../../../public/products.json")
   const men = products.filter(product=>product.category==="man")
   const women = products.filter(product=>product.category==="women")
   const kid= products.filter(product=>product.category==="kids")
+  const proDucts = products 
   // console.log(products,men,kid,women);
  
 
@@ -50,7 +51,7 @@ fetch("../../../public/products.json")
               Women
             </Tab>
             <Tab
-              className={`cursor-pointer text-md md:text-xl font-semibold px-4 py-2 transition-colors duration-300 ease-in-out border-b-4 border-transparent hover:border-[#FF2020] ${activeTabIndex === 3 ? ' border-[#FF2020] text-red-700 bg-red-150' : ''
+              className={`cursor-pointer text-md md:text-xl font-semibold px-4 py-2 transition-colors duration-300 ease-in-out border-b-4 border-transparent hover:border-[#FF2020] ${activeTabIndex === 3 ? ' border-[#FF2020] text-red-700 bg-red-400' : ''
                 }`}
             >
               Kid's
@@ -59,7 +60,7 @@ fetch("../../../public/products.json")
          </span>
 
           <TabPanel>
-            <Slider item={products} key={1}></Slider>
+            <Slider item={proDucts} key={1}></Slider>
           </TabPanel>
           <TabPanel>
             <Slider item={men} key={2}></Slider>
