@@ -47,7 +47,7 @@ const NAvbar = () => {
      {navOptions}
          </ul>
       </div>
-      <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+      <a className="btn btn-ghost normal-case text-xl">LOGO</a>
    </div>
    <div className="navbar-start hidden lg:flex">
       <ul className="menu menu-horizontal px-1">
@@ -55,8 +55,8 @@ const NAvbar = () => {
       </ul>
    </div>
    <div className="navbar-end ">
-      <button className="btn btn-ghost btn-circle mr-2 md:mr-4">
-         <svg xmlns="http://www.w3.org/2000/svg" className="md:h-7 h-6 w-6 md:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+      <button className="btn btn-ghost btn-circle mr-1 md:mr-4">
+         <svg xmlns="http://www.w3.org/2000/svg" className="md:h-7 h-6 w-6 md:w-7   text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
       </button>
       <div className="dropdown dropdown-end z-10">
          <label tabIndex={0} className="btn btn-ghost btn-circle avatar mr-2 md:mr-4">
