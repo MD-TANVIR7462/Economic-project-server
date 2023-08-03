@@ -18,12 +18,7 @@ if(Data){
 }
 },[Data])
 
-//   useEffect(()=>{
-// fetch("../../../public/products.json")
-// .then(res=>res.json())
-// .then(data=>setProducts(data))
 
-//   },[])
 
 
   const men = products?.filter(product=>product.category==="man")

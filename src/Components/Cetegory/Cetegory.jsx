@@ -7,7 +7,7 @@ const Cetegory = ({ data }) => {
    const { image, title, Cetegoryname } = data
 
    const shopbyCategory = (DynaMicCategory) => {
-console.log(DynaMicCategory)
+
       navigate(`/shop/${DynaMicCategory}`)
    }
 

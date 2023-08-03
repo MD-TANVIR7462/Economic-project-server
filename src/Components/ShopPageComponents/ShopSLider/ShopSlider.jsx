@@ -39,7 +39,7 @@ const ShopSlider = () => {
 
 const {products,refetch,isLoading}=UseProducts()
 
-console.log(products);
+
  
  useEffect(()=>{
  if(products){
@@ -213,7 +213,7 @@ const loadkidAll = ()=>{
            </p>
             </span>
           </TabPanel>
-          </>:  <p className='text-5xl text-center text-red-700 '> Loading...</p>}
+          </>:  <p className='text-5xl mt-[100px] mb-[200px]   text-center text-red-700 '> Loading...</p>}
         
         </Tabs>
       </div>

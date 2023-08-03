@@ -26,8 +26,8 @@ const StarRating = ({ rating }) => {
 
 const Slidercart = ({ product }) => {
 const navigate  = useNavigate() 
-const details =  (singleProduct) =>{
-navigate(`/details/${singleProduct}`)
+const details =  (id) =>{
+navigate(`/details/${id}`)
 }
   return (
     <div className="mb-3 md:mb-0 shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg" 
@@ -44,7 +44,7 @@ navigate(`/details/${singleProduct}`)
           />
           <div className="pb-8 absolute bottom-0 left-0 right-0 transform translate-y-full group-hover:translate-y-0 transition-all duration-1000">
             <span className="flex justify-center items-center gap-5">
-              <button onClick={details} className="btn pt-2 px-4 pb-1 text-2xl hover:text-blue-700 hover:scale-110 transition-all duration-500">
+              <button onClick={()=>details(product?._id)} className="btn pt-2 px-4 pb-1 text-2xl hover:text-blue-700 hover:scale-110 transition-all duration-500">
                 <FaRegEye />
               </button>
               <button className="btn pt-2 px-4 pb-1 text-2xl hover:text-red-700 hover:scale-110 transition-all duration-500">
