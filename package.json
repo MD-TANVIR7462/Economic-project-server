@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.32.1",
     "aos": "^2.3.4",
     "framer-motion": "^10.13.0",
     "localforage": "^1.10.0",
@@ -20,6 +21,7 @@
     "react-parallax-tilt": "^1.7.155",
     "react-router-dom": "^6.14.2",
     "react-tabs": "^6.0.2",
+    "reoverlay": "^1.0.3",
     "sort-by": "^1.2.0",
     "swiper": "^10.0.4"
   },

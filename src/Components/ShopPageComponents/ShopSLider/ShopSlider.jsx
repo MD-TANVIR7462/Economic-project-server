@@ -4,6 +4,7 @@ import 'react-tabs/style/react-tabs.css';
 import Slidercart from '../../SliderITEm/Slidercart';
 import { useParams } from 'react-router-dom';
 import { flushSync } from 'react-dom';
+import UseProducts from '../../Hooks/UseProducts';
 
 
 
@@ -14,7 +15,7 @@ const ShopSlider = () => {
   const ultimateCtegory = cetegoryList.indexOf(cetegory)
  
   const [activeTabIndex, setActiveTabIndex] = useState(ultimateCtegory);
-  const [products, setProducts] = useState([]);
+  const [productsmain, setProducts] = useState([]);
   const [man,setMEn] = useState([]);
   const [women,setWomen] = useState([])
   const [kid,setKid] = useState([]) 
@@ -22,6 +23,7 @@ const ShopSlider = () => {
   const [manPruduct , setmanPruduct] = useState([])
   const [womanPruduct , setwomanPruduct] = useState([])
   const [kidPruduct , setKIdPruduct] = useState([])
+  
 
 //hid buttons//
 
@@ -34,29 +36,37 @@ const ShopSlider = () => {
     
     setActiveTabIndex(index);
   };
-  useEffect(() => {
-    fetch("../../../public/products.json")
-      .then(res => res.json())
-      .then(data => {
-        setProducts(data)
-        setsmallLength(data.length > 20 ? data.slice(0, 20) : data)
-        const men = data.filter(product => product.category === "man");
-        const women = data.filter(product => product.category === "women")
-        const kid = data.filter(product => product.category === "kids")
-        setMEn(men)
-        setWomen(women)
-        setKid(kid)
-        setmanPruduct(men.length >= 20 ? men.slice(0, 20) : men);
-        setwomanPruduct(women.length>20? women.slice(0,20) : women)
-        setKIdPruduct(kid.length>20?kid.slice(0,20) :kid)
-      })
 
-  }, [])
+const {products,refetch,isLoading}=UseProducts()
+
+console.log(products);
+ 
+ useEffect(()=>{
+ if(products){
+  setProducts(products)
+  setsmallLength(products?.length > 20 ? products.slice(0, 20) : products)
+  const men = products?.filter(product => product.category === "man");
+  const women = products?.filter(product => product.category === "women")
+  const kid = products?.filter(product => product.category === "kids")
+  setMEn(men)
+  setWomen(women)
+  setKid(kid)
+  setmanPruduct(men?.length >= 20 ? men.slice(0, 20) : men);
+  setwomanPruduct(women?.length>20? women.slice(0,20) : women)
+  setKIdPruduct(kid?.length>20?kid.slice(0,20) :kid)
+ }
+ else{
+  ""
+ }
+ },[products])
+     
+    
+
 
 
 
 const loadAllData = () =>{
-setsmallLength(products)
+setsmallLength(productsmain)
 setHideALL(true)
 
 }
@@ -82,31 +92,12 @@ const loadkidAll = ()=>{
 
 
   return (
-    <div className=' my-16 md:my-32 mx-auto' >
-
-
-      <div
-        className="relative bg-cover bg-center text-white py-20"
-        style={{ backgroundImage: `url(${"https://i.ibb.co/cYCj6t9/top-view-online-shopping-concept-with-credit-card-smart-phone-computer-isolated-office-yellow-table.jpg"})` }}
-      >
-        <div className="container mx-auto">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">Summer Sale</h1>
-            <p className="text-lg md:text-xl mb-6">Up to 50% Off</p>
-            <button className="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 md:px-8 md:py-3 rounded-full">
-              Shop Now
-            </button>
-          </div>
-        </div>
-        <div
-          className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black opacity-50"
-        />
-      </div>
+    <div className=' my-3 md:my-8 mx-auto' >
 
       <div>
         <Tabs selectedIndex={activeTabIndex} onSelect={(index)=>handleTabSelect(index)} >
             {/* defaultIndex={activeTabIndex}  selectedindex also can use use as defaultindex ei 2 ta same kaj kore***** */}
-          <span className='md:flex md:justify-center mt-24 px-5'>
+          <span className='md:flex md:justify-center mt-16 px-5'>
 
             <TabList className="flex justify-center md:justify-normal md:space-x-4 p-2 rounded-lg md:mb-8 ">
               <Tab
@@ -136,7 +127,8 @@ const loadkidAll = ()=>{
             </TabList>
           </span>
 
-          <TabPanel>
+         {!isLoading? <>
+            <TabPanel>
           <span >
             <div className='grid md:grid-cols-4 md:gap-6 grid-cols-1 w-[90%] mx-auto gap-3'>
               {
@@ -221,6 +213,8 @@ const loadkidAll = ()=>{
            </p>
             </span>
           </TabPanel>
+          </>:  <p className='text-5xl text-center text-red-700 '> Loading...</p>}
+        
         </Tabs>
       </div>
     </div>

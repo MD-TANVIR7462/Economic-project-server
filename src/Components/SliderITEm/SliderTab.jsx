@@ -2,25 +2,33 @@ import React, { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Slider from './Slider';
+import UseProducts from '../Hooks/UseProducts';
 
 const SliderTab = () => {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
-  const [products,setProducts] = useState([]);
+ const [products,setProducts] = useState([])
 
   const handleTabSelect = (index) => {
     setActiveTabIndex(index);
   };
-  useEffect(()=>{
-fetch("../../../public/products.json")
-.then(res=>res.json())
-.then(data=>setProducts(data))
+const {products:Data,refech,isloading}=UseProducts()
+useEffect(()=>{
+if(Data){
+  setProducts(Data)
+}
+},[Data])
 
-  },[])
+//   useEffect(()=>{
+// fetch("../../../public/products.json")
+// .then(res=>res.json())
+// .then(data=>setProducts(data))
+
+//   },[])
 
 
-  const men = products.filter(product=>product.category==="man")
-  const women = products.filter(product=>product.category==="women")
-  const kid= products.filter(product=>product.category==="kids")
+  const men = products?.filter(product=>product.category==="man")
+  const women = products?.filter(product=>product.category==="women")
+  const kid= products?.filter(product=>product.category==="kids")
   const proDucts = products 
   // console.log(products,men,kid,women);
  
