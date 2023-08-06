@@ -66,41 +66,42 @@ const ShowDetails = () => {
               <img src={image} className=' w-[95%] mx-auto md:w-full md:h-[450px]' alt="image" />
              
                <div className="card-body">
-                  <h2 className="font-bold md:text-center md:text-4xl mb-5">{name}</h2>
+                  <h2 className="font-bold text-2xl text-center md:text-4xl  md:mb-5">{name}</h2>
                   <div>
-                     <p className='text-2xl font-bold'>price : <span className='text-green-600'>$</span> <span>{price}</span> </p>
-                     <p className='text-xl pt-1 font-bold'>Brand : <span className='font-semibold'>{brand}</span></p>
-                     <p className='text-xl pt-1 font-bold'>Material : <span className='font-semibold'>{material}</span></p>
-                     <p className='text-xl pt-1 font-bold'>Color : <span className='font-semibold'>{color}</span></p>
-                     <p className='text-xl pt-1 font-bold'> Available: <span className='font-semibold'>{Quantity} Items</span></p>
+                     <p className='text-md md:text-2xl font-bold'>price : <span className='text-green-600'>$</span> <span>{price}</span> </p>
+                     <p className='text-md md:text-xl pt-1 font-bold'>Brand : <span className='font-semibold'>{brand}</span></p>
+                     <p className='text-md md:text-xl  pt-1 font-bold'>Material : <span className='font-semibold'>{material}</span></p>
+                     <p className='text-md md:text-xl  pt-1 font-bold'>Color : <span className='font-semibold'>{color}</span></p>
+                     <p className='text-md md:text-xl  pt-1 font-bold'> Available: <span className='font-semibold'>{Quantity} Items</span></p>
                      <span className="flex items-center">
-                        <span className='text-xl font-bold'>Choose Your Size :</span>
-                        <select className="select border select-info ml-2 min-w-max" value={selectedSize} onChange={handleSizeChange}>
-                           <option disabled value="" className='font-semibold'>Choose</option>
-                           <option value='M' className='font-semibold'>M</option>
-                           <option value='XL' className='font-semibold'>XL</option>
-                           <option value='SM' className='font-semibold'>SM</option>
-                           <option value='2XL' className='font-semibold'>2XL</option>
+                        <span className='text-md md:text-xl font-bold'> Your Size :</span>
+                        <select  className=" select-xs
+                         md:select border select-disabled ml-2  md:min-w-max" value={selectedSize} onChange={handleSizeChange}>
+                           <option disabled value=""  className='font-medium md:font-semibold'>Choose</option>
+                           <option value='M' className='font-medium md:font-semibold'>M</option>
+                           <option value='XL' className='font-medium md:font-semibold'>XL</option>
+                           <option value='SM' className='font-medium md:font-semibold'>SM</option>
+                           <option value='2XL' className='font-medium md:font-semibold'>2XL</option>
                         </select>
                      </span>
-                     <p className='text-xl pt-1 font-bold'> description: <span className='font-semibold'>{description} </span></p>
+                     <p className=' text-md md:text-xl pt-1 font-bold'> description: <span className='font-semibold'>{description} </span></p>
                   </div>
-                  <div className="justify-between mt-5 items-center flex md:flex-row flex-col">
-                     <p className="font-bold text-lg flex items-center">
-                        <span className='mr-1'>{rating}/5</span>  {renderStars(rating)}
+                  <div className=" md:justify-between  md:mt-5 md:items-center flex md:flex-row flex-col ">
+                     <p className="font-bold text-lg flex mb-1 items-center">
+                        <span className='mr-1 '>{rating}/5</span>  {renderStars(rating)}
                      </p>
                      <div className="flex  items-center">
-                        <button className="text-xl font-semibold rounded-md border px-3 py-2 focus:outline-none bg-gray-100" onClick={decreaseQuantity}>-</button>
+                        <button className="text-xl font-semibold rounded-md border md:px-3 px-3 md:py-2 focus:outline-none bg-gray-100" onClick={decreaseQuantity}>-</button>
                         <input
                            type="number"
-                           className="text-xl w-16 text-center mx-2 border focus:outline-none"
+                           className="text-xl w-12 rounded-sm md:w-16 text-center mx-2 border focus:outline-none"
                            value={quantity}
                            onChange={handleQuantityChange}
                         />
-                        <button className="text-xl font-semibold rounded-md border px-3 py-2 mr-4 focus:outline-none bg-gray-100" onClick={increaseQuantity}>+</button>
+                        <button className="text-xl font-semibold rounded-md border px-2 md:px-3 md:py-2 mr-4 focus:outline-none bg-gray-100" onClick={increaseQuantity}>+</button>
                         <button
                            type="button"
-                           className="text-2xl btn border-none px-4 py-3 rounded-lg text-white font-bold bg-gradient-to-r from-pink-400 to-purple-900 hover:from-pink-500 hover:to-indigo-950 ml-3"
+                           className="text-xl md:text-2xl btn border-none px-4 py-3 rounded-lg text-white font-bold bg-gradient-to-r from-pink-400 to-purple-900 hover:from-pink-500 hover:to-indigo-950 ml-3"
                            onClick={addTocart}
                         >
                            <FaShoppingCart />
