@@ -13,7 +13,7 @@ const SummerOffer = () => {
          <div className='grid grid-cols-1 md:grid-cols-2 mx-auto'>
       
             <img className='w-full' src="https://i.ibb.co/MNyw9m4/discount-jpg.webp" alt="" data-aos="zoom-in"
-               data-aos-duration="2000"
+               data-aos-duration="1000"
                data-aos-easing="ease-in-out"
                data-aos-mirror="true"
             />

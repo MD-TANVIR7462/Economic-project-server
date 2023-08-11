@@ -7,7 +7,9 @@ import SummerOffer from '../../Components/Summeroffer/SummerOffer';
 import FreeShoping from '../../Components/FreeShoping/FreeShoping';
 
 
+
 const Homepage = () => {
+  
    return (
       <>
   

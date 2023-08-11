@@ -1,15 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaShoppingCart, FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import { useLoaderData } from 'react-router-dom';
 import DetailsBenner from './DetailsBenner';
+import Cetegory from '../Cetegory/Cetegory';
+import Related from '../Reviews/Related';
+
 
 const ShowDetails = () => {
+
    const Product = useLoaderData();
    const [quantity, setQuantity] = useState(1);
    const [selectedSize, setSelectedSize] = useState('')
+   const [sub, setSub] = useState([])
 
    const { id, name, price, description, color, material, image, brand, rating, subcategory, category, Quantity, _id } = Product;
 
+
+
+
+
+   useEffect(() => {
+      fetch(`http://localhost:5000/more/${subcategory}`)
+         .then(res => res.json())
+         .then(data => {setSub(data)
+      
+         })
+   }, [])
+
+// console.log(sub);
+   //rander star funtion****
    const renderStars = (rating) => {
       const stars = [];
       for (let i = 1; i <= Math.floor(rating); i++) {
@@ -26,17 +45,23 @@ const ShowDetails = () => {
       return stars;
    };
 
+
+   //minus button
    const decreaseQuantity = () => {
       if (quantity > 1) {
          setQuantity(quantity - 1);
       }
    };
 
+
+   //plus button
    const increaseQuantity = () => {
-     
+
       setQuantity(quantity + 1);
    };
 
+
+   //take the value of quentity
    const handleQuantityChange = (event) => {
       const newQuantity = parseInt(event.target.value);
       if (!isNaN(newQuantity) && newQuantity >= 1) {
@@ -44,29 +69,33 @@ const ShowDetails = () => {
       }
    };
 
+   //take the size vlue
    const handleSizeChange = (event) => {
       setSelectedSize(event.target.value);
    };
 
+
+
+   //add to cart funtion
    const addTocart = () => {
       console.log("Quantity:", quantity);
       console.log("Selected Size:", selectedSize);
-
+setQuantity(1)
       // You can now use the captured values to add the item to the cart or perform any other actions.
    };
 
    return (
-      <div className='md:min-h-[75vh]'>
+      <div className='md:min-h-[75vh] '>
          <div>
             <DetailsBenner name={name} category={category} />
          </div>
-         <div className='md:flex md:justify-center md:items-center md:my-20'>
-            <div className="rounded-lg md:py-8 md:px-14 bg-base-100 grid md:grid-cols-2 md:w-5/6 mx-auto  w-[98%] shadow-xl p-2 m-2 ">
-               
-              <img src={image} className=' w-[95%] mx-auto md:w-full md:h-[450px]' alt="image" />
-             
+         <div className='md:flex md:justify-center md:items-center md:my-20 my-10'>
+            <div className="rounded-lg md:py-8 md:px-14 bg-base-100 grid md:grid-cols-2 md:w-5/6 mx-auto  md:gap-8  w-[95%] shadow-xl p-2 m-2 ">
+
+               <img src={image} className=' w-[95%] mx-auto md:w-full md:h-[450px]' alt="image" />
+
                <div className="card-body">
-                  <h2 className="font-bold text-2xl text-center md:text-4xl  md:mb-5">{name}</h2>
+                  <h2 className="font-semibold mb-2 md:font-bold text-2xl text-center md:text-4xl  md:mb-5">{name}</h2>
                   <div>
                      <p className='text-md md:text-2xl font-bold'>price : <span className='text-green-600'>$</span> <span>{price}</span> </p>
                      <p className='text-md md:text-xl pt-1 font-bold'>Brand : <span className='font-semibold'>{brand}</span></p>
@@ -77,7 +106,7 @@ const ShowDetails = () => {
                         <span className='text-md md:text-xl font-bold'> Your Size :</span>
                         <select  className=" select-xs
                          md:select border select-disabled ml-2  md:min-w-max" value={selectedSize} onChange={handleSizeChange}>
-                           <option disabled value=""  className='font-medium md:font-semibold'>Choose</option>
+                           <option disabled value="" className='font-medium md:font-semibold'>Choose</option>
                            <option value='M' className='font-medium md:font-semibold'>M</option>
                            <option value='XL' className='font-medium md:font-semibold'>XL</option>
                            <option value='SM' className='font-medium md:font-semibold'>SM</option>
@@ -111,6 +140,8 @@ const ShowDetails = () => {
                </div>
             </div>
          </div>
+         <Related sub={sub} id={_id}></Related>
+         
       </div>
    );
 };

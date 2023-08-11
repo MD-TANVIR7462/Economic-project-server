@@ -84,14 +84,14 @@ navigate(`/details/${id}`)
       </div>
       <div className="flex justify-between py-6 px-2">
         <span>
-          <p className="text-xl text-slate-600 font-semibold">{product.name}</p>
-          <p className="text-xl text-slate-600 font-medium">For {product.category}</p>
-          <p className="text-xl text-black hover:text-slate-500">
+          <p className="text-md md:text-xl text-slate-600 font-semibold">{product.name}</p>
+          <p className="text-md md:text-xl text-slate-600 font-medium">For {product.category}</p>
+          <p className="md:text-xl text-black hover:text-slate-500">
             {product.price} <span className="text-green-700 font-semibold">$</span>
           </p>
         </span>
         {/* <StarRating rating={product.rating} /> */}
-        <p className="font-bold text-lg flex items-center"> <span className='mr-1'>{product.rating}/5</span>  {renderStars(product.rating)}
+        <p className="font-bold text-sm md:text-lg flex items-center"> <span className='mr-1'>{product.rating}/5</span>  {renderStars(product.rating)}
 
 </p>
       </div>
