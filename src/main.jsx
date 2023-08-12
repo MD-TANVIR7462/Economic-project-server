@@ -10,6 +10,7 @@ import Homepage from './Pages/Home/Homepage.jsx';
 import ShopPage from './Pages/ShopPage/ShopPage.jsx';
 import ShowDetails from './Components/ShoeDetailsComponents/ShowDetails.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 // import { QueryClient, QueryClientProvider } from 'react-query';
 
 
@@ -33,7 +34,11 @@ const router = createBrowserRouter([
         path: `/details/:id`,
         element: <ShowDetails></ShowDetails>,
         loader : ({params})=>fetch(`http://localhost:5000/details/${params.id}`) 
-      }
+      },
+      // {
+      //   path:'/login',
+      //   element : <Login></Login>
+      // }
     ]
 
   },
