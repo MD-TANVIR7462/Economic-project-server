@@ -1,33 +1,67 @@
 import { FaGoogle } from 'react-icons/fa';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Provider/Authprovider';
 
-
+const ImageHosting = import.meta.env.VITE_Image_Upload_Key
 const NAvbar = () => {
-   const user = false
+const {CreatUSerEmail, user,SignInUSer,signOutUSer,updateUser,loading}=useContext(AuthContext)
+
+
+console.log(user);
+
+
+   //Image hosting========>>>>
+
+   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${ImageHosting}`
+   //End Image hosting=====>>>>
+   
    const [isOpen, setIsOpen] = useState(false);
    const [selectedId, setSelectedId] = useState(null);
    const [resiterModal, setResisterModal] = useState(false);
+   const [error,setEror] = useState('')
 
-// Authintication Function====>>>
+   // Authintication Function====>>>
 
-const handleResister = (e)=>{
-   e.preventDefault();
-   const form = e.target;
+   const handleResister = (e) => {
+      e.preventDefault();
+      const form = e.target;
       const name = form.name.value
       const email = form.email.value;
       const password = form.password.value;
-      const imageUrl = form.image.value
-      const user = { name : name, image : imageUrl,email : email};
-      console.log(user);
-
-}
+      const imageUrl = form.image.files
+      // const user = { name: name, image: imageUrl, email: email };
 
 
 
+      const fromdata = new FormData()
+      fromdata.append('image', imageUrl[0])
+      fetch(img_hosting_url, {
+         method: "POST",
+         body: fromdata
+      })
+         .then(res => res.json())
+         .then(data => {
+            if (data.success) {
+               const profileImage = data.data.display_url
+               CreatUSerEmail(email,password)
+               .then(()=> {
+                  updateUser(name,profileImage)
+                  .then(()=> {
+                     console.log("success");
+                  });
+               })
 
 
-//Modal function===========>>
+            }
+         })
+   }
+
+
+
+
+
+   //Modal function===========>>
    const openModal = () => {
       setSelectedId();
 
@@ -47,7 +81,7 @@ const handleResister = (e)=>{
       setResisterModal(false);
    }
 
-//navbar Scroll ======>>>>
+   //navbar Scroll ======>>>>
 
    const navOptions = (
 
@@ -106,7 +140,7 @@ const handleResister = (e)=>{
                user ? <div className="dropdown dropdown-end z-10">
                   <label tabIndex={0} className="btn btn-ghost btn-circle avatar mr-2 md:mr-4">
                      <div className="md:w-16 w-10 rounded-full">
-                        <img src="https://i.ibb.co/WnRX98f/photo-1566753323558-f4e0952af115.jpg" />
+                        <img src={user.photoURL} />
                      </div>
                   </label>
                   <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">

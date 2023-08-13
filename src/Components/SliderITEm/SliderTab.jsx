@@ -63,7 +63,9 @@ if(Data){
          </span>
 
           <TabPanel>
-            <Slider item={proDucts} key={1}></Slider>
+           
+           <Slider item={proDucts} key={1}></Slider>
+          
           </TabPanel>
           <TabPanel>
             <Slider item={men} key={2}></Slider>
