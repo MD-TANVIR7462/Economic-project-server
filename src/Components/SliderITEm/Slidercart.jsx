@@ -86,8 +86,8 @@ navigate(`/details/${id}`)
         <span>
           <p className="text-md md:text-xl text-slate-600 font-semibold">{product.name}</p>
           <p className="text-md md:text-xl text-slate-600 font-medium">For {product.category}</p>
-          <p className="md:text-xl text-black hover:text-slate-500">
-            {product.price} <span className="text-green-700 font-semibold">$</span>
+          <p className="md:text-xl text-[#168a73]">
+            {product.price} <span className="text-[#168a73]font-semibold">$</span>
           </p>
         </span>
         {/* <StarRating rating={product.rating} /> */}

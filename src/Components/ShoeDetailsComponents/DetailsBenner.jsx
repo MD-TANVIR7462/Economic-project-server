@@ -3,13 +3,13 @@ import React from 'react';
 const DetailsBenner = ({name,category}) => {
    return (
       <div
-      className="relative bg-cover bg-center text-white py-20 md:pt-48 "
+      className="relative bg-cover bg-center  pt-32 pb-20 md:py-48  "
       style={{ backgroundImage: `url(${"https://i.ibb.co/ByRXQff/banner-1-1.jpg"})` }}
     >
       <div className="container mx-auto">
         <div className="text-center">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4 uppercase ">{name}</h1>
-          <p className="text-lg md:text-3xl font-semibold mb-6">For <span>{category}</span></p>
+          <h1 className="text-2xl md:text-5xl font-bold  md:mb-4 uppercase text-[#168a73]">{name}</h1>
+          <p className="text-lg md:text-3xl font-semibold mb-6 text-black">For <span>{category}</span></p>
          
         </div>
       </div>
