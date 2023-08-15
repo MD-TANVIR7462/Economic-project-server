@@ -204,7 +204,7 @@ const NAvbar = () => {
       <>
          <li className='text-xl font-semibold text-[#168a73] '><Link to={'/'}>Home</Link></li>
          <li className='text-xl font-semibold text-[#168a73]'><Link to={'/shop/all'}>Shop</Link></li>
-         <li className='text-xl font-semibold text-[#168a73] '><Link to={'/'}>Blog</Link></li>
+         <li className='text-xl font-semibold text-[#168a73] '><Link to={'/blog'}>Blog</Link></li>
          <li className='text-xl font-semibold text-[#168a73]'><Link to={'/shop'}>Contact</Link></li>
          <li className='text-xl font-semibold text-[#168a73]'><Link to={'/shop'}>About</Link></li>
       </>

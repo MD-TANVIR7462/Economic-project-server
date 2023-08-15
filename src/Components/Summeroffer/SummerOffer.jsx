@@ -27,7 +27,7 @@ const SummerOffer = () => {
                <p className='text-lg font-semibold text-slate-500'>SALE <span className='text-red-600 pl-1 font-bold text-xl'>50%</span></p>
 
                <span className='mt-8'>
-                  <button className="btn w-32 text-sm md:text-md md:w-48 text-center btn-outline border-0 border-b-4 md:mt-4">Order Now</button>
+                  <button className="btn w-32 text-sm md:text-md md:w-48 text-center btn-outline border-0 border-b-4 border-[#007a72] text-[#007a72]   md:mt-4">Order Now</button>
                </span>
             </div>
          </div>
