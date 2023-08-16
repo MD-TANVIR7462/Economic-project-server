@@ -8,8 +8,8 @@ const ContactBenner = () => {
     >
       <div className="container mx-auto">
         <div className="text-center">
-          <h1 className="text-3xl md:text-6xl text-white font-bold mb-2 md:mb-4">#Read More</h1>
-          <p className="text-sm font-semibold  md:text-md mb-6 text-white">Read All Case Study About Our Product's</p>
+          <h1 className="text-3xl md:text-6xl text-white font-bold mb-2 md:mb-4">#Contact Us</h1>
+          <p className="text-sm font-semibold  md:text-md mb-6 text-white">Feel Free To Contact Us</p>
         </div>
       </div>
       <div
