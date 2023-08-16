@@ -21,8 +21,8 @@ const ContactMap = () => {
 
 
         
-            <div className='h-[300px] md:h-[400px] w-full md:w-[60%]' >
-               <MapContainer center={position} zoom={15} style={{ width: '100%', height: '100%' }}>
+            <div className='h-[300px] md:h-[400px] z-0 w-full md:w-[60%]' >
+               <MapContainer center={position} zoom={14} style={{ width: '100%', height: '100%'  }}>
                   <TileLayer
                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 
