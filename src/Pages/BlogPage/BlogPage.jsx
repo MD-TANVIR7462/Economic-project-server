@@ -5,7 +5,7 @@ import BlogCards from '../../Components/Blog/BlogCards';
 
 const BlogPage = () => {
    return (
-      <div>
+      <div className='mb-12  '>
          <BlogBenner></BlogBenner>
          <div className='mt-8 md:mt-20'>
          <BlogCards img={"https://i.ibb.co/wgZYv4s/b1-1.jpg"  } title={"The Cotton-Jersey Zip-Up Hoodie"}></BlogCards>

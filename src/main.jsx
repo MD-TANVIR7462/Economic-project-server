@@ -12,6 +12,7 @@ import ShowDetails from './Components/ShoeDetailsComponents/ShowDetails.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Authprovider from './Components/Provider/Authprovider.jsx';
 import BlogPage from './Pages/BlogPage/BlogPage.jsx';
+import Contact from './Pages/ContactPage/Contact.jsx';
 
 // import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
         element: <BlogPage></BlogPage>
 
       },
+      {
+        path : '/contact',
+        element : <Contact></Contact>
+      }
       
     ]
 
