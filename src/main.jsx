@@ -13,6 +13,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Authprovider from './Components/Provider/Authprovider.jsx';
 import BlogPage from './Pages/BlogPage/BlogPage.jsx';
 import Contact from './Pages/ContactPage/Contact.jsx';
+import Dashboard from './Dashboard/Dashboard.jsx';
 
 // import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -46,11 +47,16 @@ const router = createBrowserRouter([
       {
         path : '/contact',
         element : <Contact></Contact>
-      }
+      },
       
     ]
 
   },
+
+  {
+    path:"/dashboard",
+    element: <Dashboard></Dashboard>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

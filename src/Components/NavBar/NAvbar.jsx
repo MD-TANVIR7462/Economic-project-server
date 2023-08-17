@@ -60,7 +60,7 @@ const NAvbar = () => {
       const email = form.email.value;
       const password = form.password.value;
       const imageUrl = form.image.files
-      // const user = { name: name, image: imageUrl, email: email };
+      
 
 
 
@@ -74,6 +74,7 @@ const NAvbar = () => {
          .then(data => {
 
             const profileImage = data.data.display_url
+            const user = { name: name, image: profileImage, email: email, role: "user" };
             CreatUSerEmail(email, password)
                .then(() => {
                   updateUser(name, profileImage)
@@ -90,10 +91,20 @@ const NAvbar = () => {
                               content: 'text-gray-700',
                            }
                         });
+                
+                        fetch("http://localhost:5000/allusers", {
+                           method: "POST",
+                           headers: {
+                              "content-type": "application/json"
+                           },
+                           body: JSON.stringify(user)
+                        }).then(res => res.json())
+                           .then(data => {
+                              form.reset();
+                              setEror('')
+                              closeResisterModal()
 
-                        form.reset();
-                        setEror('')
-                        closeResisterModal()
+                           })
 
                      })
                      .catch(error => {
@@ -206,7 +217,7 @@ const NAvbar = () => {
          <li className='text-xl font-semibold text-[#168a73]'><Link to={'/shop/all'}>Shop</Link></li>
          <li className='text-xl font-semibold text-[#168a73] '><Link to={'/blog'}>Blog</Link></li>
          <li className='text-xl font-semibold text-[#168a73]'><Link to={'/contact'}>Contact</Link></li>
-         <li className='text-xl font-semibold text-[#168a73]'><Link to={'/shop'}>About</Link></li>
+
       </>
    );
 
@@ -239,6 +250,9 @@ const NAvbar = () => {
                </label>
                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow  rounded-box w-48 bg-purple-200">
                   {navOptions}
+                  {
+                     user && !loading && <li className='text-xl font-semibold text-[#168a73]'><Link to={'/dashboard'}>Dashboard</Link></li>
+                  }
                </ul>
             </div>
             <a className="btn btn-ghost normal-case text-xl">LOGO</a>
@@ -246,9 +260,14 @@ const NAvbar = () => {
          <div className="navbar-start hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
                {navOptions}
+               {
+                  user && !loading && <li className='text-xl font-semibold text-[#168a73]'><Link to={'/dashboard'}>Dashboard</Link></li>
+               }
             </ul>
          </div>
          <div className="navbar-end ">
+            {/* //search */}
+
             {/* <button className="btn btn-ghost btn-circle mr-1 md:mr-4">
                <svg xmlns="http://www.w3.org/2000/svg" className="md:h-7 h-6 w-6 md:w-7   text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
             </button> */}
@@ -266,7 +285,7 @@ const NAvbar = () => {
                      <li>
                         <span className="justify-between font-semibold">
                            Profile
-                        
+
                         </span>
                      </li>
                      <li><span className='font-semibold'>Settings</span></li>
