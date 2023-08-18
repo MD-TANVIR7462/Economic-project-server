@@ -14,6 +14,9 @@ import Authprovider from './Components/Provider/Authprovider.jsx';
 import BlogPage from './Pages/BlogPage/BlogPage.jsx';
 import Contact from './Pages/ContactPage/Contact.jsx';
 import Dashboard from './Dashboard/Dashboard.jsx';
+import DashboardHome from './Dashboard/DashbordHome/DashboardHome.jsx';
+
+
 
 // import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -55,7 +58,14 @@ const router = createBrowserRouter([
 
   {
     path:"/dashboard",
-    element: <Dashboard></Dashboard>
+    element: <Dashboard></Dashboard>,
+    children:[
+      {
+        path:"/dashboard",
+        element: <DashboardHome></DashboardHome>
+      }
+
+    ]
   }
 ]);
 
