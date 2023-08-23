@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Components/Provider/Authprovider';
-import AddaProductBenner from '../AddaProductBenner';
+import AddaProductBenner from './AddaProductBenner';
 
 const imgHostingToken = import.meta.env.VITE_Image_Upload_Key;
 
@@ -69,10 +69,16 @@ const AddaProduct = () => {
                   .then((res) => res.json())
                   .then((data) => {
                      Swal.fire({
+                        position: 'top-center',
                         icon: 'success',
-                        title: 'Class Added Successfully',
+                        title: 'Product Added',
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 1500,
+                        customClass: {
+                           popup: 'bg-indigo-50 rounded-lg shadow-md p-3 md:p-8   md:max-w-md',
+                           title: 'text-sm md:text-2xl text-blue-600 font-semibold mb-4',
+                           content: 'text-gray-700',
+                        }
                      });
                      navigate('/dashboard');
                      reset();
@@ -83,10 +89,10 @@ const AddaProduct = () => {
 
    return (
 
-      <div className="w-full pb-12">
-         <AddaProductBenner name={"#Add A Product"} subtitle={"Explore New Style"} img={"https://i.ibb.co/cN24B75/banner.png"} ></AddaProductBenner>
+      <div className="w-full pb-12 ">
+         <AddaProductBenner name={"Add A Product"} subtitle={"Explore New Style"} img={"https://i.ibb.co/cN24B75/banner.png"} ></AddaProductBenner>
          <form onSubmit={handleSubmit(onSubmit)} className="max-w-md md:max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
-            <div className="md:grid grid-cols-2 gap-4 mb-6">
+            <div className="md:grid grid-cols-2 gap-4 my-6 ">
                <div>
                   <label className="block text-gray-700 font-semibold mb-2">Product Name*</label>
                   <input

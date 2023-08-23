@@ -82,10 +82,10 @@ const Dashboard = () => {
           </Link>
           {role && <span>
             <Link to={"/dashboard/addaProduct"} className="block py-2 hover:bg-gray-600 rounded-lg">
-              <FiCreditCard className="h-5 w-5 mr-2 inline"/>
-                 Add A Product
+              <FiCreditCard className="h-5 w-5 mr-2 inline" />
+              Add A Product
             </Link>
-            <Link to={"/"} className="block py-2 hover:bg-gray-600 rounded-lg">
+            <Link to={"/dashboard/myproducts"} className="block py-2 hover:bg-gray-600 rounded-lg">
               <FiCreditCard className="h-5 w-5 mr-2 inline" />
               My Product's
             </Link>
@@ -123,11 +123,11 @@ const Dashboard = () => {
           </div>
         )}
         <div className={`bg-gray-100  h-screen   rounded-lg ${windowWidth < 768 ? '' : 'ml-64'}`}>
-          
+
 
           <Outlet />
         </div>
- 
+
       </div>
 
     </div>
