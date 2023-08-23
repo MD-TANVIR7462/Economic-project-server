@@ -1,15 +1,15 @@
 import React from 'react';
 
-const ContactBenner = () => {
+const ContactBenner = ({name,subtitle,img,}) => {
    return (
       <div
       className="relative bg-cover bg-center  pt-32 pb-20 md:py-52"
-      style={{ backgroundImage: `url(${"https://i.ibb.co/cN24B75/banner.png"})` }}
+      style={{ backgroundImage: `url(${img})` }}
     >
       <div className="container mx-auto">
         <div className="text-center">
-          <h1 className="text-3xl md:text-6xl text-white font-bold mb-2 md:mb-4">#Contact Us</h1>
-          <p className="text-sm font-semibold  md:text-md mb-6 text-white">Feel Free To Contact Us</p>
+          <h1 className="text-3xl md:text-6xl text-white font-bold mb-2 md:mb-4">{name}</h1>
+          <p className="text-sm font-semibold  md:text-md mb-6 text-white">{subtitle}</p>
         </div>
       </div>
       <div

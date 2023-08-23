@@ -15,6 +15,7 @@ import BlogPage from './Pages/BlogPage/BlogPage.jsx';
 import Contact from './Pages/ContactPage/Contact.jsx';
 import Dashboard from './Dashboard/Dashboard.jsx';
 import DashboardHome from './Dashboard/DashbordHome/DashboardHome.jsx';
+import AddaProduct from './Dashboard/AdminDashRoutes/AddaProduct/AddaProduct.jsx';
 
 
 
@@ -48,21 +49,25 @@ const router = createBrowserRouter([
 
       },
       {
-        path : '/contact',
-        element : <Contact></Contact>
+        path: '/contact',
+        element: <Contact></Contact>
       },
-      
+
     ]
 
   },
 
   {
-    path:"/dashboard",
+    path: "/dashboard",
     element: <Dashboard></Dashboard>,
-    children:[
+    children: [
       {
-        path:"/dashboard",
+        path: "/dashboard",
         element: <DashboardHome></DashboardHome>
+      },
+      {
+        path: "/dashboard/addaProduct",
+        element:<AddaProduct></AddaProduct>
       }
 
     ]

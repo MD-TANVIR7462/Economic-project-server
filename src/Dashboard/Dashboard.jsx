@@ -9,7 +9,7 @@ const Dashboard = () => {
   const [menuOpen, setMenuOpen] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  const role = false
+  const role = true
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -35,7 +35,7 @@ const Dashboard = () => {
   }, [windowWidth]);
 
   return (
-    <div className="flex h-screen">
+    <div className="flex ">
       <div className={`fixed left-0 z-10 h-screen w-52 md:w-64 bg-gray-900 text-white transition-transform duration-500  ease-in-out ${menuOpen ? 'translate-x-0 ' : '-translate-x-64'
         }`}
       >
@@ -66,28 +66,32 @@ const Dashboard = () => {
           }
 
 
-          <Link to={"/"} className="block py-2">
+          <Link to={"/dashboard"} className="block py-2 hover:bg-gray-600 rounded-lg">
             <FiHome className="h-5 w-5 mr-2 inline" />
             Dashboard
           </Link>
 
 
-          <Link to={"/"} className="block py-2">
+          <Link to={"/"} className="block py-2 hover:bg-gray-600 rounded-lg">
             <FiShoppingCart className="h-5 w-5 mr-2 inline" />
             Orders
           </Link>
-          <Link to={"/"} className="block py-2">
+          <Link to={"/"} className="block py-2 hover:bg-gray-600 rounded-lg">
             <FiCreditCard className="h-5 w-5 mr-2 inline" />
             Payments
           </Link>
           {role && <span>
-            <Link to={"/"} className="block py-2">
-              <FiCreditCard className="h-5 w-5 mr-2 inline" />
+            <Link to={"/dashboard/addaProduct"} className="block py-2 hover:bg-gray-600 rounded-lg">
+              <FiCreditCard className="h-5 w-5 mr-2 inline"/>
                  Add A Product
             </Link>
-            <Link to={"/"} className="block py-2">
+            <Link to={"/"} className="block py-2 hover:bg-gray-600 rounded-lg">
               <FiCreditCard className="h-5 w-5 mr-2 inline" />
               My Product's
+            </Link>
+            <Link to={"/"} className="block py-2 hover:bg-gray-600 rounded-lg">
+              <FiCreditCard className="h-5 w-5 mr-2 inline" />
+              Menage Users
             </Link>
           </span>
 
@@ -95,13 +99,13 @@ const Dashboard = () => {
           }
 
           <div className="border-b border-indigo-800 my-4" />
-          <Link to={"/"} className="block py-2">
+          <Link to={"/"} className="block py-2 hover:bg-gray-600 rounded-lg">
             <FiHome className="h-5 w-5 mr-2 inline" />
             Home
           </Link>
 
 
-          <Link to={"/"} className="block py-2">
+          <Link to={"/shop/all"} className="block py-2 hover:bg-gray-600 rounded-lg">
             <FiShoppingCart className="h-5 w-5 mr-2 inline" />
             Shop
           </Link>
@@ -118,12 +122,12 @@ const Dashboard = () => {
 
           </div>
         )}
-        <div className={`bg-gray-100 p-1  md:p-5rounded-lg ${windowWidth < 768 ? '' : 'ml-64'}`}>
+        <div className={`bg-gray-100  h-screen   rounded-lg ${windowWidth < 768 ? '' : 'ml-64'}`}>
           
 
           <Outlet />
         </div>
-
+ 
       </div>
 
     </div>

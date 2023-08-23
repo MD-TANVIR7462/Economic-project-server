@@ -9,6 +9,7 @@ import Related from '../Reviews/Related';
 const ShowDetails = () => {
 
    const Product = useLoaderData();
+   console.log(Product);
    const [quantity, setQuantity] = useState(1);
    const [selectedSize, setSelectedSize] = useState('')
    const [sub, setSub] = useState([])
