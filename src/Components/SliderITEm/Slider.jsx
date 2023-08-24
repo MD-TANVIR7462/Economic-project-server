@@ -49,6 +49,7 @@ const Slider = ({item}) => {
     <div className='  mx-auto '>
       <div className=''>
         <Swiper
+        
           onSwiper={setSwiperRef}
           slidesPerView={slidesPerView}
           centeredSlides={false}

@@ -1,15 +1,3 @@
-// import React from 'react';
-
-// const MyProducts = () => {
-//    return (
-//       <div>
-
-//       </div>
-//    );
-// };
-
-// export default MyProducts;
-
 import React, { useContext, useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
@@ -47,7 +35,7 @@ const MyProducts = () => {
    //    window.my_modal_1.showModal()
    // }
 
-   console.log(user);
+  
    return (
 
       <div>
@@ -74,11 +62,11 @@ const MyProducts = () => {
                            <tr key={singleProduct?._id} className='"border-b border-indigo-800 " '>
 
                               <td>
-                                 <img src={singleProduct?.image} className="w-24 h-12 rounded-xl" alt="" />
+                                 <img src={singleProduct?.image} className="md:w-24 w-20 h-12 md:h-16 rounded-xl" alt="" />
                               </td>
-                              <td>{singleProduct?.name}</td>
-                              <td>{singleProduct?.price} $</td>
-                              <td className="">{singleProduct?.brand}</td>
+                              <td  className="font-semibold">{singleProduct?.name}</td>
+                              <td  className="font-semibold">{singleProduct?.price} <span className='text-green-500'>$</span></td>
+                              <td  className="font-semibold">{singleProduct?.brand}</td>
                               <td className="font-semibold">{singleProduct?.category}</td>
                               <td className="font-semibold">{singleProduct?.subcategory}</td>
                               <td>

@@ -26,7 +26,7 @@ if(Data){
   const kid= products?.filter(product=>product.category==="kids")
   const proDucts = products 
   // console.log(products,men,kid,women);
- 
+ console.log(proDucts);
 
   return (
     <div className='w-[90%]  my-16 md:my-32 mx-auto' >
