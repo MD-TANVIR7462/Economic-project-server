@@ -3,6 +3,7 @@ import {
    PieChart, Pie, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line,
 } from 'recharts';
 import { AuthContext } from '../../Components/Provider/Authprovider';
+import AddaProductBenner from '../AdminDashRoutes/AddaProduct/AddaProductBenner';
 
 
 const Dashboard = () => {
@@ -43,9 +44,13 @@ const Dashboard = () => {
    const yearlyProgress = 50;
 
    return (
-      <div className=" min-h-screen  mt-5 md:mt-12">
-         <h1 className="text-lg font-bold text-[#226d5d] md:text-3xl  text-center mb-8 md:mb-20">WellCome {user?.displayName}</h1>
-         <div className="md:grid grid-cols-3 mx-auto w-[96%] md:w-[96%] md:space-x-8 md:mb-12">
+      <div className=" min-h-screen ">
+        <AddaProductBenner
+        name={user.displayName}
+        subtitle={"Wellcome"}
+        img={"https://i.ibb.co/cN24B75/banner.png"}
+      ></AddaProductBenner>
+         <div className="md:grid grid-cols-3 mx-auto w-[96%] md:w-[96%] md:space-x-8 my-5 md:my-12">
             <div className=" mb-8">
                <div className="bg-gray-900 p-6 rounded-lg shadow-lg flex flex-col items-center">
                   <h2 className="text-sm md:text-xl font-semibold mb-4  text-white">Sales Distribution by Category</h2>

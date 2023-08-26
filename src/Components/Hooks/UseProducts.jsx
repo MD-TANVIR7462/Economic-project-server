@@ -8,7 +8,7 @@ const FetchData = async()=>{
    return data
 }
 
-// Query Function==
+// Query Function==>
 
 const UseProducts = () => {
 const{data : products,isLoading,refetch  }=useQuery(["products"],FetchData)

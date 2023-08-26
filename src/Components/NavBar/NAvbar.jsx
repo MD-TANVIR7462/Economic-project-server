@@ -23,13 +23,13 @@ const NAvbar = () => {
   //End Image hosting=====>>>>
 
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedId, setSelectedId] = useState(null);
+  // const [selectedId, setSelectedId] = useState(null);
   const [resiterModal, setResisterModal] = useState(false);
   const [Error, setEror] = useState("");
 
   //Modal function===========>>
   const openModal = () => {
-    setSelectedId();
+    // setSelectedId();
     setEror("");
     setIsOpen(true);
   };
