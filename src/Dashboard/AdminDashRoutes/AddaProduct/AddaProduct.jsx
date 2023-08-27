@@ -58,7 +58,6 @@ const AddaProduct = () => {
             description,
             image: imgURL,
           };
-          console.log(product);
           fetch("http://localhost:5000/addproducts", {
             method: "POST",
             headers: {
@@ -222,7 +221,7 @@ const AddaProduct = () => {
             </label>
             <select
               {...register("subcategory", { required: true })}
-              className="select select-success w-full max-w-md  md:max-w-xs "
+              className="select select-success w-full   md:max-w-xs "
             >
               <option disabled selected>
                 Pick One

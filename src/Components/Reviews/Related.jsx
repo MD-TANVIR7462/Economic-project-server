@@ -16,7 +16,7 @@ const Related = ({ sub, id }) => {
 
       }
 
-      else if (sub.length > 1 && sub.length <= 4) {
+      else if (sub.length > 0 && sub.length <= 4) {
          const filteredSub2 = sub.filter(signle => signle._id !== id);
          setText("Related Product's")
          setFinalSub(filteredSub2);

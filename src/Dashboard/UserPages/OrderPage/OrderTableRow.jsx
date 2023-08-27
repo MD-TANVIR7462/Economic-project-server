@@ -18,6 +18,8 @@ const OrderTableRow = ({ singleProduct ,openModal,DeleteProduct}) => {
       <td className="font-semibold">{singleProduct?.brand}</td>
       <td className="font-semibold">{singleProduct?.category}</td>
       <td className="font-semibold">{singleProduct?.subcategory}</td>
+      <td className="font-semibold">{singleProduct?.category}</td>
+      <td className="font-semibold">{singleProduct?.subcategory}</td>
       <td>
         <button
           onClick={() => {

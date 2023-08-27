@@ -109,6 +109,8 @@ const OrderPage = () => {
                   <th>Brand</th>
                   <th>Cetegory</th>
                   <th>Subcetegory</th>
+                  <th>Size</th>
+                  <th>Quantity</th>
                   <th>Pay</th>
                   <th>Delete</th>
                 </tr>

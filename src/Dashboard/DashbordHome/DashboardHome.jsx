@@ -46,7 +46,7 @@ const Dashboard = () => {
    return (
       <div className=" min-h-screen ">
         <SheardBenner
-        name={user.displayName}
+        name={user?.displayName}
         subtitle={"Wellcome"}
         img={"https://i.ibb.co/cN24B75/banner.png"}
       ></SheardBenner>

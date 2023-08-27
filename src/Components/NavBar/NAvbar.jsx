@@ -150,7 +150,27 @@ const NAvbar = () => {
   //google login ======>>>>
   const LoginWithGoogle = () => {
     googleCreatUSer()
-      .then(() => {
+      .then((result) => {
+        const { displayName, email, photoURL } = result.user;
+        const Googleuser = {
+          name: displayName,
+          image: photoURL,
+          email: email,
+          role: "user",
+        };
+        console.log(Googleuser);
+        fetch("http://localhost:5000/allusers", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(Googleuser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            
+          });
+
         Swal.fire({
           position: "top-center",
           icon: "success",
