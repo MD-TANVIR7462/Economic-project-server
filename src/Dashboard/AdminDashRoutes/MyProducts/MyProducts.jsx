@@ -72,7 +72,7 @@ const MyProducts = () => {
         Swal.fire({
           position: "top-center",
           icon: "success",
-          title: "Bookmark Removed!!",
+          title: "Product Delete!!",
           showConfirmButton: false,
           timer: 1500,
           customClass: {

@@ -2,16 +2,16 @@ import SheardBenner from "../../AdminDashRoutes/AddaProduct/SheardBenner";
 import { useContext } from "react";
 import { AuthContext } from "../../../Components/Provider/Authprovider";
 import OrderTableRow from "./OrderTableRow";
-import UseProducts from "../../../Components/Hooks/UseProducts";
 import { useState ,useEffect} from "react";
 import Swal from "sweetalert2";
+import UseBookmarks from "../../../Components/Hooks/UseBookmarks";
 
 const OrderPage = () => {
-  const [Adminproducts, setadminProduct] = useState([]);
+  const [bookmark, setBookmark] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [id, setID] = useState([]);
   const { user } = useContext(AuthContext);
-  const { refetch, products } = UseProducts();
+  const {bookmarkProducts,isLoading,refetch} = UseBookmarks()
 
   //Update product===>
   const openModal = (_id) => {
@@ -62,7 +62,7 @@ const OrderPage = () => {
   };
 
   const DeleteProduct = (id) => {
-    fetch(`http://localhost:5000/deleteProduct/${id}`, {
+    fetch(`http://localhost:5000/bookmarkDelete/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -84,12 +84,12 @@ const OrderPage = () => {
   };
 
   useEffect(() => {
-    if (user && products) {
-      setadminProduct(
-        products?.filter((product) => product.email === user?.email)
+    if (user && bookmarkProducts) {
+      setBookmark(
+         bookmarkProducts?.filter((product) => product.email === user?.email)
       );
     }
-  }, [user, products]);
+  }, [user, bookmarkProducts]);
   return (
     <div>
       <SheardBenner
@@ -97,10 +97,10 @@ const OrderPage = () => {
         subtitle={user?.displayName}
         img={"https://i.ibb.co/7SN0S6z/b2.jpg"}
       ></SheardBenner>
-      {user && Adminproducts ? (
+      {user && bookmark ? (
         <div>
           <div className="w-full  bg-white shadow-lg overflow-x-auto">
-            <table className=" table table-xs  md:table-sm">
+            <table className=" table table-x  md:table-sm">
               <thead>
                 <tr className="text-white bg-gray-900">
                   <th>Product Img</th>
@@ -116,7 +116,7 @@ const OrderPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {Adminproducts?.map((singleProduct, index) => (
+                {bookmark?.map((singleProduct, index) => (
                   <OrderTableRow
                     singleProduct={singleProduct}
                     key={singleProduct._id}
@@ -230,7 +230,7 @@ const OrderPage = () => {
           <span className="loading loading-bars loading-lg"></span>
         </p>
       )}
-      {!products && <p>You Don't Add any Product</p>}
+      {!bookmark && <p>You Don't Add any Product</p>}
     </div>
   );
 };

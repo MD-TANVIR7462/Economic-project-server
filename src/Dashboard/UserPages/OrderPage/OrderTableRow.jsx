@@ -11,15 +11,15 @@ const OrderTableRow = ({ singleProduct ,openModal,DeleteProduct}) => {
           alt=""
         />
       </td>
-      <td className="font-semibold">{singleProduct?.name}</td>
-      <td className="font-semibold">
+      <td className="font-normal md:font-semibold  ">{singleProduct?.name}</td>
+      <td className="font-normal md:font-semibold  ">
         {singleProduct?.price} <span className="text-green-500">$</span>
       </td>
-      <td className="font-semibold">{singleProduct?.brand}</td>
-      <td className="font-semibold">{singleProduct?.category}</td>
-      <td className="font-semibold">{singleProduct?.subcategory}</td>
-      <td className="font-semibold">{singleProduct?.category}</td>
-      <td className="font-semibold">{singleProduct?.subcategory}</td>
+      <td className="font-normal md:font-semibold ">{singleProduct?.brand}</td>
+      <td className="font-normal md:font-semibold ">{singleProduct?.category}</td>
+      <td className="font-normal md:font-semibold ">{singleProduct?.subcategory}</td>
+      <td className="font-normal md:font-semibold ">{singleProduct?.selectedSize}</td>
+      <td className="font-normal md:font-semibold ">{singleProduct?.Quantity}</td>
       <td>
         <button
           onClick={() => {

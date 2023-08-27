@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 const FetchData = async()=>{
-   const res = await fetch("http://localhost:5000/bookmarks")
+   const res = await fetch("http://localhost:5000/bookmarksAllProducts")
    const data = await res.json();
    return data
 }
