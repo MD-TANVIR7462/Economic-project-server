@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddaProductBenner = ({name,subtitle,img}) => {
+const SheardBenner = ({name,subtitle,img}) => {
    return (
       <div
       className="relative bg-cover bg-center  py-20  md:py-24  "
@@ -20,4 +20,4 @@ const AddaProductBenner = ({name,subtitle,img}) => {
    );
 };
 
-export default AddaProductBenner;
+export default SheardBenner;

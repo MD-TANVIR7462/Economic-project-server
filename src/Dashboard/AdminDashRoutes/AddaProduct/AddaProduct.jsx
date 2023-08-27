@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Components/Provider/Authprovider";
-import AddaProductBenner from "./AddaProductBenner";
+import SheardBenner from "./SheardBenner";
 
 const imgHostingToken = import.meta.env.VITE_Image_Upload_Key;
 
@@ -90,11 +90,11 @@ const AddaProduct = () => {
 
   return (
     <div className="w-full pb-12 ">
-      <AddaProductBenner
+      <SheardBenner
         name={"Add A Product"}
         subtitle={"Explore New Style"}
         img={"https://i.ibb.co/cN24B75/banner.png"}
-      ></AddaProductBenner>
+      ></SheardBenner>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="max-w-md md:max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6"

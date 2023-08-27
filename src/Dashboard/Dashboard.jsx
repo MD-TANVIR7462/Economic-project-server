@@ -79,7 +79,7 @@ const Dashboard = () => {
             Dashboard
           </Link>
 
-          <Link to={"/"} className="block py-2 hover:bg-gray-600 rounded-lg">
+          <Link to={"/dashboard/orders"} className="block py-2 hover:bg-gray-600 rounded-lg">
             <FiShoppingCart className="h-5 w-5 mr-2 inline" />
             Orders
           </Link>

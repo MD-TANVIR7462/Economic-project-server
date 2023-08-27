@@ -1,11 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import { FaUserEdit, FaRegTrashAlt } from "react-icons/fa";
+import SheardBenner from "../../AdminDashRoutes/AddaProduct/SheardBenner";
+import { useContext } from "react";
 import { AuthContext } from "../../../Components/Provider/Authprovider";
-import Swal from "sweetalert2";
+import OrderTableRow from "./OrderTableRow";
 import UseProducts from "../../../Components/Hooks/UseProducts";
-import SheardBenner from "../AddaProduct/SheardBenner";
+import { useState ,useEffect} from "react";
+import Swal from "sweetalert2";
 
-const MyProducts = () => {
+const OrderPage = () => {
   const [Adminproducts, setadminProduct] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [id, setID] = useState([]);
@@ -32,7 +33,6 @@ const MyProducts = () => {
     const brand = form.brand.value;
     const Quantity = parseInt(form.Quantity.value);
     const updatedProduct = { name, price, brand, Quantity };
-    console.log(updatedProduct);
 
     fetch(`http://localhost:5000/updateProduct/${id}`, {
       method: "PATCH",
@@ -90,11 +90,10 @@ const MyProducts = () => {
       );
     }
   }, [user, products]);
-
   return (
     <div>
       <SheardBenner
-        name={"Your Product's"}
+        name={"BooKMark Product's"}
         subtitle={user?.displayName}
         img={"https://i.ibb.co/7SN0S6z/b2.jpg"}
       ></SheardBenner>
@@ -110,60 +109,18 @@ const MyProducts = () => {
                   <th>Brand</th>
                   <th>Cetegory</th>
                   <th>Subcetegory</th>
-                  <th>Update It</th>
-                  <th>Delete It</th>
+                  <th>Pay</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
               <tbody>
                 {Adminproducts?.map((singleProduct, index) => (
-                  <tr
-                    key={singleProduct?._id}
-                    className='"border-b border-indigo-800 " '
-                  >
-                    <td>
-                      <img
-                        src={singleProduct?.image}
-                        className="md:w-24 w-20 h-12 md:h-16 rounded-xl"
-                        alt=""
-                      />
-                    </td>
-                    <td className="font-semibold">{singleProduct?.name}</td>
-                    <td className="font-semibold">
-                      {singleProduct?.price}{" "}
-                      <span className="text-green-500">$</span>
-                    </td>
-                    <td className="font-semibold">{singleProduct?.brand}</td>
-                    <td className="font-semibold">{singleProduct?.category}</td>
-                    <td className="font-semibold">
-                      {singleProduct?.subcategory}
-                    </td>
-                    <td>
-                      <button
-                        onClick={() => {
-                          openModal(singleProduct?._id);
-                        }}
-                        className="rounded px-5 py-2.5 overflow-hidden group bg-green-500 relative hover:bg-gradient-to-r hover:from-green-500 hover:to-green-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-green-400 transition-all ease-out duration-300"
-                      >
-                        <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                        <span className="relative">
-                          <FaUserEdit />
-                        </span>
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        onClick={() => {
-                          DeleteProduct(singleProduct?._id);
-                        }}
-                        className="rounded px-5 py-2.5 overflow-hidden group bg-red-500 relative hover:bg-gradient-to-r hover:from-red-500 hover:to-red-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-red-400 transition-all ease-out duration-300"
-                      >
-                        <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                        <span className="relative">
-                          <FaRegTrashAlt />
-                        </span>
-                      </button>
-                    </td>
-                  </tr>
+                  <OrderTableRow
+                    singleProduct={singleProduct}
+                    key={singleProduct._id}
+                    openModal={openModal}
+                    DeleteProduct={DeleteProduct}
+                  ></OrderTableRow>
                 ))}
               </tbody>
             </table>
@@ -276,4 +233,4 @@ const MyProducts = () => {
   );
 };
 
-export default MyProducts;
+export default OrderPage;

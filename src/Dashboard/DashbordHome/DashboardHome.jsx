@@ -3,7 +3,7 @@ import {
    PieChart, Pie, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line,
 } from 'recharts';
 import { AuthContext } from '../../Components/Provider/Authprovider';
-import AddaProductBenner from '../AdminDashRoutes/AddaProduct/AddaProductBenner';
+import SheardBenner from '../AdminDashRoutes/AddaProduct/SheardBenner';
 
 
 const Dashboard = () => {
@@ -45,11 +45,11 @@ const Dashboard = () => {
 
    return (
       <div className=" min-h-screen ">
-        <AddaProductBenner
+        <SheardBenner
         name={user.displayName}
         subtitle={"Wellcome"}
         img={"https://i.ibb.co/cN24B75/banner.png"}
-      ></AddaProductBenner>
+      ></SheardBenner>
          <div className="md:grid grid-cols-3 mx-auto w-[96%] md:w-[96%] md:space-x-8 my-5 md:my-12">
             <div className=" mb-8">
                <div className="bg-gray-900 p-6 rounded-lg shadow-lg flex flex-col items-center">
