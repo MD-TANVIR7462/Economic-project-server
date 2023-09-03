@@ -62,25 +62,41 @@ const MyProducts = () => {
   };
 
   const DeleteProduct = (id) => {
-    fetch(`http://localhost:5000/deleteProduct/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        refetch();
+    Swal.fire({
+      position: "top-center",
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085dg",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Delete",
+      customClass: {
+        popup: "bg-white border-4 border-gray-300 rounded-lg",
+        title: "text-black text-lg font-bold text-center mb-2",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/deleteProduct/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            refetch();
 
-        Swal.fire({
-          position: "top-center",
-          icon: "success",
-          title: "Product Delete!!",
-          showConfirmButton: false,
-          timer: 1500,
-          customClass: {
-            popup: "bg-white border-4 border-gray-300 rounded-lg",
-            title: "text-black text-lg font-bold text-center mb-2",
-          },
-        });
-      });
+            Swal.fire({
+              position: "top-center",
+              icon: "success",
+              title: "Bookmark Removed!!",
+              showConfirmButton:false,
+              timer: 1500,
+              customClass: {
+                popup: "bg-white border-4 border-gray-300 rounded-lg",
+                title: "text-black text-lg font-bold text-center mb-2",
+              },
+            });
+          });
+      }
+    });
   };
 
   useEffect(() => {

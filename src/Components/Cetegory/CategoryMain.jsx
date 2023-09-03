@@ -26,7 +26,7 @@ const CategoryMain = () => {
   ];
 
   return (
-    <div className=" w-[93%] md:w-[90%] mx-auto md:gap-5 grid grid-cols-1 md:grid-cols-3 my-6 md:my-10">
+    <div className=" w-[90%] md:w-[85%] mx-auto md:gap-5 grid grid-cols-1 md:grid-cols-3 my-6 md:my-10">
       {categoriesData.map((data) => (
         <Cetegory data={data} key={data.id}></Cetegory>
       ))}

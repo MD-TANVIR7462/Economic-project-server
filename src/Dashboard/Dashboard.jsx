@@ -81,7 +81,7 @@ const Dashboard = () => {
 
           <Link to={"/dashboard/orders"} className="block py-2 hover:bg-gray-600 rounded-lg">
             <FiShoppingCart className="h-5 w-5 mr-2 inline" />
-            Orders
+            Cart
           </Link>
           <Link to={"/"} className="block py-2 hover:bg-gray-600 rounded-lg">
             <FiCreditCard className="h-5 w-5 mr-2 inline" />

@@ -2,7 +2,7 @@ import SheardBenner from "../../AdminDashRoutes/AddaProduct/SheardBenner";
 import { useContext } from "react";
 import { AuthContext } from "../../../Components/Provider/Authprovider";
 import OrderTableRow from "./OrderTableRow";
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import UseBookmarks from "../../../Components/Hooks/UseBookmarks";
 
@@ -11,7 +11,7 @@ const OrderPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [id, setID] = useState([]);
   const { user } = useContext(AuthContext);
-  const {bookmarkProducts,isLoading,refetch} = UseBookmarks()
+  const { bookmarkProducts, isLoading, refetch } = UseBookmarks();
 
   //Update product===>
   const openModal = (_id) => {
@@ -62,31 +62,47 @@ const OrderPage = () => {
   };
 
   const DeleteProduct = (id) => {
-    fetch(`http://localhost:5000/bookmarkDelete/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        refetch();
+    Swal.fire({
+      position: "top-center",
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085dg",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Delete",
+      customClass: {
+        popup: "bg-white border-4 border-gray-300 rounded-lg",
+        title: "text-black text-lg font-bold text-center mb-2",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/bookmarkDelete/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            refetch();
 
-        Swal.fire({
-          position: "top-center",
-          icon: "success",
-          title: "Bookmark Removed!!",
-          showConfirmButton: false,
-          timer: 1500,
-          customClass: {
-            popup: "bg-white border-4 border-gray-300 rounded-lg",
-            title: "text-black text-lg font-bold text-center mb-2",
-          },
-        });
-      });
+            Swal.fire({
+              position: "top-center",
+              icon: "success",
+              title: "Bookmark Removed!!",
+              showConfirmButton:false,
+              timer: 1500,
+              customClass: {
+                popup: "bg-white border-4 border-gray-300 rounded-lg",
+                title: "text-black text-lg font-bold text-center mb-2",
+              },
+            });
+          });
+      }
+    });
   };
 
   useEffect(() => {
     if (user && bookmarkProducts) {
       setBookmark(
-         bookmarkProducts?.filter((product) => product.email === user?.email)
+        bookmarkProducts?.filter((product) => product.email === user?.email)
       );
     }
   }, [user, bookmarkProducts]);

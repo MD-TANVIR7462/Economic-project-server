@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../Provider/Authprovider";
 import Swal from "sweetalert2";
 import { BsBoxArrowInRight } from "react-icons/bs";
+import UseBookmarks from "../Hooks/UseBookmarks";
 
 const ImageHosting = import.meta.env.VITE_Image_Upload_Key;
 const NAvbar = () => {
@@ -22,8 +23,13 @@ const NAvbar = () => {
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${ImageHosting}`;
   //End Image hosting=====>>>>
 
+
+
+  
   const [isOpen, setIsOpen] = useState(false);
   // const [selectedId, setSelectedId] = useState(null);
+  const [cart, setCart] = useState([]);
+  const [Subtotal, setSubtotal] = useState(0);
   const [resiterModal, setResisterModal] = useState(false);
   const [Error, setEror] = useState("");
 
@@ -167,9 +173,7 @@ const NAvbar = () => {
           body: JSON.stringify(Googleuser),
         })
           .then((res) => res.json())
-          .then((data) => {
-            
-          });
+          .then((data) => {});
 
         Swal.fire({
           position: "top-center",
@@ -214,6 +218,23 @@ const NAvbar = () => {
         setEror(error.message);
       });
   };
+
+  //Cart icon item show ===>>>>
+
+  const { bookmarkProducts, isLoading, refetch } = UseBookmarks();
+  useEffect(() => {
+    if (user && bookmarkProducts) {
+      const MyBookmark = bookmarkProducts.filter(
+        (bookmarkProduct) => bookmarkProduct.email === user.email
+      );
+      const total = MyBookmark.reduce((accumulator, singleProduct) => {
+        return accumulator + singleProduct.price;
+      }, 0);
+      setCart(MyBookmark);
+      setSubtotal(total.toFixed(2));
+    }
+  }, [user, bookmarkProducts]);
+
 
   //navbar Scroll ======>>>>
 
@@ -366,7 +387,7 @@ const NAvbar = () => {
                 />
               </svg>
               <span className=" bg-red-600 text-white rounded-full px-1 py-1 indicator-item">
-                8
+                {cart.length}
               </span>
             </div>
           </label>
@@ -375,8 +396,8 @@ const NAvbar = () => {
             className="mt-3 z-[1] card card-compact dropdown-content  w-36 md:w-52 bg-purple-200 shadow"
           >
             <div className="card-body">
-              <span className="font-bold text-md">8 Items</span>
-              <span className="text-info">Subtotal: $999</span>
+              <span className="font-bold text-md">{cart.length} Items</span>
+              <span className="text-info">Subtotal: ${Subtotal}</span>
               <div className="card-actions">
                 <button className="btn btn-sm  btn-primary btn-block md:p-2">
                   View cart
