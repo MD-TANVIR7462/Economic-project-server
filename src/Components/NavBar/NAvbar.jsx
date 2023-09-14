@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../Provider/Authprovider";
 import Swal from "sweetalert2";
 import { BsBoxArrowInRight } from "react-icons/bs";
-import UseBookmarks from "../Hooks/UseBookmarks";
+
 
 const ImageHosting = import.meta.env.VITE_Image_Upload_Key;
+
+
 const NAvbar = () => {
   const {
     CreatUSerEmail,
@@ -23,15 +25,10 @@ const NAvbar = () => {
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${ImageHosting}`;
   //End Image hosting=====>>>>
 
-
-
-  
   const [isOpen, setIsOpen] = useState(false);
-  // const [selectedId, setSelectedId] = useState(null);
-  const [cart, setCart] = useState([]);
-  const [Subtotal, setSubtotal] = useState(0);
   const [resiterModal, setResisterModal] = useState(false);
   const [Error, setEror] = useState("");
+  const [dbUser, setDbUser] = useState({})
 
   //Modal function===========>>
   const openModal = () => {
@@ -164,7 +161,7 @@ const NAvbar = () => {
           email: email,
           role: "user",
         };
-        console.log(Googleuser);
+    
         fetch("http://localhost:5000/allusers", {
           method: "POST",
           headers: {
@@ -219,22 +216,15 @@ const NAvbar = () => {
       });
   };
 
-  //Cart icon item show ===>>>>
-
-  const { bookmarkProducts, isLoading, refetch } = UseBookmarks();
-  useEffect(() => {
-    if (user && bookmarkProducts) {
-      const MyBookmark = bookmarkProducts.filter(
-        (bookmarkProduct) => bookmarkProduct.email === user.email
-      );
-      const total = MyBookmark.reduce((accumulator, singleProduct) => {
-        return accumulator + singleProduct.price;
-      }, 0);
-      setCart(MyBookmark);
-      setSubtotal(total.toFixed(2));
-    }
-  }, [user, bookmarkProducts]);
-
+//user form DB
+useEffect(()=>{
+fetch(`http://localhost:5000/user?email=${user?.email}`)
+.then(res=>res.json())
+.then(data=>{
+  console.log(data);
+  setDbUser(data)
+})
+},[user])
 
   //navbar Scroll ======>>>>
 
@@ -323,12 +313,6 @@ const NAvbar = () => {
         </ul>
       </div>
       <div className="navbar-end ">
-        {/* //search */}
-
-        {/* <button className="btn btn-ghost btn-circle mr-1 md:mr-4">
-               <svg xmlns="http://www.w3.org/2000/svg" className="md:h-7 h-6 w-6 md:w-7   text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-            </button> */}
-
         {user && (
           <div className="dropdown dropdown-end z-10">
             <label
@@ -344,10 +328,10 @@ const NAvbar = () => {
               className="menu menu-xs md:menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-40  bg-purple-200 md:w-52"
             >
               <li>
-                <span className="justify-between font-semibold">Profile</span>
-              </li>
-              <li>
-                <span className="font-semibold">Settings</span>
+                {
+                  dbUser?.role==="user" ? <Link to={"dashboard/orders"}><span className="font-semibold" >Book Mark's</span></Link> :  <Link to={"dashboard/myproducts"}><span className="font-semibold">My Product's</span></Link>
+                }
+               
               </li>
 
               <li>
@@ -369,43 +353,7 @@ const NAvbar = () => {
           </button>
         )}
 
-        <div className="dropdown dropdown-end z-10">
-          <label tabIndex={0} className="btn btn-ghost btn-circle mr-2 md:mr-4">
-            <div className="indicator">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="md:h-7 h-6 w-6 md:w-7 text-[#168a73]"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
-              <span className=" bg-red-600 text-white rounded-full px-1 py-1 indicator-item">
-                {cart.length}
-              </span>
-            </div>
-          </label>
-          <div
-            tabIndex={0}
-            className="mt-3 z-[1] card card-compact dropdown-content  w-36 md:w-52 bg-purple-200 shadow"
-          >
-            <div className="card-body">
-              <span className="font-bold text-md">{cart.length} Items</span>
-              <span className="text-info">Subtotal: ${Subtotal}</span>
-              <div className="card-actions">
-                <button className="btn btn-sm  btn-primary btn-block md:p-2">
-                  View cart
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+      
       </div>
       {isOpen && (
         <div className={`modal ${isOpen ? "modal-open" : ""}`}>
