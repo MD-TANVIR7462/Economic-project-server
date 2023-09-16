@@ -11,21 +11,21 @@ const OrderTableRow = ({ singleProduct ,openModal,DeleteProduct}) => {
           alt=""
         />
       </td>
-      <td className="font-normal md:font-semibold  ">{singleProduct?.name}</td>
-      <td className="font-normal md:font-semibold  ">
+      <td className="font-normal md:font-semibold text-xs md:text-sm  ">{singleProduct?.name}</td>
+      <td className="font-normal md:font-semibold text-xs md:text-sm  ">
         {singleProduct?.price} <span className="text-green-500">$</span>
       </td>
-      <td className="font-normal md:font-semibold ">{singleProduct?.brand}</td>
-      <td className="font-normal md:font-semibold ">{singleProduct?.category}</td>
-      <td className="font-normal md:font-semibold ">{singleProduct?.subcategory}</td>
-      <td className="font-normal md:font-semibold ">{singleProduct?.selectedSize}</td>
-      <td className="font-normal md:font-semibold ">{singleProduct?.Quantity}</td>
+      <td className="font-normal md:font-semibold text-xs md:text-sm ">{singleProduct?.brand}</td>
+      <td className="font-normal md:font-semibold text-xs md:text-sm ">{singleProduct?.category}</td>
+      <td className="font-normal md:font-semibold text-xs md:text-sm ">{singleProduct?.subcategory}</td>
+      <td className="font-normal md:font-semibold text-xs md:text-sm ">{singleProduct?.selectedSize}</td>
+      <td className="font-normal md:font-semibold text-xs md:text-sm ">{singleProduct?.Quantity}</td>
       <td>
         <button
           onClick={() => {
             openModal(singleProduct?._id);
           }}
-          className="rounded px-5 py-2.5 overflow-hidden group bg-green-500 relative hover:bg-gradient-to-r hover:from-green-500 hover:to-green-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-green-400 transition-all ease-out duration-300"
+          className="rounded px-4  md:px-5 py-2 md:py-2.5 overflow-hidden group bg-green-500 relative hover:bg-gradient-to-r hover:from-green-500 hover:to-green-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-green-400 transition-all ease-out duration-300"
         >
           <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
           <span className="relative">
@@ -38,7 +38,7 @@ const OrderTableRow = ({ singleProduct ,openModal,DeleteProduct}) => {
           onClick={() => {
             DeleteProduct(singleProduct?._id);
           }}
-          className="rounded px-5 py-2.5 overflow-hidden group bg-red-500 relative hover:bg-gradient-to-r hover:from-red-500 hover:to-red-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-red-400 transition-all ease-out duration-300"
+          className="rounded px-4  md:px-5 py-2 md:py-2.5 overflow-hidden group bg-red-500 relative hover:bg-gradient-to-r hover:from-red-500 hover:to-red-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-red-400 transition-all ease-out duration-300"
         >
           <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
           <span className="relative">

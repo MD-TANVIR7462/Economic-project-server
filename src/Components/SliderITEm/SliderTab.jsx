@@ -28,7 +28,7 @@ if(Data){
 
 
   return (
-    <div className='w-[90%]  my-16 md:my-32 mx-auto' >
+    <div className='w-[90%]  my-10 md:my-32 mx-auto' >
       <div>
         <Tabs selectedIndex={activeTabIndex} onSelect={handleTabSelect} >
          <span className='md:flex md:justify-between mb-8'>

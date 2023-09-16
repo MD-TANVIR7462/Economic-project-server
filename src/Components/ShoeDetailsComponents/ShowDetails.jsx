@@ -97,7 +97,7 @@ const ShowDetails = () => {
       selectedSize,
       email: user?.email,
     };
-    fetch(`http://localhost:5000/bookmarks?email=${user.email}`, {
+    fetch(`http://localhost:5000/bookmarks?email=${user?.email}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -107,14 +107,14 @@ const ShowDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         let title = "Add To cart";
-        let icon = "success"
+        let icon = "success";
         if (data.message) {
           title = data.message;
-          icon = "error" 
+          icon = "error";
         }
         Swal.fire({
           position: "top-center",
-          icon:icon,
+          icon: icon,
           title: title,
           showConfirmButton: false,
           timer: 1500,
@@ -129,12 +129,12 @@ const ShowDetails = () => {
   };
 
   return (
-    <div className="md:min-h-[75vh] ">
+    <div className="md:min-h-[75vh]">
       <div>
         <DetailsBenner name={name} category={category} />
       </div>
-      <div className="md:flex md:justify-center md:items-center md:my-20 my-10">
-        <div className="rounded-lg md:py-8 md:px-14 bg-base-100 grid md:grid-cols-2 md:w-5/6 mx-auto  md:gap-8  w-[95%] shadow-xl p-2 m-2 ">
+      <div className="md:flex md:justify-center md:items-center md:my-20 my-10 ">
+        <div className="rounded-lg md:py-8 md:px-14 bg-base-200 grid md:grid-cols-2 md:w-5/6 mx-auto  md:gap-8  w-[95%] shadow-xl p-2 m-2 ">
           <img
             src={image}
             className=" w-[95%] mx-auto md:w-full md:h-[450px]"

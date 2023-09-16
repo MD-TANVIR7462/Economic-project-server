@@ -290,7 +290,7 @@ fetch(`http://localhost:5000/user?email=${user?.email}`)
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow  rounded-box w-48 bg-purple-200"
+            className="menu menu-md dropdown-content mt-3 z-10 p-2 shadow  rounded-box w-48 bg-purple-200"
           >
             {navOptions}
             {user && !loading && (

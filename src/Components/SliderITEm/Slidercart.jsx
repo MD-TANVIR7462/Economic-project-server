@@ -41,7 +41,9 @@ const Slidercart = ({ product }) => {
       subcategory,
       category,
       _id,
+      Quantity
     } = product;
+    console.log(product);
 
     const bookmarkProducts = {
       name,
@@ -52,6 +54,7 @@ const Slidercart = ({ product }) => {
       brand,
       subcategory,
       category,
+      ProductTotal:Quantity,
       Quantity: 1,
       oldID: _id,
       selectedSize: "M",

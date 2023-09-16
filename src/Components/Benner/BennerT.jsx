@@ -10,21 +10,20 @@ const BennerT = ({img}) => {
       }}
     >
       <div className="text-center md:flex  md:min-h-[860px] items-center w-[90%] mx-auto">
-        <div className="max-w-xl md:w-3/4 ml-auto ">
-          <i className="md:text-5xl text-4xl font-thin  text-red-600">
+        <div className="max-w-xl md:w-3/4 ml-auto mt-12">
+          <i className="md:text-5xl text-3xl  font-thin  text-red-600">
             Fashion Sale
           </i>
-          <h1 className="md:text-6xl text-3xl font-semibold my-4 text-black">
-            Minimal Men's Style
+          <h1 className="md:text-6xl text-2xl font-semibold mt-3 mb-1 md:my-4 text-gray-800">
+            Minimal WoMen's Style
           </h1>
-          <p className="mb-5 ">
+          <p className="mb-5 text-sm text-gray-500 md:text-base">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            excepturi exercitationem quasi. In deleniti eaque 
           </p>
           <a
             href="#_"
-            className="relative px-6 py-3 font-medium text-white group"
+            className="relative px-3 md:px-6 py-1 md:py-3 font-medium text-white group"
           >
             <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-x-0 -skew-x-12 bg-[#007a72] -500 group-hover:bg-[#16655f] -700 group-hover:skew-x-12"></span>
             <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform skew-x-12 bg-[#125751]  -700 group-hover:bg-[#007a72] -500 group-hover:-skew-x-12"></span>

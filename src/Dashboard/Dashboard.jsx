@@ -7,13 +7,31 @@ import {
   FiMenu,
   FiX,
 } from "react-icons/fi";
+
+import { RxPlus } from "react-icons/rx";
+import { FaBuffer, FaUser } from "react-icons/fa6";
 import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../Components/Provider/Authprovider";
+
+
+
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+const [bookmark,setBookmark] =useState([])
+
+
+
+useEffect(()=>{
+fetch(`http://localhost:5000/bookmarks?email=${user?.email}`)  
+.then(res=>res.json())
+.then(data=>{
+  console.log(data);
+  setBookmark(data)})
+},[user])
+
 
   const role = true;
 
@@ -79,9 +97,12 @@ const Dashboard = () => {
             Dashboard
           </Link>
 
-          <Link to={"/dashboard/orders"} className="block py-2 hover:bg-gray-600 rounded-lg">
+          <Link
+            to={"/dashboard/orders"}
+            className="block py-2 hover:bg-gray-600 rounded-lg"
+          >
             <FiShoppingCart className="h-5 w-5 mr-2 inline" />
-            Cart
+            Cart +<span className="text-green-500">{bookmark.length}</span>
           </Link>
           <Link to={"/"} className="block py-2 hover:bg-gray-600 rounded-lg">
             <FiCreditCard className="h-5 w-5 mr-2 inline" />
@@ -93,21 +114,21 @@ const Dashboard = () => {
                 to={"/dashboard/addaProduct"}
                 className="block py-2 hover:bg-gray-600 rounded-lg"
               >
-                <FiCreditCard className="h-5 w-5 mr-2 inline" />
+                <RxPlus className="h-5 w-5 mr-2 inline" />
                 Add A Product
               </Link>
               <Link
                 to={"/dashboard/myproducts"}
                 className="block py-2 hover:bg-gray-600 rounded-lg"
               >
-                <FiCreditCard className="h-5 w-5 mr-2 inline" />
+                <FaBuffer className="h-5 w-5 mr-2 inline" />
                 My Product's
               </Link>
               <Link
-                to={"/"}
+                to={"/dashboard/ManageUser"}
                 className="block py-2 hover:bg-gray-600 rounded-lg"
               >
-                <FiCreditCard className="h-5 w-5 mr-2 inline" />
+                <FaUser className="h-5 w-5 mr-2 inline" />
                 Menage Users
               </Link>
             </span>

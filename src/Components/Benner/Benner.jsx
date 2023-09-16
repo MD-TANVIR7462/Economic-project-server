@@ -17,11 +17,6 @@ const Benner = () => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {/* <SwiperSlide>
-         
-<Bennerimage img={"https://i.ibb.co/2gPx63n/8.png"}></Bennerimage>
-
-          </SwiperSlide> */}
         <SwiperSlide>
           <BennerT img={"https://i.ibb.co/Cn0ccL6/h1-hero2-jpg.webp"}></BennerT>
         </SwiperSlide>
@@ -36,5 +31,3 @@ const Benner = () => {
 };
 
 export default Benner;
-
-
