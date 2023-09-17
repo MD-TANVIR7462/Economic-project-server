@@ -8,7 +8,17 @@ import Swal from "sweetalert2";
 const ManageUser = () => {
   const { user } = useContext(AuthContext);
   const { allUsers, refetch } = UseUsers();
+  const [isIMG, setIMG] = useState(false);
+  const [image, setImage] = useState("");
 
+  const openIMG = (img) => {
+    setImage(img);
+    setIMG(true);
+  };
+
+  const closeIMG = () => {
+    setIMG(false);
+  };
   const handleUsers = (id, promoteOrDemote) => {
     let text = "Protome To Admin ?";
     if (promoteOrDemote === "user") {
@@ -29,14 +39,14 @@ const ManageUser = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         if (promoteOrDemote === "user") {
-          fetch(`http://localhost:5000/user/${id}`,{
-            method:"PATCH"
+          fetch(`http://localhost:5000/user/${id}`, {
+            method: "PATCH",
           })
             .then((res) => res.json())
             .then((data) => refetch());
         } else {
-          fetch(`http://localhost:5000/admin/${id}`,{
-            method:"PATCH"
+          fetch(`http://localhost:5000/admin/${id}`, {
+            method: "PATCH",
           })
             .then((res) => res.json())
             .then((data) => refetch());
@@ -63,16 +73,22 @@ const ManageUser = () => {
         subtitle={user?.displayName}
         img={"https://i.ibb.co/7SN0S6z/b2.jpg"}
       ></SheardBenner>
-      {user && allUsers && (
+      {user && allUsers ? (
         <div>
           <div className="w-full  bg-white shadow-lg overflow-x-auto">
             <table className=" table table-xs  md:table-sm">
               <thead>
                 <tr className="text-white bg-gray-900">
-                  <th >User Img</th>
-                  <th >User Name <span className="px-12"></span></th>
-                  <th>User Email <span className="px-4"></span></th>
-                  <th>Position <span className="px-4"></span></th>
+                  <th>User Img</th>
+                  <th>
+                    User Name <span className="px-12"></span>
+                  </th>
+                  <th>
+                    User Email <span className="px-4"></span>
+                  </th>
+                  <th>
+                    Position <span className="px-4"></span>
+                  </th>
                   <th>Make User</th>
                   <th>Make Admin</th>
                 </tr>
@@ -83,13 +99,38 @@ const ManageUser = () => {
                     singleUser={singleUser}
                     key={singleUser._id}
                     handleUsers={handleUsers}
-                   
+                    openIMG={openIMG}
                   ></MenageUserRow>
                 ))}
               </tbody>
             </table>
           </div>
+          {isIMG && (
+            <div className={`modal ${isIMG ? "modal-open" : ""}`}>
+              <div className="modal-box ">
+                <span className="flex justify-between items-center mb-4">
+                  <p className="text-lg md:text-3xl font-bold ">Image</p>
+                  <button
+                    className="btn btn-square hover:bg-[#11715e]  bg-[#168a73] text-white"
+                    onClick={closeIMG}
+                  >
+                    X
+                  </button>
+                </span>
+
+                <img src={image} alt="IMG" className="rounded-lg w-full" />
+              </div>
+            </div>
+          )}
         </div>
+      ) : (
+        <p className="flex items-center justify-center h-[60dvh]   text-center ">
+          {" "}
+          <button className="btn bg-gray-400 text-white">
+            <span className="loading loading-spinner"></span>
+            loading
+          </button>
+        </p>
       )}
     </div>
   );

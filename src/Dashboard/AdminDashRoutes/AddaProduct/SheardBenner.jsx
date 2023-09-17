@@ -3,13 +3,13 @@ import React from 'react';
 const SheardBenner = ({name,subtitle,img}) => {
    return (
       <div
-      className="relative bg-cover bg-center  py-20  md:py-24  "
+      className="relative bg-cover bg-center  py-16  md:py-20  "
       style={{ backgroundImage: `url(${img})` }}
     >
       <div className="container mx-auto">
         <div className="text-center">
-          <h1 className="text-2xl md:text-5xl font-bold  md:mb-4 uppercase text-[#168a73]">{name}</h1>
-          <p className="text-lg md:text-3xl font-semibold mb-6 text-white"># <span>{subtitle}</span></p>
+          <h1 className="text-xl md:text-4xl font-bold  md:mb-4 uppercase">{name}</h1>
+          <p className="text-lg md:text-2xl font-semibold mb-6 text-white"># <span>{subtitle}</span></p>
          
         </div>
       </div>

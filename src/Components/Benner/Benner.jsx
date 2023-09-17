@@ -17,14 +17,15 @@ const Benner = () => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <BennerT img={"https://i.ibb.co/Cn0ccL6/h1-hero2-jpg.webp"}></BennerT>
-        </SwiperSlide>
-        <SwiperSlide>
+         <SwiperSlide>
           <BennerMEn
             img={"https://i.ibb.co/ZKcBXnk/h1-hero1-jpg.webp"}
           ></BennerMEn>
         </SwiperSlide>
+        <SwiperSlide>
+          <BennerT img={"https://i.ibb.co/Cn0ccL6/h1-hero2-jpg.webp"}></BennerT>
+        </SwiperSlide>
+       
       </Swiper>
     </>
   );

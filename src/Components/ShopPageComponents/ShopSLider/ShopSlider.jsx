@@ -233,9 +233,12 @@ const ShopSlider = () => {
               </TabPanel>
             </>
           ) : (
-            <p className="text-[100px] mt-[100px] mb-[200px]   text-center text-red-700 ">
+            <p className="flex items-center justify-center h-[37dvh] md:h-[50dvh]   text-center ">
               {" "}
-              <span className="loading loading-bars loading-lg"></span>
+              <button className="btn bg-gray-400 text-white">
+                <span className="loading loading-spinner"></span>
+                loading
+              </button>
             </p>
           )}
         </Tabs>

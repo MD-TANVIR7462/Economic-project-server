@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { FaRegEye, FaCartPlus, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/Authprovider";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 
@@ -23,14 +23,37 @@ const renderStars = (rating) => {
 };
 
 const Slidercart = ({ product }) => {
-
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const details = (id) => {
+    if (!user) {
+      return toast.error("Login First ", {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
     navigate(`/details/${id}`);
   };
 
   const AddtoCart = () => {
+    if (!user) {
+      return toast.error("Login First ", {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
     const {
       name,
       price,
@@ -41,9 +64,8 @@ const Slidercart = ({ product }) => {
       subcategory,
       category,
       _id,
-      Quantity
+      Quantity,
     } = product;
-    console.log(product);
 
     const bookmarkProducts = {
       name,
@@ -54,7 +76,7 @@ const Slidercart = ({ product }) => {
       brand,
       subcategory,
       category,
-      ProductTotal:Quantity,
+      ProductTotal: Quantity,
       Quantity: 1,
       oldID: _id,
       selectedSize: "M",
@@ -81,25 +103,23 @@ const Slidercart = ({ product }) => {
             theme: "dark",
           });
         }
-       if(!data.message){
-        toast.success("Product Bookmarked", {
-          position: "top-right",
-          autoClose: 2500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-       }
+        if (!data.message) {
+          toast.success("Product Bookmarked", {
+            position: "top-right",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+        }
       });
   };
   return (
-    <div className="mb-3 md:mb-0 shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg ">
-      <div
-        className="relative bg-white rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition-transform duration-700"
-      >
+    <div className="mb-3 md:mb-0 shadow-lg hover:shadow-md transition-shadow duration-300 rounded-lg ">
+      <div className="relative bg-white rounded-md overflow-hidden cursor-pointer hover:shadow-lg transition-transform duration-700">
         <div className="group">
           <img
             src={product.image}
@@ -144,7 +164,6 @@ const Slidercart = ({ product }) => {
           {renderStars(product.rating)}
         </p>
       </div>
-    
     </div>
   );
 };

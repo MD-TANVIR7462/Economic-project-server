@@ -16,7 +16,8 @@ import AddaProduct from "./Dashboard/AdminDashRoutes/AddaProduct/AddaProduct.jsx
 import MyProducts from "./Dashboard/AdminDashRoutes/MyProducts/MyProducts.jsx";
 import OrderPage from "./Dashboard/UserPages/OrderPage/OrderPage.jsx";
 import ManageUser from "./Dashboard/AdminDashRoutes/MenageUsers/ManageUser.jsx";
-
+import Payments from "./Dashboard/UserPages/PaymentPage/Payments.jsx";
+import RouteGuard from "./RoutGourds/RouteGuard.jsx";
 
 const queryClient = new QueryClient();
 
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path: `/details/:id`,
-        element: <ShowDetails></ShowDetails>,
+        element:<RouteGuard><ShowDetails></ShowDetails></RouteGuard>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/details/${params.id}`),
       },
@@ -52,29 +53,38 @@ const router = createBrowserRouter([
 
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <RouteGuard>
+        <Dashboard></Dashboard>
+      </RouteGuard>
+    ),
     children: [
       {
         path: "/dashboard",
-        element: <DashboardHome></DashboardHome>,
+        element: <RouteGuard> <DashboardHome></DashboardHome></RouteGuard>,
+      },
+
+      {
+        path: "/dashboard/orders",
+        element:<RouteGuard> <OrderPage></OrderPage></RouteGuard>,
+      },
+      {
+        path: "/dashboard/payments",
+        element:<RouteGuard> <Payments></Payments></RouteGuard>,
       },
       //admin routes//
       {
-        path: "/dashboard/orders",
-        element: <OrderPage></OrderPage>,
-      },
-      {
         path: "/dashboard/addaProduct",
-        element: <AddaProduct></AddaProduct>,
+        element:<RouteGuard isAdminRoute>  <AddaProduct></AddaProduct></RouteGuard>,
       },
       {
         path: "/dashboard/myproducts",
-        element: <MyProducts></MyProducts>,
+        element: <RouteGuard isAdminRoute> <MyProducts></MyProducts></RouteGuard>,
       },
-    
+
       {
         path: "/dashboard/ManageUser",
-        element: <ManageUser></ManageUser>,
+        element:<RouteGuard isAdminRoute> <ManageUser></ManageUser></RouteGuard>,
       },
     ],
   },

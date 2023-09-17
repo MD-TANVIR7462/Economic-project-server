@@ -1,25 +1,41 @@
 import React from "react";
 import { FaCcDiscover, FaRegTrashAlt } from "react-icons/fa";
 
-const OrderTableRow = ({ singleProduct ,openModal,DeleteProduct}) => {
+const OrderTableRow = ({ singleProduct, openModal, DeleteProduct,openIMG }) => {
   return (
     <tr key={singleProduct?._id} className='"border-b border-indigo-800 " '>
       <td>
-        <img
-          src={singleProduct?.image}
-          className="md:w-24 w-20 h-12 md:h-16 rounded-xl"
-          alt=""
-        />
+        <label className="btn btn-ghost   avatar">
+          <div
+            onClick={() =>openIMG (singleProduct.image)}
+            className="md:w-24 w-20 h-12 md:h-16 rounded-lg "
+          >
+            <img src={singleProduct?.image} alt="IMG" />
+          </div>
+        </label>
       </td>
-      <td className="font-normal md:font-semibold text-xs md:text-sm  ">{singleProduct?.name}</td>
       <td className="font-normal md:font-semibold text-xs md:text-sm  ">
-        {singleProduct?.price} <span className="text-green-500">$</span>
+        {singleProduct?.name}
       </td>
-      <td className="font-normal md:font-semibold text-xs md:text-sm ">{singleProduct?.brand}</td>
-      <td className="font-normal md:font-semibold text-xs md:text-sm ">{singleProduct?.category}</td>
-      <td className="font-normal md:font-semibold text-xs md:text-sm ">{singleProduct?.subcategory}</td>
-      <td className="font-normal md:font-semibold text-xs md:text-sm ">{singleProduct?.selectedSize}</td>
-      <td className="font-normal md:font-semibold text-xs md:text-sm ">{singleProduct?.Quantity}</td>
+      <td className="font-normal md:font-semibold text-xs md:text-sm  ">
+        {singleProduct?.price}
+        <span className="text-green-500">$</span>
+      </td>
+      <td className="font-normal md:font-semibold text-xs md:text-sm ">
+        {singleProduct?.brand}
+      </td>
+      <td className="font-normal md:font-semibold text-xs md:text-sm ">
+        {singleProduct?.category}
+      </td>
+      <td className="font-normal md:font-semibold text-xs md:text-sm ">
+        {singleProduct?.subcategory}
+      </td>
+      <td className="font-normal md:font-semibold text-xs md:text-sm ">
+        {singleProduct?.selectedSize}
+      </td>
+      <td className="font-normal md:font-semibold text-xs md:text-sm ">
+        {singleProduct?.Quantity}
+      </td>
       <td>
         <button
           onClick={() => {

@@ -1,15 +1,18 @@
 import React from "react";
 import { FaUser, FaUserGraduate } from "react-icons/fa";
 
-const MenageUserRow = ({ singleUser, handleUsers }) => {
+const MenageUserRow = ({ singleUser, handleUsers ,openIMG}) => {
   return (
     <tr key={singleUser?._id} className='"border-b border-indigo-800 " '>
       <td>
-        <img
-          src={singleUser?.image}
-          className="md:w-24 w-16 md:h-20 h-12 rounded-xl"
-          alt=""
-        />
+        <label className="btn btn-ghost   avatar">
+          <div
+            onClick={() => openIMG(singleUser?.image)}
+            className="md:w-24 w-20 h-12 md:h-16 rounded-lg "
+          >
+            <img src={singleUser?.image} alt="IMG" />
+          </div>
+        </label>
       </td>
       <td className="text-xs md:text-sm font-normal md:font-semibold ">
         {singleUser?.name}
@@ -20,7 +23,7 @@ const MenageUserRow = ({ singleUser, handleUsers }) => {
       <td className="font-normal md:font-semibold ">{singleUser?.role}</td>
       <td>
         <button
-         disabled={singleUser.role === "user"}
+          disabled={singleUser.role === "user"}
           onClick={() => {
             handleUsers(singleUser?._id, "user");
           }}

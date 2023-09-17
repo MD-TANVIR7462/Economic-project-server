@@ -11,18 +11,28 @@ const MyProducts = () => {
   const [id, setID] = useState([]);
   const { user } = useContext(AuthContext);
   const { refetch, products } = UseProducts();
+  const [isIMG, setIMG] = useState(false);
+  const [image, setImage] = useState("");
 
   //Update product===>
   const openModal = (_id) => {
     setIsOpen(true);
     setID(_id);
-  }
+  };
 
   const closeModal = () => {
     setIsOpen(false);
     setID(null);
   };
 
+  const openIMG = (img) => {
+    setImage(img);
+    setIMG(true);
+  };
+
+  const closeIMG = () => {
+    setIMG(false);
+  };
   //update the product details===>
   const updatedData = (e) => {
     e.preventDefault();
@@ -87,7 +97,7 @@ const MyProducts = () => {
               position: "top-center",
               icon: "success",
               title: "Bookmark Removed!!",
-              showConfirmButton:false,
+              showConfirmButton: false,
               timer: 1500,
               customClass: {
                 popup: "bg-white border-4 border-gray-300 rounded-lg",
@@ -137,11 +147,14 @@ const MyProducts = () => {
                     className='"border-b border-indigo-800 " '
                   >
                     <td>
-                      <img
-                        src={singleProduct?.image}
-                        className="md:w-24 w-20 h-12 md:h-16 rounded-xl"
-                        alt=""
-                      />
+                      <label className="btn btn-ghost   avatar">
+                        <div
+                          onClick={() => openIMG(singleProduct.image)}
+                          className="md:w-24 w-20 h-12 md:h-16 rounded-lg "
+                        >
+                          <img src={singleProduct?.image} alt="IMG" />
+                        </div>
+                      </label>
                     </td>
                     <td className="font-semibold">{singleProduct?.name}</td>
                     <td className="font-semibold">
@@ -280,14 +293,45 @@ const MyProducts = () => {
               </div>
             </div>
           )}
+
+          {isIMG && (
+            <div className={`modal ${isIMG ? "modal-open" : ""}`}>
+              <div className="modal-box ">
+                <span className="flex justify-between items-center mb-4">
+                  <p className="text-lg md:text-3xl font-bold ">
+                    Product Image
+                  </p>
+                  <button
+                    className="btn btn-square hover:bg-[#11715e]  bg-[#168a73] text-white"
+                    onClick={closeIMG}
+                  >
+                    X
+                  </button>
+                </span>
+
+                <img src={image} alt="IMG" className="rounded-lg w-full" />
+              </div>
+            </div>
+          )}
         </div>
       ) : (
-        <p className="text-[100px] mt-[100px] mb-[200px]   text-center text-red-700 ">
+        <p className="flex items-center justify-center h-[45dvh] md:h-[60dvh]   text-center ">
           {" "}
-          <span className="loading loading-bars loading-lg"></span>
+          <button className="btn bg-gray-400 text-white">
+            <span className="loading loading-spinner"></span>
+            loading
+          </button>
         </p>
       )}
-      {!products && <p>You Don't Add any Product</p>}
+      {Adminproducts.length === 0 && (
+         <p className="flex items-center justify-center h-[45dvh] md:h-[60dvh]   text-center ">
+         {" "}
+         <button className="btn bg-gray-400 text-white">
+           <span className="loading loading-spinner"></span>
+         No Product's
+         </button>
+       </p>
+      )}
     </div>
   );
 };

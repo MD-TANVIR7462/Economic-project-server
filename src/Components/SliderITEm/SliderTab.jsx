@@ -61,7 +61,9 @@ if(Data){
           </TabList>
          </span>
 
-          <TabPanel>
+        {
+          products.length>0?<>
+            <TabPanel>
            
            <Slider item={proDucts} key={1}></Slider>
           
@@ -75,6 +77,14 @@ if(Data){
           <TabPanel>
             <Slider item={kid} key={4}></Slider>
           </TabPanel>
+          </>: <p className="flex items-center justify-center h-[45dvh] md:h-[60dvh]   text-center ">
+          {" "}
+          <button className="btn bg-gray-400 text-white">
+            <span className="loading loading-spinner"></span>
+            loading
+          </button>
+        </p>
+        }
         </Tabs>
       </div>
     </div>

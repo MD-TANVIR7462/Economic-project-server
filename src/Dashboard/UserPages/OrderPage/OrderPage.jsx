@@ -14,8 +14,10 @@ const stripePromise = loadStripe(import.meta.env.VITE_ApiPayment_PK);
 const OrderPage = () => {
   const [bookmark, setBookmark] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [id, setID] = useState([]);
+  const [isIMG, setIMG] = useState(false);
+  const [image, setImage] = useState("");
   const { user } = useContext(AuthContext);
+  const[id,setID]=useState(null)
   const [price, setPrice] = useState(0);
   const [ProductBookmark, setSgnleBookmark] = useState([]);
   const { bookmarkProducts, isLoading, refetch } = UseBookmarks();
@@ -24,22 +26,29 @@ const OrderPage = () => {
   const openModal = (_id) => {
     setIsOpen(true);
     setID(_id);
-   
-      fetch(`http://localhost:5000/paymentBookmark/${_id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setSgnleBookmark(data);
-          const total = parseFloat(data?.price).toFixed(2);
-          const price = parseFloat(total)
-          setPrice(price);
-          console.log(price,data);
-        });
-  
+
+    fetch(`http://localhost:5000/paymentBookmark/${_id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setSgnleBookmark(data);
+        const total = parseFloat(data?.price).toFixed(2);
+        const price = parseFloat(total);
+        setPrice(price);
+      });
   };
 
   const closeModal = () => {
     setIsOpen(false);
     setID(null);
+  };
+
+  const openIMG = (img) => {
+    setImage(img);
+    setIMG(true);
+  };
+
+  const closeIMG = () => {
+    setIMG(false);
   };
 
   const DeleteProduct = (id) => {
@@ -102,12 +111,18 @@ const OrderPage = () => {
                 <tr className="text-white bg-gray-900">
                   <th>Product Img</th>
                   <th>Product Name</th>
-                  <th>Price</th>
-                  <th>Brand</th>
+                  <th>
+                    Price <span className="pr-2"></span>
+                  </th>
+                  <th>
+                    Brand <span className="pr-10"></span>
+                  </th>
                   <th>Cetegory</th>
                   <th>Subcetegory</th>
                   <th>Size</th>
-                  <th>Quantity</th>
+                  <th>
+                    Quantity <span className="pr-2"></span>
+                  </th>
                   <th>Pay</th>
                   <th>Delete</th>
                 </tr>
@@ -119,6 +134,7 @@ const OrderPage = () => {
                     key={singleProduct._id}
                     openModal={openModal}
                     DeleteProduct={DeleteProduct}
+                    openIMG={openIMG}
                   ></OrderTableRow>
                 ))}
               </tbody>
@@ -159,14 +175,45 @@ const OrderPage = () => {
               </div>
             </div>
           )}
+
+          {isIMG && (
+            <div className={`modal ${isIMG ? "modal-open" : ""}`}>
+              <div className="modal-box ">
+                <span className="flex justify-between items-center mb-4">
+                  <p className="text-lg md:text-3xl font-bold ">
+                    Product Image
+                  </p>
+                  <button
+                    className="btn btn-square hover:bg-[#11715e]  bg-[#168a73] text-white"
+                    onClick={closeIMG}
+                  >
+                    X
+                  </button>
+                </span>
+
+                <img src={image} alt="IMG" className="rounded-lg w-full" />
+              </div>
+            </div>
+          )}
         </div>
       ) : (
-        <p className="text-[100px] mt-[100px] mb-[200px]   text-center text-red-700 ">
+        <p className="flex items-center justify-center h-[45dvh] md:h-[60dvh]   text-center ">
           {" "}
-          <span className="loading loading-bars loading-lg"></span>
+          <button className="btn bg-gray-400 text-white">
+            <span className="loading loading-spinner"></span>
+            loading
+          </button>
         </p>
       )}
-      {!bookmark && <p>You Don't Add any Product</p>}
+      {bookmark.length === 0 && (
+        <p className="flex items-center justify-center h-[45dvh] md:h-[60dvh]   text-center ">
+        {" "}
+        <button className="btn bg-gray-400 text-white">
+          <span className="loading loading-spinner"></span>
+        No Bookmark's
+        </button>
+      </p>
+      )}
     </div>
   );
 };

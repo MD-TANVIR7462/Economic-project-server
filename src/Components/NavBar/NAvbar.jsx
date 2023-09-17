@@ -221,7 +221,6 @@ useEffect(()=>{
 fetch(`http://localhost:5000/user?email=${user?.email}`)
 .then(res=>res.json())
 .then(data=>{
-  console.log(data);
   setDbUser(data)
 })
 },[user])
@@ -230,16 +229,16 @@ fetch(`http://localhost:5000/user?email=${user?.email}`)
 
   const navOptions = (
     <>
-      <li className="text-xl font-semibold text-[#168a73] ">
+      <li className="text-xl font-semibold ">
         <Link to={"/"}>Home</Link>
       </li>
-      <li className="text-xl font-semibold text-[#168a73]">
+      <li className="text-xl font-semibold ">
         <Link to={"/shop/all"}>Shop</Link>
       </li>
-      <li className="text-xl font-semibold text-[#168a73] ">
+      <li className="text-xl font-semibold  ">
         <Link to={"/blog"}>Blog</Link>
       </li>
-      <li className="text-xl font-semibold text-[#168a73]">
+      <li className="text-xl font-semibold ">
         <Link to={"/contact"}>Contact</Link>
       </li>
     </>
@@ -267,7 +266,7 @@ fetch(`http://localhost:5000/user?email=${user?.email}`)
   return (
     <div
       className={`navbar   ${
-        isScrolled ? "bg-[#e3e6f3] shadow-md" : "bg-none"
+        isScrolled ? "bg-[#171618] shadow-md" : "bg-none"
       } md:py-6 md:px-16 fixed top-0 z-10`}
     >
       <div className="navbar-start">
@@ -290,11 +289,11 @@ fetch(`http://localhost:5000/user?email=${user?.email}`)
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-md dropdown-content mt-3 z-10 p-2 shadow  rounded-box w-48 bg-purple-200"
+            className="menu menu-md dropdown-content mt-3 z-60 p-2 shadow  rounded-box w-48 bg-[#171618]"
           >
             {navOptions}
             {user && !loading && (
-              <li className="text-xl font-semibold text-[#168a73]">
+              <li className="text-xl font-semibold ">
                 <Link to={"/dashboard"}>Dashboard</Link>
               </li>
             )}
@@ -306,7 +305,7 @@ fetch(`http://localhost:5000/user?email=${user?.email}`)
         <ul className="menu menu-horizontal px-1">
           {navOptions}
           {user && !loading && (
-            <li className="text-xl font-semibold text-[#168a73]">
+            <li className="text-xl font-semibold ">
               <Link to={"/dashboard"}>Dashboard</Link>
             </li>
           )}
@@ -325,7 +324,7 @@ fetch(`http://localhost:5000/user?email=${user?.email}`)
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-xs md:menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-40  bg-purple-200 md:w-52"
+              className="menu menu-xs md:menu-sm  bg-[#171618] dropdown-content mt-3 z-10 p-2 shadow  rounded-box w-40  md:w-52"
             >
               <li>
                 {

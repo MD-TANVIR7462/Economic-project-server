@@ -1,39 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { useContext } from "react";
-import {
-  FiHome,
-  FiShoppingCart,
-  FiCreditCard,
-  FiMenu,
-  FiX,
-} from "react-icons/fi";
+import { FiHome, FiShoppingCart, FiCreditCard, FiMenu,FiGrid,FiPhoneOutgoing } from "react-icons/fi";
 
 import { RxPlus } from "react-icons/rx";
 import { FaBuffer, FaUser } from "react-icons/fa6";
 import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../Components/Provider/Authprovider";
 
-
-
-
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-const [bookmark,setBookmark] =useState([])
+  const [bookmark, setBookmark] = useState([]);
+  const [DBUser, setDbUser] = useState(null);
 
+  useEffect(() => {
+    fetch(`http://localhost:5000/bookmarks?email=${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setBookmark(data);
+      });
 
-
-useEffect(()=>{
-fetch(`http://localhost:5000/bookmarks?email=${user?.email}`)  
-.then(res=>res.json())
-.then(data=>{
-  console.log(data);
-  setBookmark(data)})
-},[user])
-
-
-  const role = true;
+    fetch(`http://localhost:5000/user?email=${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setDbUser(data);
+      });
+  }, [user]);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -61,7 +54,7 @@ fetch(`http://localhost:5000/bookmarks?email=${user?.email}`)
   return (
     <div className="flex ">
       <div
-        className={`fixed left-0 z-10 h-screen w-52 md:w-64 bg-gray-900 text-white transition-transform duration-500  ease-in-out ${
+        className={`fixed left-0 z-10 h-screen w-52 md:w-64 bg-[#171618] transition-transform duration-500  ease-in-out ${
           menuOpen ? "translate-x-0 " : "-translate-x-64"
         }`}
       >
@@ -74,16 +67,29 @@ fetch(`http://localhost:5000/bookmarks?email=${user?.email}`)
                   className="rounded-lg cursor-pointer "
                 />
 
-                <p className="text-white font-semibold text-xs md:text-sm cursor-not-allowed ">
-                  Admin
+                <p className="text-white font-semibold text-xs md:text-base cursor-not-allowed ">
+                  {DBUser?.role}
                 </p>
               </div>
               {menuOpen && (
                 <button
-                  className=" md:hidden text-white btn text-lg btn-ghost btn-circle avatar"
+                  className="btn btn-circle btn-outline text-gray-500 btn-sm md:hidden"
                   onClick={toggleMenu}
                 >
-                  <FiX />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
                 </button>
               )}
             </span>
@@ -96,43 +102,51 @@ fetch(`http://localhost:5000/bookmarks?email=${user?.email}`)
             <FiHome className="h-5 w-5 mr-2 inline" />
             Dashboard
           </Link>
-
-          <Link
-            to={"/dashboard/orders"}
-            className="block py-2 hover:bg-gray-600 rounded-lg"
-          >
-            <FiShoppingCart className="h-5 w-5 mr-2 inline" />
-            Cart +<span className="text-green-500">{bookmark.length}</span>
-          </Link>
-          <Link to={"/"} className="block py-2 hover:bg-gray-600 rounded-lg">
-            <FiCreditCard className="h-5 w-5 mr-2 inline" />
-            Payments
-          </Link>
-          {role && (
-            <span>
+          {DBUser?.role === "user" && (
+            <>
               <Link
-                to={"/dashboard/addaProduct"}
+                to={"/dashboard/orders"}
                 className="block py-2 hover:bg-gray-600 rounded-lg"
               >
-                <RxPlus className="h-5 w-5 mr-2 inline" />
-                Add A Product
+                <FiShoppingCart className="h-5 w-5 mr-2 inline" />
+                Cart +<span className="text-green-500">{bookmark.length}</span>
               </Link>
               <Link
-                to={"/dashboard/myproducts"}
+                to={"/dashboard/payments"}
                 className="block py-2 hover:bg-gray-600 rounded-lg"
               >
-                <FaBuffer className="h-5 w-5 mr-2 inline" />
-                My Product's
+                <FiCreditCard className="h-5 w-5 mr-2 inline" />
+                Payments
               </Link>
-              <Link
-                to={"/dashboard/ManageUser"}
-                className="block py-2 hover:bg-gray-600 rounded-lg"
-              >
-                <FaUser className="h-5 w-5 mr-2 inline" />
-                Menage Users
-              </Link>
-            </span>
+            </>
           )}
+
+          {DBUser?.role ===
+            "admin" && (
+              <span>
+                <Link
+                  to={"/dashboard/addaProduct"}
+                  className="block py-2 hover:bg-gray-600 rounded-lg"
+                >
+                  <RxPlus className="h-5 w-5 mr-2 inline" />
+                  Add A Product
+                </Link>
+                <Link
+                  to={"/dashboard/myproducts"}
+                  className="block py-2 hover:bg-gray-600 rounded-lg"
+                >
+                  <FaBuffer className="h-5 w-5 mr-2 inline" />
+                  My Product's
+                </Link>
+                <Link
+                  to={"/dashboard/ManageUser"}
+                  className="block py-2 hover:bg-gray-600 rounded-lg"
+                >
+                  <FaUser className="h-5 w-5 mr-2 inline" />
+                  Menage Users
+                </Link>
+              </span>
+            )}
 
           <div className="border-b border-indigo-800 my-4" />
           <Link to={"/"} className="block py-2 hover:bg-gray-600 rounded-lg">
@@ -147,9 +161,17 @@ fetch(`http://localhost:5000/bookmarks?email=${user?.email}`)
             <FiShoppingCart className="h-5 w-5 mr-2 inline" />
             Shop
           </Link>
+          <Link to={"/blog"} className="block py-2 hover:bg-gray-600 rounded-lg">
+            <FiGrid className="h-5 w-5 mr-2 inline" />
+            Blog
+          </Link>
+          <Link to={"/contact"} className="block py-2 hover:bg-gray-600 rounded-lg">
+            <FiPhoneOutgoing className="h-5 w-5 mr-2 inline" />
+            Contact
+          </Link>
         </div>
       </div>
-
+     
       <div className="w-full block ">
         {windowWidth < 768 && (
           <div
@@ -162,7 +184,7 @@ fetch(`http://localhost:5000/bookmarks?email=${user?.email}`)
           </div>
         )}
         <div
-          className={`bg-gray-100  h-screen   rounded-lg ${
+          className={` h-screen   rounded-lg ${
             windowWidth < 768 ? "" : "ml-64"
           }`}
         >

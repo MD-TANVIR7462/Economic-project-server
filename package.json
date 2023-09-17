@@ -37,7 +37,8 @@
     "recharts": "^2.7.3",
     "reoverlay": "^1.0.3",
     "sort-by": "^0.0.2",
-    "sweetalert2": "^11.7.22",
+    "sweetalert2": "^11.7.28",
+    "sweetalert2-react-content": "^5.0.7",
     "swiper": "^10.0.4"
   },
   "devDependencies": {

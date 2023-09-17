@@ -8,7 +8,7 @@ const ContactMap = () => {
 
 
    return (
-      <div className='my-8  md:my-20 p-4 md:p-12 bg-slate-50 shadow-2xl md:w-[90%] md:flex justify-around mx-auto items-center '>
+      <div className='my-8  md:my-20 p-4 md:p-12 bg-slate-50 shadow-2xl md:w-[90%] md:flex justify-around mx-auto items-center  '>
 
          <div className='mb-5 md:mb-0'>
             <p className='text-lg md:text-2xl font-bold mb-1'>GET IN TOUCH</p>
@@ -21,7 +21,7 @@ const ContactMap = () => {
 
 
         
-            <div className='h-[300px] md:h-[400px] z-0 w-full md:w-[60%]' >
+            <div className='h-[300px] md:h-[400px] w-full  md:w-[60%]' >
                <MapContainer center={position} zoom={14} style={{ width: '100%', height: '100%'  }}>
                   <TileLayer
                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
