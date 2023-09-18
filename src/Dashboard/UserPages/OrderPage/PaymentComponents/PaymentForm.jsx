@@ -8,7 +8,6 @@ import Swal from "sweetalert2";
 import UseBookmarks from "../../../../Components/Hooks/UseBookmarks";
 
 const PaymentForm = ({ ProductBookmark, price, closeModal }) => {
-  console.log(price, ProductBookmark);
   const [error, seterror] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [process, setprocess] = useState(false);
@@ -19,15 +18,17 @@ const PaymentForm = ({ ProductBookmark, price, closeModal }) => {
   const { bookmarkProducts, isLoading, refetch } = UseBookmarks();
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ price }),
-    })
+    fetch(
+      "https://ecommerce-projects-server.vercel.app/create-payment-intent",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ price }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setClientSecret(data.clientSecret);
-        console.log(data);
       });
   }, [price]);
 
@@ -70,7 +71,6 @@ const PaymentForm = ({ ProductBookmark, price, closeModal }) => {
     }
     setprocess(false);
     if (paymentIntent.status === "succeeded") {
-      console.log(paymentIntent);
       settrandjection(paymentIntent.id);
       const tranjectId = paymentIntent.id;
       const {
@@ -112,7 +112,7 @@ const PaymentForm = ({ ProductBookmark, price, closeModal }) => {
         tranjectId,
       };
 
-      fetch("http://localhost:5000/paymentcomplete", {
+      fetch("https://ecommerce-projects-server.vercel.app/paymentcomplete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newdata),

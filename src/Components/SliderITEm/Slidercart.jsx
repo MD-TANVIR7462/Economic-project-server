@@ -5,6 +5,7 @@ import { AuthContext } from "../Provider/Authprovider";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const renderStars = (rating) => {
   const stars = [];
@@ -25,6 +26,17 @@ const renderStars = (rating) => {
 const Slidercart = ({ product }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [dbUser, setDbUser] = useState({});
+  useEffect(() => {
+    fetch(
+      `https://ecommerce-projects-server.vercel.app/user?email=${user?.email}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setDbUser(data);
+      });
+  }, [user]);
+
   const details = (id) => {
     if (!user) {
       return toast.error("Login First ", {
@@ -82,13 +94,16 @@ const Slidercart = ({ product }) => {
       selectedSize: "M",
       email: user?.email,
     };
-    fetch(`http://localhost:5000/bookmarks?email=${user.email}`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(bookmarkProducts),
-    })
+    fetch(
+      `https://ecommerce-projects-server.vercel.app/bookmarks?email=${user.email}`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(bookmarkProducts),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.message) {
@@ -117,6 +132,7 @@ const Slidercart = ({ product }) => {
         }
       });
   };
+
   return (
     <div className="mb-3 md:mb-0 shadow-lg hover:shadow-md transition-shadow duration-300 rounded-lg ">
       <div className="relative bg-white rounded-md overflow-hidden cursor-pointer hover:shadow-lg transition-transform duration-700">
@@ -135,6 +151,7 @@ const Slidercart = ({ product }) => {
                 <FaRegEye />
               </button>
               <button
+                disabled={dbUser?.role == "admin" || product?.Quantity === 0}
                 onClick={AddtoCart}
                 className="btn pt-2 px-4 pb-0 text-2xl hover:text-red-700 hover:scale-110 transition-all duration-500"
               >
@@ -147,21 +164,21 @@ const Slidercart = ({ product }) => {
       <div className="flex justify-between py-6 px-2">
         <span>
           <p className="text-md md:text-xl text-slate-600 font-semibold">
-            {product.name}
+            {product?.name}
           </p>
           <p className="text-md md:text-xl text-slate-600 font-medium">
-            For {product.category}
+            For {product?.category}
           </p>
           <p className="md:text-xl text-[#168a73]">
-            {product.price}{" "}
+            {product?.price}{" "}
             <span className="text-[#168a73]font-semibold">$</span>
           </p>
         </span>
         {/* <StarRating rating={product.rating} /> */}
         <p className="font-bold text-sm md:text-lg flex items-center">
           {" "}
-          <span className="mr-1">{product.rating}/5</span>{" "}
-          {renderStars(product.rating)}
+          <span className="mr-1">{product?.rating}/5</span>{" "}
+          {renderStars(product?.rating)}
         </p>
       </div>
     </div>

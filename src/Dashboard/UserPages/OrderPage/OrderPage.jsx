@@ -18,7 +18,7 @@ const OrderPage = () => {
   const [isIMG, setIMG] = useState(false);
   const [image, setImage] = useState("");
   const { user } = useContext(AuthContext);
-  const[id,setID]=useState(null)
+  const [id, setID] = useState(null);
   const [price, setPrice] = useState(0);
   const [ProductBookmark, setSgnleBookmark] = useState([]);
   const { bookmarkProducts, isLoading, refetch } = UseBookmarks();
@@ -28,7 +28,7 @@ const OrderPage = () => {
     setIsOpen(true);
     setID(_id);
 
-    fetch(`http://localhost:5000/paymentBookmark/${_id}`)
+    fetch(`https://ecommerce-projects-server.vercel.app/paymentBookmark/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         setSgnleBookmark(data);
@@ -67,9 +67,12 @@ const OrderPage = () => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/bookmarkDelete/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://ecommerce-projects-server.vercel.app/bookmarkDelete/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             refetch();
@@ -209,12 +212,12 @@ const OrderPage = () => {
       )}
       {bookmark.length === 0 && (
         <p className="flex items-center justify-center h-[45dvh] md:h-[60dvh]   text-center ">
-        {" "}
-        <button className="btn bg-gray-400 text-white">
-          <span className="loading loading-spinner"></span>
-        No Bookmark's
-        </button>
-      </p>
+          {" "}
+          <button className="btn bg-gray-400 text-white">
+            <span className="loading loading-spinner"></span>
+            No Bookmark's
+          </button>
+        </p>
       )}
     </div>
   );

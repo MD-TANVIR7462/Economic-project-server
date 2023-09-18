@@ -32,14 +32,13 @@ const ShowDetails = () => {
   } = Product;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/more/${subcategory}`)
+    fetch(`https://ecommerce-projects-server.vercel.app/more/${subcategory}`)
       .then((res) => res.json())
       .then((data) => {
         setSub(data);
       });
   }, []);
 
-  console.log(sub);
   //rander star funtion****
   const renderStars = (rating) => {
     const stars = [];
@@ -98,13 +97,16 @@ const ShowDetails = () => {
       selectedSize,
       email: user?.email,
     };
-    fetch(`http://localhost:5000/bookmarks?email=${user?.email}`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(bookmarkProducts),
-    })
+    fetch(
+      `https://ecommerce-projects-server.vercel.app/bookmarks?email=${user?.email}`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(bookmarkProducts),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         let title = "Add To cart";

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useContext } from "react";
 import {
   FiHome,
@@ -14,28 +14,38 @@ import { FaBuffer, FaUser } from "react-icons/fa6";
 import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../Components/Provider/Authprovider";
 import UseTitle from "../Components/Hooks/UseTitle";
+import UseUsers from "../Components/Hooks/UseUsers";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
+  const { allUsers, isLoading, refetch } = UseUsers()
   const [menuOpen, setMenuOpen] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [bookmark, setBookmark] = useState([]);
-  const [DBUser, setDbUser] = useState(null);
+  // const [DBUser, setDbUser] = useState(null);
 
-  useEffect(() => {
-    fetch(`http://localhost:5000/bookmarks?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setBookmark(data);
-      });
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const userResponse = await fetch(
+  //         `https://ecommerce-projects-server.vercel.app/user?email=${user?.email}`
+  //       );
+  //       const userData = await userResponse.json();
+  //       setDbUser(userData);
+  //       console.log(userData);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //       setDbUser({}); // Set an empty object on error to avoid null DBUser
+  //     }
+  //   };
 
-    fetch(`http://localhost:5000/user?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setDbUser(data);
-      });
-  }, [user]);
+  //   fetchData();
+  // }, [user]);
+  let DBUser = null;
 
+  if (user && allUsers) {
+    DBUser = allUsers.find((singleUser) => singleUser?.id === user?.id);
+  }
+  
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -51,6 +61,7 @@ const Dashboard = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   useEffect(() => {
     if (windowWidth >= 768) {
       setMenuOpen(true);
@@ -77,7 +88,7 @@ const Dashboard = () => {
                 />
 
                 <p className="text-white font-semibold text-xs md:text-base cursor-not-allowed ">
-                  {DBUser?.role}
+                  {DBUser?.role ? DBUser.role : "Loading..."}
                 </p>
               </div>
               {menuOpen && (
@@ -104,56 +115,62 @@ const Dashboard = () => {
             </span>
           )}
 
-          <Link
-            to={"/dashboard"}
-            className="block py-2 hover:bg-gray-600 rounded-lg"
-          >
-            <FiHome className="h-5 w-5 mr-2 inline" />
-            Dashboard
-          </Link>
-          {DBUser?.role === "user" && (
+          {DBUser ? (
             <>
               <Link
-                to={"/dashboard/orders"}
+                to={"/dashboard"}
                 className="block py-2 hover:bg-gray-600 rounded-lg"
               >
-                <FiShoppingCart className="h-5 w-5 mr-2 inline" />
-                Cart +<span className="text-green-500">{bookmark.length}</span>
+                <FiHome className="h-5 w-5 mr-2 inline" />
+                Dashboard
               </Link>
-              <Link
-                to={"/dashboard/payments"}
-                className="block py-2 hover:bg-gray-600 rounded-lg"
-              >
-                <FiCreditCard className="h-5 w-5 mr-2 inline" />
-                Payments
-              </Link>
-            </>
-          )}
+              {DBUser.role === "user" && (
+                <>
+                  <Link
+                    to={"/dashboard/orders"}
+                    className="block py-2 hover:bg-gray-600 rounded-lg"
+                  >
+                    <FiShoppingCart className="h-5 w-5 mr-2 inline" />
+                    Cart +
+                  </Link>
+                  <Link
+                    to={"/dashboard/payments"}
+                    className="block py-2 hover:bg-gray-600 rounded-lg"
+                  >
+                    <FiCreditCard className="h-5 w-5 mr-2 inline" />
+                    Payments
+                  </Link>
+                </>
+              )}
 
-          {DBUser?.role === "admin" && (
-            <span>
-              <Link
-                to={"/dashboard/addaProduct"}
-                className="block py-2 hover:bg-gray-600 rounded-lg"
-              >
-                <RxPlus className="h-5 w-5 mr-2 inline" />
-                Add A Product
-              </Link>
-              <Link
-                to={"/dashboard/myproducts"}
-                className="block py-2 hover:bg-gray-600 rounded-lg"
-              >
-                <FaBuffer className="h-5 w-5 mr-2 inline" />
-                My Product's
-              </Link>
-              <Link
-                to={"/dashboard/ManageUser"}
-                className="block py-2 hover:bg-gray-600 rounded-lg"
-              >
-                <FaUser className="h-5 w-5 mr-2 inline" />
-                Menage Users
-              </Link>
-            </span>
+              {DBUser.role === "admin" && (
+                <span>
+                  <Link
+                    to={"/dashboard/addaProduct"}
+                    className="block py-2 hover:bg-gray-600 rounded-lg"
+                  >
+                    <RxPlus className="h-5 w-5 mr-2 inline" />
+                    Add A Product
+                  </Link>
+                  <Link
+                    to={"/dashboard/myproducts"}
+                    className="block py-2 hover:bg-gray-600 rounded-lg"
+                  >
+                    <FaBuffer className="h-5 w-5 mr-2 inline" />
+                    My Product's
+                  </Link>
+                  <Link
+                    to={"/dashboard/ManageUser"}
+                    className="block py-2 hover:bg-gray-600 rounded-lg"
+                  >
+                    <FaUser className="h-5 w-5 mr-2 inline" />
+                    Menage Users
+                  </Link>
+                </span>
+              )}
+            </>
+          ) : (
+            <p>Loading...</p>
           )}
 
           <div className="border-b border-[#363339] my-4" />

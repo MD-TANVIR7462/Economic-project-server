@@ -18,7 +18,7 @@ import OrderPage from "./Dashboard/UserPages/OrderPage/OrderPage.jsx";
 import ManageUser from "./Dashboard/AdminDashRoutes/MenageUsers/ManageUser.jsx";
 import Payments from "./Dashboard/UserPages/PaymentPage/Payments.jsx";
 import RouteGuard from "./RoutGourds/RouteGuard.jsx";
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from "react-helmet-async";
 
 const queryClient = new QueryClient();
 
@@ -37,9 +37,15 @@ const router = createBrowserRouter([
       },
       {
         path: `/details/:id`,
-        element:<RouteGuard><ShowDetails></ShowDetails></RouteGuard>,
+        element: (
+          <RouteGuard>
+            <ShowDetails></ShowDetails>
+          </RouteGuard>
+        ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/details/${params.id}`),
+          fetch(
+            `https://ecommerce-projects-server.vercel.app/details/${params.id}`
+          ),
       },
       {
         path: "/blog",
@@ -62,30 +68,60 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <RouteGuard> <DashboardHome></DashboardHome></RouteGuard>,
+        element: (
+          <RouteGuard>
+            {" "}
+            <DashboardHome></DashboardHome>
+          </RouteGuard>
+        ),
       },
 
       {
         path: "/dashboard/orders",
-        element:<RouteGuard> <OrderPage></OrderPage></RouteGuard>,
+        element: (
+          <RouteGuard>
+            {" "}
+            <OrderPage></OrderPage>
+          </RouteGuard>
+        ),
       },
       {
         path: "/dashboard/payments",
-        element:<RouteGuard> <Payments></Payments></RouteGuard>,
+        element: (
+          <RouteGuard>
+            {" "}
+            <Payments></Payments>
+          </RouteGuard>
+        ),
       },
       //admin routes//
       {
         path: "/dashboard/addaProduct",
-        element:<RouteGuard isAdminRoute>  <AddaProduct></AddaProduct></RouteGuard>,
+        element: (
+          <RouteGuard isAdminRoute>
+            {" "}
+            <AddaProduct></AddaProduct>
+          </RouteGuard>
+        ),
       },
       {
         path: "/dashboard/myproducts",
-        element: <RouteGuard isAdminRoute> <MyProducts></MyProducts></RouteGuard>,
+        element: (
+          <RouteGuard isAdminRoute>
+            {" "}
+            <MyProducts></MyProducts>
+          </RouteGuard>
+        ),
       },
 
       {
         path: "/dashboard/ManageUser",
-        element:<RouteGuard isAdminRoute> <ManageUser></ManageUser></RouteGuard>,
+        element: (
+          <RouteGuard isAdminRoute>
+            {" "}
+            <ManageUser></ManageUser>
+          </RouteGuard>
+        ),
       },
     ],
   },
@@ -94,11 +130,11 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HelmetProvider>
-    <QueryClientProvider client={queryClient}>
-      <Authprovider>
-        <RouterProvider router={router} />
-      </Authprovider>
-    </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <Authprovider>
+          <RouterProvider router={router} />
+        </Authprovider>
+      </QueryClientProvider>
     </HelmetProvider>
   </React.StrictMode>
 );

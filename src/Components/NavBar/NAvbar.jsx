@@ -106,7 +106,7 @@ const NAvbar = () => {
                   },
                 });
 
-                fetch("http://localhost:5000/allusers", {
+                fetch("https://ecommerce-projects-server.vercel.app/allusers", {
                   method: "POST",
                   headers: {
                     "content-type": "application/json",
@@ -170,7 +170,7 @@ const NAvbar = () => {
           role: "user",
         };
 
-        fetch("http://localhost:5000/allusers", {
+        fetch("https://ecommerce-projects-server.vercel.app/allusers", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -226,7 +226,9 @@ const NAvbar = () => {
 
   //user form DB
   useEffect(() => {
-    fetch(`http://localhost:5000/user?email=${user?.email}`)
+    fetch(
+      `https://ecommerce-projects-server.vercel.app/user?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setDbUser(data);
@@ -238,16 +240,30 @@ const NAvbar = () => {
   const navOptions = (
     <>
       <li className="text-xl font-semibold ">
-        <Link to={"/"}><FiHome></FiHome> Home</Link>
+        <Link to={"/"}>
+          <FiHome></FiHome> Home
+        </Link>
       </li>
       <li className="text-xl font-semibold ">
-        <Link to={"/shop/all"}> <FiShoppingCart/>Shop</Link>
+        <Link to={"/shop/all"}>
+          {" "}
+          <FiShoppingCart />
+          Shop
+        </Link>
       </li>
       <li className="text-xl font-semibold  ">
-        <Link to={"/blog"}> <FiGrid/>Blog</Link>
+        <Link to={"/blog"}>
+          {" "}
+          <FiGrid />
+          Blog
+        </Link>
       </li>
       <li className="text-xl font-semibold ">
-        <Link to={"/contact"}> <FiPhoneOutgoing/>Contact</Link>
+        <Link to={"/contact"}>
+          {" "}
+          <FiPhoneOutgoing />
+          Contact
+        </Link>
       </li>
     </>
   );
@@ -302,7 +318,10 @@ const NAvbar = () => {
             {navOptions}
             {user && !loading && (
               <li className="text-xl font-semibold ">
-                <Link to={"/dashboard"}> <FiDatabase/> Dashboard</Link>
+                <Link to={"/dashboard"}>
+                  {" "}
+                  <FiDatabase /> Dashboard
+                </Link>
               </li>
             )}
           </ul>
@@ -319,7 +338,11 @@ const NAvbar = () => {
           {navOptions}
           {user && !loading && (
             <li className="text-xl font-semibold ">
-              <Link to={"/dashboard"}> <FiDatabase/>Dashboard</Link>
+              <Link to={"/dashboard"}>
+                {" "}
+                <FiDatabase />
+                Dashboard
+              </Link>
             </li>
           )}
         </ul>
@@ -342,18 +365,26 @@ const NAvbar = () => {
               <li>
                 {dbUser?.role === "user" ? (
                   <Link to={"dashboard/orders"}>
-                    <span className="font-semibold flex items-center gap-1"><FaShoppingCart></FaShoppingCart> Book Mark's</span>
+                    <span className="font-semibold flex items-center gap-1">
+                      <FaShoppingCart></FaShoppingCart> Book Mark's
+                    </span>
                   </Link>
                 ) : (
                   <Link to={"dashboard/myproducts"}>
-                    <span className="font-semibold"><FaBuffer/> My Product's</span>
+                    <span className="font-semibold flex items-center gap-1">
+                      <FaBuffer /> My Product's
+                    </span>
                   </Link>
                 )}
               </li>
 
               <li>
-                <span onClick={logout} className="font-semibold flex items-center gap-1">
-                 <span className="text-lg"><BiLogOut/></span>Logout
+                <span
+                  onClick={logout}
+                  className="font-semibold flex items-center gap-1"
+                >
+                  <BiLogOut />
+                  Logout
                 </span>
               </li>
             </ul>

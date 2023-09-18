@@ -7,38 +7,37 @@ import UseTitle from "../../../Components/Hooks/UseTitle";
 const Payments = () => {
   const [payments, setPayments] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [img,setImage]=useState([]);
+  const [img, setImage] = useState([]);
 
   const { user } = useContext(AuthContext);
 
-
   const openModal = (img) => {
-   
-    setImage(img)
+    setImage(img);
     setIsOpen(true);
-   };
+  };
 
   const closeModal = () => {
     setIsOpen(false);
-
   };
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/tranjection?email=${user?.email}`)
+      fetch(
+        `https://ecommerce-projects-server.vercel.app/tranjection?email=${user?.email}`
+      )
         .then((res) => res.json())
         .then((data) => setPayments(data));
     }
   }, [user]);
 
-  const convertDateTimeToYear = (dateTimeString)=>{
+  const convertDateTimeToYear = (dateTimeString) => {
     const date = new Date(dateTimeString);
-  const day = date.getDate().toString().padStart(2, '0');
-  const month = (date.getMonth() + 1).toString().padStart(2, '0'); 
-  const year = date.getFullYear().toString().slice(-2);
-  const formattedDate = `${day}/${month}/${year}`;
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear().toString().slice(-2);
+    const formattedDate = `${day}/${month}/${year}`;
 
-  return formattedDate;
-  }
+    return formattedDate;
+  };
 
   return (
     <div>
@@ -85,15 +84,12 @@ const Payments = () => {
                     className='"border-b border-[#363339] " '
                   >
                     <td>
-                      <label
-                        
-                        className="btn btn-ghost   avatar"
-                      >
-                        <div onClick={()=>openModal(singleProduct.image)}  className="md:w-24 w-20 h-12 md:h-16 rounded-lg ">
-                          <img
-                            src={singleProduct?.image}
-                            alt="IMG"
-                          />
+                      <label className="btn btn-ghost   avatar">
+                        <div
+                          onClick={() => openModal(singleProduct.image)}
+                          className="md:w-24 w-20 h-12 md:h-16 rounded-lg "
+                        >
+                          <img src={singleProduct?.image} alt="IMG" />
                         </div>
                       </label>
                     </td>
@@ -112,7 +108,10 @@ const Payments = () => {
                     <td className="font-semibold">
                       {singleProduct?.tranjectId}
                     </td>
-                    <td className="font-semibold"> {convertDateTimeToYear(singleProduct?.date)}</td>
+                    <td className="font-semibold">
+                      {" "}
+                      {convertDateTimeToYear(singleProduct?.date)}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -133,31 +132,30 @@ const Payments = () => {
                     X
                   </button>
                 </span>
-            
-               <img src={img} alt="IMG" className="rounded-lg w-full" />
-          
+
+                <img src={img} alt="IMG" className="rounded-lg w-full" />
               </div>
             </div>
           )}
         </div>
       ) : (
-         <p className="flex items-center justify-center h-[45dvh] md:h-[60dvh]   text-center ">
-           {" "}
-           <button className="btn bg-gray-400 text-white">
-             <span className="loading loading-spinner"></span>
-             loading
-           </button>
-         </p>
-       )}
-       {payments.length === 0 && (
-          <p className="flex items-center justify-center h-[45dvh] md:h-[60dvh]   text-center ">
+        <p className="flex items-center justify-center h-[45dvh] md:h-[60dvh]   text-center ">
           {" "}
           <button className="btn bg-gray-400 text-white">
             <span className="loading loading-spinner"></span>
-          No payment's
+            loading
           </button>
         </p>
-       )}
+      )}
+      {payments.length === 0 && (
+        <p className="flex items-center justify-center h-[45dvh] md:h-[60dvh]   text-center ">
+          {" "}
+          <button className="btn bg-gray-400 text-white">
+            <span className="loading loading-spinner"></span>
+            No payment's
+          </button>
+        </p>
+      )}
     </div>
   );
 };

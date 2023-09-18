@@ -29,7 +29,7 @@ const Related = ({ sub, id }) => {
       }
    }, [sub, id]);
 
-   // console.log(finalSub);
+
    return (
       <div className='my-16'>
          <h1 className='text-center text-2xl md:text-3xl font-bold mt-8 mb-6 md:mb-12 '>{text}</h1>

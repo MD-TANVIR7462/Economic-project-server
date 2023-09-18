@@ -43,9 +43,8 @@ const MyProducts = () => {
     const brand = form.brand.value;
     const Quantity = parseInt(form.Quantity.value);
     const updatedProduct = { name, price, brand, Quantity };
-   
 
-    fetch(`http://localhost:5000/updateProduct/${id}`, {
+    fetch(`https://ecommerce-projects-server.vercel.app/updateProduct/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -87,9 +86,12 @@ const MyProducts = () => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/deleteProduct/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://ecommerce-projects-server.vercel.app/deleteProduct/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             refetch();
@@ -326,13 +328,13 @@ const MyProducts = () => {
         </p>
       )}
       {Adminproducts.length === 0 && (
-         <p className="flex items-center justify-center h-[45dvh] md:h-[60dvh]   text-center ">
-         {" "}
-         <button className="btn bg-gray-400 text-white">
-           <span className="loading loading-spinner"></span>
-         No Product's
-         </button>
-       </p>
+        <p className="flex items-center justify-center h-[45dvh] md:h-[60dvh]   text-center ">
+          {" "}
+          <button className="btn bg-gray-400 text-white">
+            <span className="loading loading-spinner"></span>
+            No Product's
+          </button>
+        </p>
       )}
     </div>
   );

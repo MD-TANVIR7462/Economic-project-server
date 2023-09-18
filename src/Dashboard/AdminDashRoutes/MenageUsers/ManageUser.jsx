@@ -40,13 +40,13 @@ const ManageUser = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         if (promoteOrDemote === "user") {
-          fetch(`http://localhost:5000/user/${id}`, {
+          fetch(`https://ecommerce-projects-server.vercel.app/user/${id}`, {
             method: "PATCH",
           })
             .then((res) => res.json())
             .then((data) => refetch());
         } else {
-          fetch(`http://localhost:5000/admin/${id}`, {
+          fetch(`https://ecommerce-projects-server.vercel.app/admin/${id}`, {
             method: "PATCH",
           })
             .then((res) => res.json())

@@ -14,11 +14,26 @@ const RouteGuard = ({ children, isAdminRoute }) => {
   const navigate = useNavigate(); // Hook for navigation
 
   useEffect(() => {
-    fetch(`http://localhost:5000/user?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setDbUser(data);
-      });
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(
+          `https://ecommerce-projects-server.vercel.app/user?email=${user?.email}`
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch user data");
+        }
+
+        const userData = await response.json();
+        setDbUser(userData);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    if (user?.email) {
+      fetchUserData();
+    }
   }, [user]);
 
   if (loading) {
@@ -34,7 +49,6 @@ const RouteGuard = ({ children, isAdminRoute }) => {
   }
 
   if (!user) {
-
     MySwal.fire({
       title: "Please Login First!",
       text: "Do you want to go to the Login Page?",
@@ -43,7 +57,6 @@ const RouteGuard = ({ children, isAdminRoute }) => {
       confirmButtonText: "Yes, Login",
       confirmButtonColor: "#3085d6",
       customClass: {
-  
         container: "swal-container",
         title: "swal-title",
         text: "swal-text",
@@ -55,11 +68,11 @@ const RouteGuard = ({ children, isAdminRoute }) => {
       }
     });
 
-    return null; 
+    return null;
   }
 
   if (isAdminRoute && DBUser?.role !== "admin") {
-    navigate("/"); 
+    navigate("/");
     return null;
   }
 

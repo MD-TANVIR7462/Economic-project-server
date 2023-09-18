@@ -43,7 +43,7 @@ const Slider = ({item}) => {
     return () => window.removeEventListener('resize', updateSlidesPerView);
   }, []);
 
-
+console.log(item);
 
   return (
     <div className='  mx-auto '>
@@ -67,7 +67,7 @@ const Slider = ({item}) => {
 
         
           {
-            item.map(product=><SwiperSlide key={product.id}><Slidercart  product={product} key={product.id}></Slidercart></SwiperSlide>)
+            item?.map(product=><SwiperSlide key={product._id}><Slidercart  product={product} key={product._id}></Slidercart></SwiperSlide>)
           }
 
         </Swiper>

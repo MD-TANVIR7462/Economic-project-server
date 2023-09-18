@@ -5,7 +5,7 @@ const BlogCards = ({img,title,}) => {
       <div className='mb-5 mt-2' >
          <div className="card items-center bg-pink-50 grid md:grid-cols-2 md:w-5/6 md:mx-auto card-side  shadow-xl p-2 m-2 md:px-8">
 
-            <figure className='rounded'><img src={img} className=' p-2 h-[250px] md:h-[500px]' alt="Movie" /></figure>
+            <figure ><img src={img} className=' p-2 h-[250px] md:h-[500px] rounded-md' alt="Blog" /></figure>
 
             <div className="card-body px-4">
                <h2 className=" font-bold text-md md:text-2xl mb-3">{title}</h2>
@@ -22,3 +22,5 @@ const BlogCards = ({img,title,}) => {
 };
 
 export default BlogCards;
+
+

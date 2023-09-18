@@ -59,7 +59,7 @@ const AddaProduct = () => {
             description,
             image: imgURL,
           };
-          fetch("http://localhost:5000/addproducts", {
+          fetch("https://ecommerce-projects-server.vercel.app/addproducts", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -266,7 +266,6 @@ const AddaProduct = () => {
         </div>
         <p className="text-center">
           <button
-          
             type="submit"
             className="rounded px-5 py-2.5 overflow-hidden group bg-base-300 relative hover:bg-gradient-to-r hover:from-base-300 hover:to-base-200 text-white hover:ring-2 hover:ring-offset-2 hover:ring-base-300 transition-all ease-out duration-300"
           >
