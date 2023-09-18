@@ -8,6 +8,7 @@ import UseBookmarks from "../../../Components/Hooks/UseBookmarks";
 import PaymentForm from "./PaymentComponents/PaymentForm";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import UseTitle from "../../../Components/Hooks/UseTitle";
 
 const stripePromise = loadStripe(import.meta.env.VITE_ApiPayment_PK);
 
@@ -61,8 +62,8 @@ const OrderPage = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Delete",
       customClass: {
-        popup: "bg-white border-4 border-gray-300 rounded-lg",
-        title: "text-black text-lg font-bold text-center mb-2",
+        popup: "bg-base-300 border-4 border-gray-300 rounded-lg",
+        title: " text-lg font-bold text-center mb-2",
       },
     }).then((result) => {
       if (result.isConfirmed) {
@@ -80,8 +81,8 @@ const OrderPage = () => {
               showConfirmButton: false,
               timer: 1500,
               customClass: {
-                popup: "bg-white border-4 border-gray-300 rounded-lg",
-                title: "text-black text-lg font-bold text-center mb-2",
+                popup: "bg-base-300 border-4 border-gray-300 rounded-lg",
+                title: "text-lg font-bold text-center mb-2",
               },
             });
           });
@@ -98,6 +99,7 @@ const OrderPage = () => {
   }, [user, bookmarkProducts]);
   return (
     <div>
+      {UseTitle("BOOKMARK'S")}
       <SheardBenner
         name={"BooKMark Product's"}
         subtitle={user?.displayName}
@@ -105,10 +107,10 @@ const OrderPage = () => {
       ></SheardBenner>
       {user && bookmark ? (
         <div>
-          <div className="w-full  bg-white shadow-lg overflow-x-auto">
+          <div className="w-full  bg-[#1e1d1f]  shadow-lg overflow-x-auto">
             <table className=" table table-x  md:table-sm">
               <thead>
-                <tr className="text-white bg-gray-900">
+                <tr className="text-white bg-[#363339] ">
                   <th>Product Img</th>
                   <th>Product Name</th>
                   <th>
@@ -143,13 +145,13 @@ const OrderPage = () => {
           {/* payment-modal */}
           {isOpen && (
             <div className={`modal ${isOpen ? "modal-open" : ""}`}>
-              <div className="modal-box ">
+              <div className="modal-box bg-[#2f2d31]">
                 <span className="flex justify-between items-center">
                   <p className="pl-[2%] text-lg md:text-3xl font-semibold ">
                     Write The Amount
                   </p>
                   <button
-                    className=" btn  btn-sm md:btn-md btn-square hover:bg-[#11715e]  bg-[#168a73] text-white"
+                    className=" btn  btn-sm md:btn-md border-none btn-square hover:bg-[#11715e]  bg-[#168a73] text-white"
                     onClick={closeModal}
                   >
                     X
@@ -177,14 +179,14 @@ const OrderPage = () => {
           )}
 
           {isIMG && (
-            <div className={`modal ${isIMG ? "modal-open" : ""}`}>
-              <div className="modal-box ">
+            <div className={`modal  ${isIMG ? "modal-open" : ""}`}>
+              <div className="modal-box bg-[#2f2d31]  ">
                 <span className="flex justify-between items-center mb-4">
                   <p className="text-lg md:text-3xl font-bold ">
                     Product Image
                   </p>
                   <button
-                    className="btn btn-square hover:bg-[#11715e]  bg-[#168a73] text-white"
+                    className="btn btn-square border-none hover:bg-[#11715e]  bg-[#168a73] text-white"
                     onClick={closeIMG}
                   >
                     X

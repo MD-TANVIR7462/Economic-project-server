@@ -18,6 +18,7 @@ import OrderPage from "./Dashboard/UserPages/OrderPage/OrderPage.jsx";
 import ManageUser from "./Dashboard/AdminDashRoutes/MenageUsers/ManageUser.jsx";
 import Payments from "./Dashboard/UserPages/PaymentPage/Payments.jsx";
 import RouteGuard from "./RoutGourds/RouteGuard.jsx";
+import { HelmetProvider } from 'react-helmet-async';
 
 const queryClient = new QueryClient();
 
@@ -92,10 +93,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <HelmetProvider>
     <QueryClientProvider client={queryClient}>
       <Authprovider>
         <RouterProvider router={router} />
       </Authprovider>
     </QueryClientProvider>
+    </HelmetProvider>
   </React.StrictMode>
 );

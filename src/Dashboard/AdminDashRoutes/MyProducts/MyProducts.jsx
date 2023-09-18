@@ -4,6 +4,7 @@ import { AuthContext } from "../../../Components/Provider/Authprovider";
 import Swal from "sweetalert2";
 import UseProducts from "../../../Components/Hooks/UseProducts";
 import SheardBenner from "../AddaProduct/SheardBenner";
+import UseTitle from "../../../Components/Hooks/UseTitle";
 
 const MyProducts = () => {
   const [Adminproducts, setadminProduct] = useState([]);
@@ -42,7 +43,7 @@ const MyProducts = () => {
     const brand = form.brand.value;
     const Quantity = parseInt(form.Quantity.value);
     const updatedProduct = { name, price, brand, Quantity };
-    console.log(updatedProduct);
+   
 
     fetch(`http://localhost:5000/updateProduct/${id}`, {
       method: "PATCH",
@@ -60,8 +61,8 @@ const MyProducts = () => {
           showConfirmButton: false,
           timer: 1500,
           customClass: {
-            popup: "bg-indigo-50 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
-            title: "text-sm  md:text-2xl text-blue-600 font-semibold mb-4",
+            popup: "bg-base-300 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
+            title: "text-sm  md:text-2xl mb-4",
             content: "text-gray-700",
           },
         });
@@ -81,8 +82,8 @@ const MyProducts = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Delete",
       customClass: {
-        popup: "bg-white border-4 border-gray-300 rounded-lg",
-        title: "text-black text-lg font-bold text-center mb-2",
+        popup: "bg-base-300 border-4 border-gray-300 rounded-lg",
+        title: " text-lg font-bold text-center mb-2",
       },
     }).then((result) => {
       if (result.isConfirmed) {
@@ -96,12 +97,12 @@ const MyProducts = () => {
             Swal.fire({
               position: "top-center",
               icon: "success",
-              title: "Bookmark Removed!!",
+              title: "Product Deleted!!",
               showConfirmButton: false,
               timer: 1500,
               customClass: {
-                popup: "bg-white border-4 border-gray-300 rounded-lg",
-                title: "text-black text-lg font-bold text-center mb-2",
+                popup: "bg-base-300 border-4 border-gray-300 rounded-lg",
+                title: " text-lg font-bold text-center mb-2",
               },
             });
           });
@@ -119,6 +120,7 @@ const MyProducts = () => {
 
   return (
     <div>
+      {UseTitle("MY PRODUCT'S")}
       <SheardBenner
         name={"Your Product's"}
         subtitle={user?.displayName}
@@ -126,10 +128,10 @@ const MyProducts = () => {
       ></SheardBenner>
       {user && Adminproducts ? (
         <div>
-          <div className="w-full  bg-white shadow-lg overflow-x-auto">
+          <div className="w-full bg-[#1e1d1f]  shadow-lg overflow-x-auto">
             <table className=" table table-xs  md:table-sm">
               <thead>
-                <tr className="text-white bg-gray-900">
+                <tr className="text-white bg-[#363339]">
                   <th>Product Img</th>
                   <th>Product Name</th>
                   <th>Price</th>
@@ -144,7 +146,7 @@ const MyProducts = () => {
                 {Adminproducts?.map((singleProduct, index) => (
                   <tr
                     key={singleProduct?._id}
-                    className='"border-b border-indigo-800 " '
+                    className='"border-b border-[#363339] " '
                   >
                     <td>
                       <label className="btn btn-ghost   avatar">
@@ -200,13 +202,13 @@ const MyProducts = () => {
           {/* Edit-modal */}
           {isOpen && (
             <div className={`modal ${isOpen ? "modal-open" : ""}`}>
-              <div className="modal-box ">
+              <div className="modal-box bg-base-300">
                 <span className="flex justify-between items-center">
                   <p className="pl-[5%] text-lg md:text-3xl font-bold ">
                     UPDATE NOW
                   </p>
                   <button
-                    className="btn btn-square hover:bg-[#11715e]  bg-[#168a73] text-white"
+                    className="btn btn-square border-none hover:bg-[#11715e]  bg-[#168a73] text-white"
                     onClick={closeModal}
                   >
                     X
@@ -296,13 +298,13 @@ const MyProducts = () => {
 
           {isIMG && (
             <div className={`modal ${isIMG ? "modal-open" : ""}`}>
-              <div className="modal-box ">
+              <div className="modal-box bg-base-300 ">
                 <span className="flex justify-between items-center mb-4">
                   <p className="text-lg md:text-3xl font-bold ">
                     Product Image
                   </p>
                   <button
-                    className="btn btn-square hover:bg-[#11715e]  bg-[#168a73] text-white"
+                    className="btn btn-square border-none hover:bg-[#11715e]  bg-[#168a73] text-white"
                     onClick={closeIMG}
                   >
                     X

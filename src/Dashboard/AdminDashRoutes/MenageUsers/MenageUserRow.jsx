@@ -3,7 +3,7 @@ import { FaUser, FaUserGraduate } from "react-icons/fa";
 
 const MenageUserRow = ({ singleUser, handleUsers ,openIMG}) => {
   return (
-    <tr key={singleUser?._id} className='"border-b border-indigo-800 " '>
+    <tr key={singleUser?._id} className='"border-b border-[#363339] " '>
       <td>
         <label className="btn btn-ghost   avatar">
           <div

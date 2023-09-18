@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Components/Provider/Authprovider";
 import SheardBenner from "./SheardBenner";
+import UseTitle from "../../../Components/Hooks/UseTitle";
 
 const imgHostingToken = import.meta.env.VITE_Image_Upload_Key;
 
@@ -75,9 +76,9 @@ const AddaProduct = () => {
                 timer: 1500,
                 customClass: {
                   popup:
-                    "bg-indigo-50 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
-                  title: "text-sm md:text-2xl text-blue-600 font-semibold mb-4",
-                  content: "text-gray-700",
+                    "bg-base-300 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
+                  title: "text-sm md:text-2xl  font-semibold mb-4",
+                  content: "text-gray-700 text-xs md:text-sm ",
                 },
               });
               navigate("/dashboard");
@@ -88,7 +89,8 @@ const AddaProduct = () => {
   };
 
   return (
-    <div className="w-full pb-12 ">
+    <div className="w-full pb-12 bg-[#1e1d1f]   ">
+      {UseTitle("ADD A PRODUCT")}
       <SheardBenner
         name={"Add A Product"}
         subtitle={"Explore New Style"}
@@ -96,22 +98,22 @@ const AddaProduct = () => {
       ></SheardBenner>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="max-w-md md:max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6"
+        className="max-w-md md:max-w-4xl mx-auto bg-base-200 mt-10 rounded-lg shadow-lg p-6"
       >
         <div className="md:grid grid-cols-2 gap-4 my-6 ">
           <div>
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-gray-700 text-xs md:text-sm  font-semibold mb-2">
               Product Name*
             </label>
             <input
               type="text"
               placeholder="Product Name"
               {...register("name", { required: true, maxLength: 120 })}
-              className="input input-bordered w-full p-2"
+              className="input input-bordered w-full mb-3 md:mb-0 p-2"
             />
           </div>
           <div>
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-gray-700 text-xs md:text-sm  font-semibold mb-2">
               Brand Name*
             </label>
             <input
@@ -124,20 +126,20 @@ const AddaProduct = () => {
         </div>
         <div className="mb-6 md:grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-gray-700 text-xs md:text-sm  font-semibold mb-2">
               Admin Email*
             </label>
             <input
               type="email"
               placeholder="Admin Email"
               {...register("email", { required: true, maxLength: 120 })}
-              className="input input-bordered w-full p-2"
+              className="input input-bordered w-full mb-3 md:mb-0  p-2"
               readOnly
               value={user?.email}
             />
           </div>
           <div>
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-gray-700 text-xs md:text-sm  font-semibold mb-2">
               Metarial Name*
             </label>
             <input
@@ -150,18 +152,18 @@ const AddaProduct = () => {
         </div>
         <div className="md:grid grid-cols-2 gap-4 mb-6">
           <div>
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-gray-700 text-xs md:text-sm  font-semibold mb-2">
               Price*
             </label>
             <input
               type="number"
               {...register("price", { required: true })}
               placeholder="Price"
-              className="input input-bordered w-full p-2"
+              className="input input-bordered w-full mb-3 md:mb-0  p-2"
             />
           </div>
           <div>
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-gray-700 text-xs md:text-sm  font-semibold mb-2">
               Quantity*
             </label>
             <input
@@ -175,18 +177,18 @@ const AddaProduct = () => {
 
         <div className="md:grid grid-cols-2 gap-4 mb-6">
           <div>
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-gray-700 text-xs md:text-sm  font-semibold mb-2">
               Color*
             </label>
             <input
               type="text"
               {...register("color", { required: true })}
               placeholder="color"
-              className="input input-bordered w-full p-2"
+              className="input input-bordered w-full  mb-3 md:mb-0  p-2"
             />
           </div>
           <div>
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-gray-700 text-xs md:text-sm  font-semibold mb-2">
               Rating*
             </label>
             <input
@@ -199,13 +201,13 @@ const AddaProduct = () => {
         </div>
         <div className="md:grid grid-cols-3 gap-4 mb-6">
           <div>
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-gray-700 text-xs md:text-sm  font-semibold mb-2">
               category*
             </label>
 
             <select
               {...register("category", { required: true })}
-              className="select select-success w-full max-w-md  md:max-w-xs"
+              className="select select-accent w-full  mb-3 md:mb-0 max-w-md  md:max-w-xs"
             >
               <option disabled selected>
                 Pick One
@@ -216,12 +218,12 @@ const AddaProduct = () => {
             </select>
           </div>
           <div>
-            <label className="block text-gray-700  font-semibold mb-2">
+            <label className="block text-gray-700 text-xs md:text-sm   font-semibold mb-2">
               subcategory*
             </label>
             <select
               {...register("subcategory", { required: true })}
-              className="select select-success w-full   md:max-w-xs "
+              className="select select-accent w-full mb-3 md:mb-0    md:max-w-xs "
             >
               <option disabled selected>
                 Pick One
@@ -241,31 +243,32 @@ const AddaProduct = () => {
             </select>
           </div>
           <div>
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-gray-700 text-xs md:text-sm  font-semibold mb-2">
               description*
             </label>
             <input
               type="text"
               {...register("description", { required: true })}
               placeholder="Type here"
-              className="input input-bordered input-success w-full max-w-md  md:max-w-xs"
+              className="input input-bordered input-accent w-full   max-w-xs"
             />
           </div>
         </div>
         <div className="mb-6">
-          <label className="block text-gray-700 font-semibold mb-2">
+          <label className="block text-gray-700 text-xs md:text-sm  font-semibold mb-2">
             Product Image*
           </label>
           <input
             type="file"
             {...register("image", { required: true })}
-            className="file-input file-input-bordered file-input-success  w-full  "
+            className="file-input file-input-bordered file-input-accent  w-full  "
           />
         </div>
         <p className="text-center">
           <button
+          
             type="submit"
-            className="rounded px-5 py-2.5 overflow-hidden group bg-green-500 relative hover:bg-gradient-to-r hover:from-green-500 hover:to-green-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-green-400 transition-all ease-out duration-300"
+            className="rounded px-5 py-2.5 overflow-hidden group bg-base-300 relative hover:bg-gradient-to-r hover:from-base-300 hover:to-base-200 text-white hover:ring-2 hover:ring-offset-2 hover:ring-base-300 transition-all ease-out duration-300"
           >
             <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
             <span className="relative">Submit</span>

@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useContext } from "react";
-import { FiHome, FiShoppingCart, FiCreditCard, FiMenu,FiGrid,FiPhoneOutgoing } from "react-icons/fi";
+import {
+  FiHome,
+  FiShoppingCart,
+  FiCreditCard,
+  FiMenu,
+  FiGrid,
+  FiPhoneOutgoing,
+} from "react-icons/fi";
 
 import { RxPlus } from "react-icons/rx";
 import { FaBuffer, FaUser } from "react-icons/fa6";
 import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../Components/Provider/Authprovider";
+import UseTitle from "../Components/Hooks/UseTitle";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -53,6 +61,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex ">
+      {UseTitle("DASHBOARD")}
       <div
         className={`fixed left-0 z-10 h-screen w-52 md:w-64 bg-[#171618] transition-transform duration-500  ease-in-out ${
           menuOpen ? "translate-x-0 " : "-translate-x-64"
@@ -121,34 +130,33 @@ const Dashboard = () => {
             </>
           )}
 
-          {DBUser?.role ===
-            "admin" && (
-              <span>
-                <Link
-                  to={"/dashboard/addaProduct"}
-                  className="block py-2 hover:bg-gray-600 rounded-lg"
-                >
-                  <RxPlus className="h-5 w-5 mr-2 inline" />
-                  Add A Product
-                </Link>
-                <Link
-                  to={"/dashboard/myproducts"}
-                  className="block py-2 hover:bg-gray-600 rounded-lg"
-                >
-                  <FaBuffer className="h-5 w-5 mr-2 inline" />
-                  My Product's
-                </Link>
-                <Link
-                  to={"/dashboard/ManageUser"}
-                  className="block py-2 hover:bg-gray-600 rounded-lg"
-                >
-                  <FaUser className="h-5 w-5 mr-2 inline" />
-                  Menage Users
-                </Link>
-              </span>
-            )}
+          {DBUser?.role === "admin" && (
+            <span>
+              <Link
+                to={"/dashboard/addaProduct"}
+                className="block py-2 hover:bg-gray-600 rounded-lg"
+              >
+                <RxPlus className="h-5 w-5 mr-2 inline" />
+                Add A Product
+              </Link>
+              <Link
+                to={"/dashboard/myproducts"}
+                className="block py-2 hover:bg-gray-600 rounded-lg"
+              >
+                <FaBuffer className="h-5 w-5 mr-2 inline" />
+                My Product's
+              </Link>
+              <Link
+                to={"/dashboard/ManageUser"}
+                className="block py-2 hover:bg-gray-600 rounded-lg"
+              >
+                <FaUser className="h-5 w-5 mr-2 inline" />
+                Menage Users
+              </Link>
+            </span>
+          )}
 
-          <div className="border-b border-indigo-800 my-4" />
+          <div className="border-b border-[#363339] my-4" />
           <Link to={"/"} className="block py-2 hover:bg-gray-600 rounded-lg">
             <FiHome className="h-5 w-5 mr-2 inline" />
             Home
@@ -161,21 +169,27 @@ const Dashboard = () => {
             <FiShoppingCart className="h-5 w-5 mr-2 inline" />
             Shop
           </Link>
-          <Link to={"/blog"} className="block py-2 hover:bg-gray-600 rounded-lg">
+          <Link
+            to={"/blog"}
+            className="block py-2 hover:bg-gray-600 rounded-lg"
+          >
             <FiGrid className="h-5 w-5 mr-2 inline" />
             Blog
           </Link>
-          <Link to={"/contact"} className="block py-2 hover:bg-gray-600 rounded-lg">
+          <Link
+            to={"/contact"}
+            className="block py-2 hover:bg-gray-600 rounded-lg"
+          >
             <FiPhoneOutgoing className="h-5 w-5 mr-2 inline" />
             Contact
           </Link>
         </div>
       </div>
-     
+
       <div className="w-full block ">
         {windowWidth < 768 && (
           <div
-            className={`md:hidden bg-gray-900 w-full top-0 z-10 text-white px-4 h-[70px] flex items-center `}
+            className={`md:hidden bg-base-300 w-full top-0 z-10 text-white px-4 h-[70px] flex items-center `}
           >
             <FiMenu
               onClick={toggleMenu}
@@ -184,7 +198,7 @@ const Dashboard = () => {
           </div>
         )}
         <div
-          className={` h-screen   rounded-lg ${
+          className={` h-screen  rounded-lg ${
             windowWidth < 768 ? "" : "ml-64"
           }`}
         >

@@ -3,7 +3,7 @@ import { FaCcDiscover, FaRegTrashAlt } from "react-icons/fa";
 
 const OrderTableRow = ({ singleProduct, openModal, DeleteProduct,openIMG }) => {
   return (
-    <tr key={singleProduct?._id} className='"border-b border-indigo-800 " '>
+    <tr key={singleProduct?._id} className="border-b border-[#363339] " >
       <td>
         <label className="btn btn-ghost   avatar">
           <div

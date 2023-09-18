@@ -1,13 +1,22 @@
-import { FaGoogle } from "react-icons/fa";
+import { FaGoogle, FaShoppingCart } from "react-icons/fa";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Provider/Authprovider";
 import Swal from "sweetalert2";
 import { BsBoxArrowInRight } from "react-icons/bs";
-
+import { BiLogOut } from "react-icons/bi";
+import {
+  FiHome,
+  FiShoppingCart,
+  FiCreditCard,
+  FiMenu,
+  FiGrid,
+  FiPhoneOutgoing,
+  FiDatabase,
+} from "react-icons/fi";
+import { FaBuffer } from "react-icons/fa6";
 
 const ImageHosting = import.meta.env.VITE_Image_Upload_Key;
-
 
 const NAvbar = () => {
   const {
@@ -28,7 +37,7 @@ const NAvbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [resiterModal, setResisterModal] = useState(false);
   const [Error, setEror] = useState("");
-  const [dbUser, setDbUser] = useState({})
+  const [dbUser, setDbUser] = useState({});
 
   //Modal function===========>>
   const openModal = () => {
@@ -92,8 +101,7 @@ const NAvbar = () => {
                   customClass: {
                     popup:
                       "bg-indigo-50 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
-                    title:
-                      "text-sm md:text-2xl text-blue-600 font-semibold mb-4",
+                    title: "text-sm md:text-2xl  font-semibold mb-4",
                     content: "text-gray-700",
                   },
                 });
@@ -137,8 +145,8 @@ const NAvbar = () => {
           showConfirmButton: false,
           timer: 1500,
           customClass: {
-            popup: "bg-indigo-50 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
-            title: "text-sm  md:text-2xl text-blue-600 font-semibold mb-4",
+            popup: "rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
+            title: "text-sm  md:text-2xl  font-semibold mb-4",
             content: "text-gray-700",
           },
         });
@@ -161,7 +169,7 @@ const NAvbar = () => {
           email: email,
           role: "user",
         };
-    
+
         fetch("http://localhost:5000/allusers", {
           method: "POST",
           headers: {
@@ -179,8 +187,8 @@ const NAvbar = () => {
           showConfirmButton: false,
           timer: 1500,
           customClass: {
-            popup: "bg-indigo-50 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
-            title: "text-sm  md:text-2xl text-blue-600 font-semibold mb-4",
+            popup: "bg-base-300 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
+            title: "text-sm  md:text-2xl font-semibold mb-4",
             content: "text-gray-700",
           },
         });
@@ -203,8 +211,8 @@ const NAvbar = () => {
           showConfirmButton: false,
           timer: 1500,
           customClass: {
-            popup: "bg-indigo-50 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
-            title: "text-sm md:text-2xl text-blue-600 font-semibold mb-4",
+            popup: "bg-base-300 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
+            title: "text-sm md:text-2xl font-semibold mb-4",
             content: "text-gray-700",
           },
         });
@@ -216,30 +224,30 @@ const NAvbar = () => {
       });
   };
 
-//user form DB
-useEffect(()=>{
-fetch(`http://localhost:5000/user?email=${user?.email}`)
-.then(res=>res.json())
-.then(data=>{
-  setDbUser(data)
-})
-},[user])
+  //user form DB
+  useEffect(() => {
+    fetch(`http://localhost:5000/user?email=${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setDbUser(data);
+      });
+  }, [user]);
 
   //navbar Scroll ======>>>>
 
   const navOptions = (
     <>
       <li className="text-xl font-semibold ">
-        <Link to={"/"}>Home</Link>
+        <Link to={"/"}><FiHome></FiHome> Home</Link>
       </li>
       <li className="text-xl font-semibold ">
-        <Link to={"/shop/all"}>Shop</Link>
+        <Link to={"/shop/all"}> <FiShoppingCart/>Shop</Link>
       </li>
       <li className="text-xl font-semibold  ">
-        <Link to={"/blog"}>Blog</Link>
+        <Link to={"/blog"}> <FiGrid/>Blog</Link>
       </li>
       <li className="text-xl font-semibold ">
-        <Link to={"/contact"}>Contact</Link>
+        <Link to={"/contact"}> <FiPhoneOutgoing/>Contact</Link>
       </li>
     </>
   );
@@ -266,7 +274,7 @@ fetch(`http://localhost:5000/user?email=${user?.email}`)
   return (
     <div
       className={`navbar   ${
-        isScrolled ? "bg-[#171618] shadow-md" : "bg-none"
+        isScrolled ? " bg-[#2f2d31] shadow-md" : "bg-none"
       } md:py-6 md:px-16 fixed top-0 z-10`}
     >
       <div className="navbar-start">
@@ -294,19 +302,24 @@ fetch(`http://localhost:5000/user?email=${user?.email}`)
             {navOptions}
             {user && !loading && (
               <li className="text-xl font-semibold ">
-                <Link to={"/dashboard"}>Dashboard</Link>
+                <Link to={"/dashboard"}> <FiDatabase/> Dashboard</Link>
               </li>
             )}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">LOGO</a>
+
+        <label tabIndex={0} className="btn btn-ghost  ">
+          <div className="w-24 md:w-32  inline-flex rounded-lg">
+            <p className="text-sm md:text-lg">Swift Mart</p>
+          </div>
+        </label>
       </div>
-      <div className="navbar-start hidden lg:flex">
+      <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           {navOptions}
           {user && !loading && (
             <li className="text-xl font-semibold ">
-              <Link to={"/dashboard"}>Dashboard</Link>
+              <Link to={"/dashboard"}> <FiDatabase/>Dashboard</Link>
             </li>
           )}
         </ul>
@@ -327,15 +340,20 @@ fetch(`http://localhost:5000/user?email=${user?.email}`)
               className="menu menu-xs md:menu-sm  bg-[#171618] dropdown-content mt-3 z-10 p-2 shadow  rounded-box w-40  md:w-52"
             >
               <li>
-                {
-                  dbUser?.role==="user" ? <Link to={"dashboard/orders"}><span className="font-semibold" >Book Mark's</span></Link> :  <Link to={"dashboard/myproducts"}><span className="font-semibold">My Product's</span></Link>
-                }
-               
+                {dbUser?.role === "user" ? (
+                  <Link to={"dashboard/orders"}>
+                    <span className="font-semibold flex items-center gap-1"><FaShoppingCart></FaShoppingCart> Book Mark's</span>
+                  </Link>
+                ) : (
+                  <Link to={"dashboard/myproducts"}>
+                    <span className="font-semibold"><FaBuffer/> My Product's</span>
+                  </Link>
+                )}
               </li>
 
               <li>
-                <span onClick={logout} className="font-semibold">
-                  Logout
+                <span onClick={logout} className="font-semibold flex items-center gap-1">
+                 <span className="text-lg"><BiLogOut/></span>Logout
                 </span>
               </li>
             </ul>
@@ -351,16 +369,14 @@ fetch(`http://localhost:5000/user?email=${user?.email}`)
             <BsBoxArrowInRight></BsBoxArrowInRight>
           </button>
         )}
-
-      
       </div>
       {isOpen && (
         <div className={`modal ${isOpen ? "modal-open" : ""}`}>
-          <div className="modal-box ">
+          <div className="modal-box bg-base-300">
             <span className="flex justify-between items-center">
               <p className="pl-[5%] text-3xl font-bold ">Login</p>
               <button
-                className="btn btn-square hover:bg-[#11715e]  bg-[#168a73] text-white"
+                className="btn btn-square border-none hover:bg-[#11715e]  bg-[#168a73] text-white"
                 onClick={closeModal}
               >
                 X
@@ -439,7 +455,7 @@ fetch(`http://localhost:5000/user?email=${user?.email}`)
               <p className="text-sm text-center  mb-3">Sign Up With</p>
               <button
                 onClick={LoginWithGoogle}
-                className="btn btn-circle hover:bg-[#11715e]  bg-[#168a73] px-4 text-center text-white "
+                className="btn btn-circle border-none hover:bg-[#11715e]  bg-[#168a73] px-4 text-center text-white "
               >
                 <FaGoogle></FaGoogle>
               </button>
@@ -450,11 +466,11 @@ fetch(`http://localhost:5000/user?email=${user?.email}`)
 
       {resiterModal && (
         <div className={`modal ${resiterModal ? "modal-open" : ""}`}>
-          <div className="modal-box ">
+          <div className="modal-box bg-base-300 ">
             <span className="flex justify-between items-center">
               <p className="pl-[5%] text-3xl font-bold ">Resister</p>
               <button
-                className="btn btn-square hover:bg-[#0d5345]  bg-[#11715e] text-white"
+                className="btn btn-square border-none hover:bg-[#0d5345]  bg-[#11715e] text-white"
                 onClick={closeResisterModal}
               >
                 X

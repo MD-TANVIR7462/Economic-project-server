@@ -17,7 +17,7 @@ const SummerOffer = () => {
                data-aos-easing="ease-in-out"
                data-aos-mirror="true"
             />
-            <div className='py-20  flex flex-col  justify-center items-center  border border-gray-400' data-aos="zoom-in"
+            <div className='py-20  flex flex-col  justify-center items-center bg-base-200  ' data-aos="zoom-in"
                data-aos-duration="1000"
                data-aos-easing="ease-in-out"
                data-aos-mirror="true">

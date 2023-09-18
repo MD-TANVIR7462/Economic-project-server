@@ -1,11 +1,13 @@
 import React from 'react';
 import BlogBenner from '../../Components/Blog/BlogBenner';
 import BlogCards from '../../Components/Blog/BlogCards';
+import UseTitle from '../../Components/Hooks/UseTitle';
 
 
 const BlogPage = () => {
    return (
       <div className='mb-12  '>
+         {UseTitle("BLOG")}
          <BlogBenner></BlogBenner>
          <div className='mt-8 md:mt-20'>
          <BlogCards img={"https://i.ibb.co/wgZYv4s/b1-1.jpg"  } title={"The Cotton-Jersey Zip-Up Hoodie"}></BlogCards>

@@ -122,12 +122,12 @@ const PaymentForm = ({ ProductBookmark, price, closeModal }) => {
           Swal.fire({
             position: "top-center",
             icon: "success",
-            title: "Successflully Done!!",
+            title: "Payment Complete!!",
             showConfirmButton: false,
             timer: 1500,
             customClass: {
-              popup: "bg-white border-4 border-gray-300 rounded-lg",
-              title: "text-black text-lg font-bold text-center mb-2",
+              popup: "bg-base-300 border-4 border-gray-300 rounded-lg",
+              title: " text-lg font-bold text-center mb-2",
             },
           });
           closeModal(_id);

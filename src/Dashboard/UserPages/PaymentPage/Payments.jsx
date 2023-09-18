@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { FaUserEdit, FaRegTrashAlt } from "react-icons/fa";
 import SheardBenner from "../../AdminDashRoutes/AddaProduct/SheardBenner";
 import { AuthContext } from "../../../Components/Provider/Authprovider";
+import UseTitle from "../../../Components/Hooks/UseTitle";
 
 const Payments = () => {
   const [payments, setPayments] = useState([]);
@@ -41,6 +42,7 @@ const Payments = () => {
 
   return (
     <div>
+      {UseTitle("PAYMENT'S")}
       <SheardBenner
         name={" Payment History"}
         subtitle={user?.displayName}
@@ -48,10 +50,10 @@ const Payments = () => {
       ></SheardBenner>
       {user && payments ? (
         <div>
-          <div className="w-full  bg-white shadow-lg overflow-x-auto">
+          <div className="w-full  bg-[#1e1d1f]  shadow-lg overflow-x-auto">
             <table className=" table table-xs  md:table-sm">
               <thead>
-                <tr className="text-white bg-gray-900">
+                <tr className="text-white bg-[#363339]">
                   <th>
                     Image <span className="pr-5"></span>
                   </th>
@@ -80,7 +82,7 @@ const Payments = () => {
                 {payments?.map((singleProduct, index) => (
                   <tr
                     key={singleProduct?._id}
-                    className='"border-b border-indigo-800 " '
+                    className='"border-b border-[#363339] " '
                   >
                     <td>
                       <label
@@ -119,13 +121,13 @@ const Payments = () => {
           {/* image-modal */}
           {isOpen && (
             <div className={`modal ${isOpen ? "modal-open" : ""}`}>
-              <div className="modal-box ">
+              <div className="modal-box bg-[#2f2d31]">
                 <span className="flex justify-between items-center mb-4">
                   <p className="text-lg md:text-3xl font-bold ">
                     Product Image
                   </p>
                   <button
-                    className="btn btn-square hover:bg-[#11715e]  bg-[#168a73] text-white"
+                    className="btn btn-square border-none hover:bg-[#11715e]  bg-[#168a73] text-white"
                     onClick={closeModal}
                   >
                     X

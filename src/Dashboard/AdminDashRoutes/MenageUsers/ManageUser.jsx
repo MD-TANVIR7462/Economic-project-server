@@ -4,6 +4,7 @@ import SheardBenner from "../AddaProduct/SheardBenner";
 import UseUsers from "../../../Components/Hooks/UseUsers";
 import MenageUserRow from "./MenageUserRow";
 import Swal from "sweetalert2";
+import UseTitle from "../../../Components/Hooks/UseTitle";
 
 const ManageUser = () => {
   const { user } = useContext(AuthContext);
@@ -33,8 +34,8 @@ const ManageUser = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes",
       customClass: {
-        popup: "bg-white border-4 border-gray-300 rounded-lg",
-        title: "text-black text-lg font-bold text-center mb-2",
+        popup: "bg-base-300 border-4 border-gray-300 rounded-lg",
+        title: " text-lg font-bold text-center mb-2",
       },
     }).then((result) => {
       if (result.isConfirmed) {
@@ -58,8 +59,8 @@ const ManageUser = () => {
           showConfirmButton: false,
           timer: 1500,
           customClass: {
-            popup: "bg-white border-4 border-gray-300 rounded-lg",
-            title: "text-black text-lg font-bold text-center mb-2",
+            popup: "bg-base-300 border-4 border-gray-300 rounded-lg",
+            title: " text-lg font-bold text-center mb-2",
           },
         });
       }
@@ -68,6 +69,7 @@ const ManageUser = () => {
 
   return (
     <div>
+      {UseTitle("MANAGE USER'S")}
       <SheardBenner
         name={"Manage User's"}
         subtitle={user?.displayName}
@@ -75,10 +77,10 @@ const ManageUser = () => {
       ></SheardBenner>
       {user && allUsers ? (
         <div>
-          <div className="w-full  bg-white shadow-lg overflow-x-auto">
+          <div className="w-full  bg-[#1e1d1f]  shadow-lg overflow-x-auto">
             <table className=" table table-xs  md:table-sm">
               <thead>
-                <tr className="text-white bg-gray-900">
+                <tr className="text-white bg-[#363339]">
                   <th>User Img</th>
                   <th>
                     User Name <span className="px-12"></span>
@@ -107,7 +109,7 @@ const ManageUser = () => {
           </div>
           {isIMG && (
             <div className={`modal ${isIMG ? "modal-open" : ""}`}>
-              <div className="modal-box ">
+              <div className="modal-box bg-base-300 ">
                 <span className="flex justify-between items-center mb-4">
                   <p className="text-lg md:text-3xl font-bold ">Image</p>
                   <button
