@@ -19,6 +19,7 @@ import ManageUser from "./Dashboard/AdminDashRoutes/MenageUsers/ManageUser.jsx";
 import Payments from "./Dashboard/UserPages/PaymentPage/Payments.jsx";
 import RouteGuard from "./RoutGourds/RouteGuard.jsx";
 import { HelmetProvider } from "react-helmet-async";
+import Error from "./Pages/ErrorPage/Error.jsx";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+    errorElement:<Error></Error>,
     children: [
       {
         path: "/",
@@ -65,6 +67,7 @@ const router = createBrowserRouter([
         <Dashboard></Dashboard>
       </RouteGuard>
     ),
+    errorElement:<Error></Error>,
     children: [
       {
         path: "/dashboard",

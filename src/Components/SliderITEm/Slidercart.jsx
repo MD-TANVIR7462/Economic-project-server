@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { useEffect } from "react";
+import LazyLoad from "react-lazy-load";
 
 const renderStars = (rating) => {
   const stars = [];
@@ -94,54 +95,70 @@ const Slidercart = ({ product }) => {
       selectedSize: "M",
       email: user?.email,
     };
-    fetch(
-      `https://ecommerce-projects-server.vercel.app/bookmarks?email=${user.email}`,
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(bookmarkProducts),
+ if(dbUser?.role==="user"){
+  fetch(
+    `https://ecommerce-projects-server.vercel.app/bookmarks?email=${user.email}`,
+    {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bookmarkProducts),
+    }
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.message) {
+        toast.error(`${data.message}`, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.message) {
-          toast.error(`${data.message}`, {
-            position: "top-right",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
-        }
-        if (!data.message) {
-          toast.success("Product Bookmarked", {
-            position: "top-right",
-            autoClose: 2500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
-        }
-      });
+      if (!data.message) {
+        toast.success("Product Bookmarked", {
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
+    });
+ }
+ else{
+  toast.error("Admin Can't Bokmarked!", {
+    position: "top-right",
+    autoClose: 2500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+  });
+ }
   };
 
   return (
     <div className="mb-3 md:mb-0 shadow-lg hover:shadow-md transition-shadow duration-300 rounded-lg ">
       <div className="relative bg-white rounded-md overflow-hidden cursor-pointer hover:shadow-lg transition-transform duration-700">
         <div className="group">
+          <LazyLoad>
           <img
             src={product.image}
             alt=""
             className="w-full object-cover object-center  h-[270px] md:h-[320px]  ob opacity-100 scale-100 hover:scale-110 transition-transform group-hover:opacity-100 duration-1000"
           />
+          </LazyLoad>
           <div className="pb-8 absolute bottom-0 left-0 right-0 transform translate-y-full group-hover:translate-y-0 transition-all duration-1000">
             <span className="flex justify-center items-center gap-5">
               <button

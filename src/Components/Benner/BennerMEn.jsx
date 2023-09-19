@@ -1,8 +1,11 @@
 import React from "react";
+import LazyLoad from "react-lazy-load";
 import { Link } from "react-router-dom";
 
 const BennerMEn = () => {
   return (
+    <>
+    <LazyLoad>
     <div
       className="bg-cover object-cover object-center bg-center md:w-full md:min-h-screen  h-[380px]  flex justify-center items-center  "
       style={{
@@ -34,6 +37,8 @@ const BennerMEn = () => {
         </div>
       </div>
     </div>
+    </LazyLoad>
+    </>
   );
 };
 

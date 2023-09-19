@@ -1,9 +1,12 @@
 
 import React from 'react';
+import LazyLoad from 'react-lazy-load';
 import { Link } from 'react-router-dom';
 
 const BennerT = ({img}) => {
   return (
+    <>
+    <LazyLoad>
     <div
       className="bg-cover bg-center md:w-full md:min-h-screen min-h-[380px]  flex justify-center items-center  md:bg-opacity-90"
       style={{
@@ -35,6 +38,8 @@ const BennerT = ({img}) => {
         </div>
       </div>
     </div>
+    </LazyLoad>
+    </>
   );
 };
 

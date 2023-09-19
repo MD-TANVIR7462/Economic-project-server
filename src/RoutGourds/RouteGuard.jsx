@@ -26,6 +26,7 @@ const RouteGuard = ({ children, isAdminRoute }) => {
 
         const userData = await response.json();
         setDbUser(userData);
+        console.log(userData);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }

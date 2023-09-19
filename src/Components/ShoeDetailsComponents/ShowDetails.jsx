@@ -8,10 +8,12 @@ import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/Authprovider";
 import UseTitle from "../Hooks/UseTitle";
+import LazyLoad from "react-lazy-load";
 
 const ShowDetails = () => {
   const Product = useLoaderData();
   const [quantity, setQuantity] = useState(1);
+  const [dbUser, setDbUser] = useState(null);
   const [selectedSize, setSelectedSize] = useState("M");
   const [sub, setSub] = useState([]);
   const { user } = useContext(AuthContext);
@@ -38,7 +40,15 @@ const ShowDetails = () => {
         setSub(data);
       });
   }, []);
-
+  useEffect(() => {
+    fetch(
+      `https://ecommerce-projects-server.vercel.app/user?email=${user?.email}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setDbUser(data);
+      });
+  }, [user]);
   //rander star funtion****
   const renderStars = (rating) => {
     const stars = [];
@@ -97,38 +107,54 @@ const ShowDetails = () => {
       selectedSize,
       email: user?.email,
     };
-    fetch(
-      `https://ecommerce-projects-server.vercel.app/bookmarks?email=${user?.email}`,
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(bookmarkProducts),
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        let title = "Add To cart";
-        let icon = "success";
-        if (data.message) {
-          title = data.message;
-          icon = "error";
-        }
-        Swal.fire({
-          position: "top-center",
-          icon: icon,
-          title: title,
-          showConfirmButton: false,
-          timer: 1500,
-          customClass: {
-            popup: "bg-base-300 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
-            title: "text-sm md:text-2xl  font-semibold mb-4",
-            content: "text-gray-700",
+    if (dbUser?.role === "user") {
+      fetch(
+        `https://ecommerce-projects-server.vercel.app/bookmarks?email=${user?.email}`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
           },
+          body: JSON.stringify(bookmarkProducts),
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          let title = "Add To cart";
+          let icon = "success";
+          if (data.message) {
+            title = data.message;
+            icon = "error";
+          }
+          Swal.fire({
+            position: "top-center",
+            icon: icon,
+            title: title,
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup:
+                "bg-base-300 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
+              title: "text-sm md:text-2xl  font-semibold mb-4",
+              content: "text-gray-700",
+            },
+          });
+          setQuantity(1);
         });
-        setQuantity(1);
+    } else {
+      Swal.fire({
+        position: "top-center",
+        icon: "error",
+        title: "Admin can't Bookmarked",
+        showConfirmButton: false,
+        timer: 1500,
+        customClass: {
+          popup: "bg-base-300 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
+          title: "text-sm md:text-2xl  font-semibold mb-4",
+          content: "text-gray-700",
+        },
       });
+    }
   };
 
   return (
@@ -139,12 +165,13 @@ const ShowDetails = () => {
       </div>
       <div className="md:flex md:justify-center md:items-center md:my-20 my-10 ">
         <div className="rounded-lg md:py-8 md:px-14 bg-base-200 grid md:grid-cols-2 md:w-5/6 mx-auto  md:gap-8  w-[95%] shadow-xl p-2 m-2 ">
-          <img
-            src={image}
-            className=" w-[95%] mx-auto md:w-full md:h-[450px]"
-            alt="image"
-          />
-
+          <LazyLoad>
+            <img
+              src={image}
+              className=" w-[95%] mx-auto md:w-full md:h-[450px]"
+              alt="image"
+            />
+          </LazyLoad>
           <div className="card-body">
             <h2 className="font-semibold mb-2 md:font-bold text-xl text-center md:text-4xl  md:mb-5">
               {name}
@@ -231,6 +258,7 @@ const ShowDetails = () => {
                 </button>
 
                 <button
+                  disabled={dbUser?.role === "admin"}
                   onClick={addTocart}
                   type="button"
                   className="rounded px-5 py-3.5 ml-3 overflow-hidden group bg-base-300 relative hover:bg-gradient-to-r hover:from-base-300 hover:to-base-200 text-white hover:ring-2 hover:ring-offset-2 hover:ring-base-300 transition-all ease-out duration-300"

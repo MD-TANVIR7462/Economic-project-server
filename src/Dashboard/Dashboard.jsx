@@ -18,34 +18,13 @@ import UseUsers from "../Components/Hooks/UseUsers";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
-  const { allUsers, isLoading, refetch } = UseUsers()
+  const { allUsers } = UseUsers();
   const [menuOpen, setMenuOpen] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  // const [DBUser, setDbUser] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const userResponse = await fetch(
-  //         `https://ecommerce-projects-server.vercel.app/user?email=${user?.email}`
-  //       );
-  //       const userData = await userResponse.json();
-  //       setDbUser(userData);
-  //       console.log(userData);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //       setDbUser({}); // Set an empty object on error to avoid null DBUser
-  //     }
-  //   };
+  const activeUserEmail = user?.email;
+  const DBUser = allUsers?.find((signleuser) => signleuser?.email === activeUserEmail);
 
-  //   fetchData();
-  // }, [user]);
-  let DBUser = null;
-
-  if (user && allUsers) {
-    DBUser = allUsers.find((singleUser) => singleUser?.id === user?.id);
-  }
-  
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -124,7 +103,7 @@ const Dashboard = () => {
                 <FiHome className="h-5 w-5 mr-2 inline" />
                 Dashboard
               </Link>
-              {DBUser.role === "user" && (
+              {DBUser?.role === "user" && (
                 <>
                   <Link
                     to={"/dashboard/orders"}
@@ -143,7 +122,7 @@ const Dashboard = () => {
                 </>
               )}
 
-              {DBUser.role === "admin" && (
+              {DBUser?.role === "admin" && (
                 <span>
                   <Link
                     to={"/dashboard/addaProduct"}

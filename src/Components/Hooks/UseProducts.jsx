@@ -2,7 +2,9 @@
 import { useQuery } from "@tanstack/react-query";
 
 const FetchData = async () => {
-  const res = await fetch("https://ecommerce-projects-server.vercel.app/");
+  const res = await fetch(
+    "https://ecommerce-projects-server.vercel.app/allProducts"
+  );
   const data = await res.json();
   return data;
 };

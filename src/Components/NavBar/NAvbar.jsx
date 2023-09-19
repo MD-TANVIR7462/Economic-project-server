@@ -100,7 +100,7 @@ const NAvbar = () => {
                   timer: 1500,
                   customClass: {
                     popup:
-                      "bg-indigo-50 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
+                      "bg-base-300 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
                     title: "text-sm md:text-2xl  font-semibold mb-4",
                     content: "text-gray-700",
                   },
