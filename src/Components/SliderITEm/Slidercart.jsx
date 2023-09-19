@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { useEffect } from "react";
 import LazyLoad from "react-lazy-load";
+import UseUsers from "../Hooks/UseUsers";
 
 const renderStars = (rating) => {
   const stars = [];
@@ -27,7 +28,10 @@ const renderStars = (rating) => {
 const Slidercart = ({ product }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [dbUser, setDbUser] = useState({});
+  const {allUsers}=UseUsers()
+  const activeUserEmail = user?.email;
+  const DBUser = allUsers?.find((signleuser) => signleuser?.email === activeUserEmail);
+
   useEffect(() => {
     fetch(
       `https://ecommerce-projects-server.vercel.app/user?email=${user?.email}`
@@ -95,7 +99,7 @@ const Slidercart = ({ product }) => {
       selectedSize: "M",
       email: user?.email,
     };
- if(dbUser?.role==="user"){
+
   fetch(
     `https://ecommerce-projects-server.vercel.app/bookmarks?email=${user.email}`,
     {
@@ -133,19 +137,8 @@ const Slidercart = ({ product }) => {
         });
       }
     });
- }
- else{
-  toast.error("Admin Can't Bokmarked!", {
-    position: "top-right",
-    autoClose: 2500,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "dark",
-  });
- }
+
+
   };
 
   return (
@@ -168,7 +161,7 @@ const Slidercart = ({ product }) => {
                 <FaRegEye />
               </button>
               <button
-                disabled={dbUser?.role == "admin" || product?.Quantity === 0}
+                disabled={DBUser?.role == "admin" || product?.Quantity === 0}
                 onClick={AddtoCart}
                 className="btn pt-2 px-4 pb-0 text-2xl hover:text-red-700 hover:scale-110 transition-all duration-500"
               >

@@ -20,6 +20,7 @@ import Payments from "./Dashboard/UserPages/PaymentPage/Payments.jsx";
 import RouteGuard from "./RoutGourds/RouteGuard.jsx";
 import { HelmetProvider } from "react-helmet-async";
 import Error from "./Pages/ErrorPage/Error.jsx";
+import AdminGuard from "./RoutGourds/AdminGuard.jsx";
 
 const queryClient = new QueryClient();
 
@@ -73,7 +74,7 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: (
           <RouteGuard>
-            {" "}
+    
             <DashboardHome></DashboardHome>
           </RouteGuard>
         ),
@@ -83,7 +84,7 @@ const router = createBrowserRouter([
         path: "/dashboard/orders",
         element: (
           <RouteGuard>
-            {" "}
+       
             <OrderPage></OrderPage>
           </RouteGuard>
         ),
@@ -92,7 +93,7 @@ const router = createBrowserRouter([
         path: "/dashboard/payments",
         element: (
           <RouteGuard>
-            {" "}
+   
             <Payments></Payments>
           </RouteGuard>
         ),
@@ -101,29 +102,29 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/addaProduct",
         element: (
-          <RouteGuard isAdminRoute>
-            {" "}
+          <AdminGuard >
+          
             <AddaProduct></AddaProduct>
-          </RouteGuard>
+          </AdminGuard>
         ),
       },
       {
         path: "/dashboard/myproducts",
         element: (
-          <RouteGuard isAdminRoute>
-            {" "}
+          <AdminGuard >
+         
             <MyProducts></MyProducts>
-          </RouteGuard>
+          </AdminGuard>
         ),
       },
 
       {
         path: "/dashboard/ManageUser",
         element: (
-          <RouteGuard isAdminRoute>
-            {" "}
+          <AdminGuard >
+           
             <ManageUser></ManageUser>
-          </RouteGuard>
+          </AdminGuard>
         ),
       },
     ],

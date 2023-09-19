@@ -124,13 +124,7 @@ const Dashboard = () => {
 
               {DBUser?.role === "admin" && (
                 <span>
-                  <Link
-                    to={"/dashboard/addaProduct"}
-                    className="block py-2 hover:bg-gray-600 rounded-lg"
-                  >
-                    <RxPlus className="h-5 w-5 mr-2 inline" />
-                    Add A Product
-                  </Link>
+                
                   <Link
                     to={"/dashboard/myproducts"}
                     className="block py-2 hover:bg-gray-600 rounded-lg"
@@ -144,6 +138,13 @@ const Dashboard = () => {
                   >
                     <FaUser className="h-5 w-5 mr-2 inline" />
                     Menage Users
+                  </Link>
+                  <Link
+                    to={"/dashboard/addaProduct"}
+                    className="block py-2 hover:bg-gray-600 rounded-lg"
+                  >
+                    <RxPlus className="h-5 w-5 mr-2 inline" />
+                    Add A Product
                   </Link>
                 </span>
               )}

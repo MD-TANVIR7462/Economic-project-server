@@ -9,6 +9,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/Authprovider";
 import UseTitle from "../Hooks/UseTitle";
 import LazyLoad from "react-lazy-load";
+import UseUsers from "../Hooks/UseUsers";
 
 const ShowDetails = () => {
   const Product = useLoaderData();
@@ -17,6 +18,9 @@ const ShowDetails = () => {
   const [selectedSize, setSelectedSize] = useState("M");
   const [sub, setSub] = useState([]);
   const { user } = useContext(AuthContext);
+  const {allUsers}=UseUsers()
+  const activeUserEmail = user?.email;
+  const DBUser = allUsers?.find((signleuser) => signleuser?.email === activeUserEmail);
 
   const {
     name,
@@ -107,7 +111,7 @@ const ShowDetails = () => {
       selectedSize,
       email: user?.email,
     };
-    if (dbUser?.role === "user") {
+   
       fetch(
         `https://ecommerce-projects-server.vercel.app/bookmarks?email=${user?.email}`,
         {
@@ -141,20 +145,7 @@ const ShowDetails = () => {
           });
           setQuantity(1);
         });
-    } else {
-      Swal.fire({
-        position: "top-center",
-        icon: "error",
-        title: "Admin can't Bookmarked",
-        showConfirmButton: false,
-        timer: 1500,
-        customClass: {
-          popup: "bg-base-300 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
-          title: "text-sm md:text-2xl  font-semibold mb-4",
-          content: "text-gray-700",
-        },
-      });
-    }
+    
   };
 
   return (
@@ -258,7 +249,7 @@ const ShowDetails = () => {
                 </button>
 
                 <button
-                  disabled={dbUser?.role === "admin"}
+                  disabled={DBUser?.role === "admin"}
                   onClick={addTocart}
                   type="button"
                   className="rounded px-5 py-3.5 ml-3 overflow-hidden group bg-base-300 relative hover:bg-gradient-to-r hover:from-base-300 hover:to-base-200 text-white hover:ring-2 hover:ring-offset-2 hover:ring-base-300 transition-all ease-out duration-300"
