@@ -145,7 +145,7 @@ const NAvbar = () => {
           showConfirmButton: false,
           timer: 1500,
           customClass: {
-            popup: "rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
+            popup: "rounded-lg text-base-300 shadow-md p-3 md:p-8   md:max-w-md",
             title: "text-sm  md:text-2xl  font-semibold mb-4",
             content: "text-gray-700",
           },
