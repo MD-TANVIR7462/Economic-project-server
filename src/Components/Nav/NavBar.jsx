@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   FiHome,
-  FiGrid,
   FiPhoneOutgoing,
   FiBook,
   FiShoppingCart,
@@ -17,23 +16,23 @@ const NavBar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  //handle the scroll....
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      if (scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+  //!handle the scroll....
+  //   useEffect(() => {
+  //     const handleScroll = () => {
+  //       const scrollY = window.scrollY;
+  //       if (scrollY > 10) {
+  //         setIsScrolled(true);
+  //       } else {
+  //         setIsScrolled(false);
+  //       }
+  //     };
 
-    window.addEventListener("scroll", handleScroll);
+  //     window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //     return () => {
+  //       window.removeEventListener("scroll", handleScroll);
+  //     };
+  //   }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -54,7 +53,7 @@ const NavBar = () => {
     // { icon: <FiGrid />, label: "Dashboard" },
   ];
 
-  const NavItem = ({ icon, label,to }) => (
+  const NavItem = ({ icon, label, to }) => (
     <motion.li
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
@@ -69,14 +68,8 @@ const NavBar = () => {
 
   const DesktopNav = () => (
     // <nav className="bg-gradient-to-r bg-[#2f2d31] text-white p-4 shadow-lg">
-    <nav
-      className={`${
-        isScrolled
-          ? " bg-[#2f2d31] shadow-md"
-          : "bg-none text-[#2f2d31] text-xl"
-      } md:py-6 text-white p-5 `}
-    >
-      <ul className="flex justify-between items-center max-w-6xl mx-auto">
+    <nav className="bg-[#2f2d31] shadow-md  text-xl md:py-6 text-white p-5 ">
+      <ul className="flex justify-around mx-auto items-center  max-w-5xl ">
         {navItems.map((item, index) => (
           <NavItem key={index} {...item} />
         ))}
@@ -122,7 +115,7 @@ const NavBar = () => {
   );
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
+    <header className="sticky top-0 left-0 right-0 z-50 ">
       {isMobile ? <MobileNav /> : <DesktopNav />}
     </header>
   );

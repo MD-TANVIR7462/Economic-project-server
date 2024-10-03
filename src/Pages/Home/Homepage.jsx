@@ -1,6 +1,5 @@
 import React from "react";
 import CategoryMain from "../../Components/Cetegory/CategoryMain";
-
 import SliderTab from "../../Components/SliderITEm/SliderTab";
 import Banner2 from "../../Components/Benner/Banner2";
 import SummerOffer from "../../Components/Summeroffer/SummerOffer";
