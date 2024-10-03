@@ -20,9 +20,16 @@ const slides = [
   {
     id: 3,
     image:
-      "https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+      "https://i.ibb.co/8MT9p8J/hero4.png",
     title: "New Arrivals",
     subtitle: "Be the first to shop",
+  },
+  {
+    id: 3,
+    image:
+    "https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+    title: "New Fashion",
+    subtitle: "Be Awesome Always",
   },
 ];
 
@@ -47,7 +54,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="relative h-[80dvh]  overflow-hidden">
+    <div className="relative h-[80dvh]  overflow-hidden ">
       <AnimatePresence initial={false} custom={currentSlide}>
         <motion.div
           key={currentSlide}
@@ -83,8 +90,8 @@ const HeroSection = () => {
               <motion.button
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.6, duration: 0.8 }}
-                className="bg-white text-black px-8 py-3 rounded-full font-semibold text-lg hover:bg-gray-200 transition duration-300 flex items-center"
+                transition={{ delay: 0.5, duration: 0.7 }}
+                className="bg-white text-black px-5 py-2 rounded-full font-semibold text-lg hover:bg-gray-200  flex items-center"
               >
                 <FaShoppingCart className="mr-2" />
                 Shop Now

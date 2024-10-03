@@ -7,11 +7,13 @@ import "react-toastify/dist/ReactToastify.css";
 import NavBar from "./Components/Nav/NavBar";
 const App = () => {
   return (
-    <div className="bg-[#1e1d1f] font-JosefinSans" >
+    <div className="bg-[#1e1d1f] font-JosefinSans ">
       {/* <NAvbar></NAvbar> */}
       <NavBar></NavBar>
-      <ToastContainer />
-      <Outlet></Outlet>
+      <div className="max-w-[2000px] mx-auto">
+        <ToastContainer />
+        <Outlet></Outlet>
+      </div>
       <Footer></Footer>
     </div>
   );

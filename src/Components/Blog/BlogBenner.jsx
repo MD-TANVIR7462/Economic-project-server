@@ -3,7 +3,7 @@ import React from 'react';
 const BlogBenner = () => {
    return (
       <div
-      className="relative bg-cover bg-center  pt-32 pb-20 md:py-52"
+      className=" bg-cover bg-center  text-white py-[7%] md:py-[10%]"
       style={{ backgroundImage: `url(${"https://i.ibb.co/GRfZWfy/b19.jpg"})` }}
     >
       <div className="container mx-auto">
