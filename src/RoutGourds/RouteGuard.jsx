@@ -28,10 +28,10 @@ const RouteGuard = ({ children }) => {
   if (!user) {
     MySwal.fire({
       title: "Please Login First!",
-      text: "Do you want to go to the Login Page?",
+      text: "Please go To the home page !",
       icon: "warning",
       showCancelButton: false,
-      confirmButtonText: "Yes, Login",
+      confirmButtonText: "OK!",
       confirmButtonColor: "#3085d6",
       customClass: {
         container: "swal-container",

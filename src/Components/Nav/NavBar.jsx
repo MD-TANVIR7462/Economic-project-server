@@ -1,6 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../Provider/Authprovider";
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import Swal from "sweetalert2";
+import { BsBoxArrowInRight } from "react-icons/bs";
+import { BiLogOut } from "react-icons/bi";
+import { FaGoogle, FaShoppingCart } from "react-icons/fa";
 import {
   FiHome,
   FiPhoneOutgoing,
@@ -8,32 +13,26 @@ import {
   FiShoppingCart,
   FiMenu,
   FiX,
+  FiGrid,
 } from "react-icons/fi";
+import { FaBuffer } from "react-icons/fa6";
+const ImageHosting = import.meta.env.VITE_Image_Upload_Key; //!img hosting
 
 //Navbar output...
 const NavBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const {
+    CreatUSerEmail,
+    user,
+    SignInUSer,
+    signOutUSer,
+    updateUser,
+    loading,
+    googleCreatUSer,
+  } = useContext(AuthContext);
 
-  //!handle the scroll....
-  //   useEffect(() => {
-  //     const handleScroll = () => {
-  //       const scrollY = window.scrollY;
-  //       if (scrollY > 10) {
-  //         setIsScrolled(true);
-  //       } else {
-  //         setIsScrolled(false);
-  //       }
-  //     };
-
-  //     window.addEventListener("scroll", handleScroll);
-
-  //     return () => {
-  //       window.removeEventListener("scroll", handleScroll);
-  //     };
-  //   }, []);
-
+  //..for handle mobile and desktop menu..
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -42,9 +41,9 @@ const NavBar = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+  const toggleMenu = () => setIsNavOpen(!isNavOpen);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-
+  //navitems......
   const navItems = [
     { icon: <FiHome />, label: "Home", to: "/" },
     { icon: <FiShoppingCart />, label: "Shop", to: "/shop/all" },
@@ -52,7 +51,8 @@ const NavBar = () => {
     { icon: <FiBook />, label: "Blogs", to: "/blog" },
     // { icon: <FiGrid />, label: "Dashboard" },
   ];
-
+  const navIAdmin = { icon: <FiGrid />, label: "Dashboard", to: "/dashboard" };
+  //.........navitem with motion....
   const NavItem = ({ icon, label, to }) => (
     <motion.li
       whileHover={{ scale: 1.1 }}
@@ -73,28 +73,40 @@ const NavBar = () => {
         {navItems.map((item, index) => (
           <NavItem key={index} {...item} />
         ))}
+        {user && !loading && (
+          <motion.li
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center space-x-2 cursor-pointer"
+          >
+            <Link to={navIAdmin.to} className="flex gap-2">
+              <span className="text-xl">{navIAdmin.icon}</span>
+              <span>{navIAdmin.label}</span>
+            </Link>
+          </motion.li>
+        )}
       </ul>
     </nav>
   );
-
+  //mobile nav
   const MobileNav = () => (
-    <nav className="bg-gradient-to-r bg-[#2f2d31] text-white p-4 shadow-lg flex justify-between items-center">
+    <nav className="bg-gradient-to-r bg-[#2f2d31] text-white p-4 shadow-lg flex justify-between items-center z-50">
       <span className="text-xl font-bold">Swift Mart</span>
       <button
         onClick={toggleMenu}
         className="text-2xl focus:outline-none"
         aria-label="Toggle menu"
       >
-        {isOpen ? <FiX /> : <FiMenu />}
+        {isNavOpen ? <FiX /> : <FiMenu />}
       </button>
       <AnimatePresence>
-        {isOpen && (
+        {isNavOpen && (
           <motion.div
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed top-0 right-0 h-full w-64 bg-gradient-to-b bg-[#2f2d31]  p-4 shadow-lg"
+            className="fixed top-0 right-0 h-full w-64 bg-gradient-to-b bg-[#2f2d31]  p-4 shadow-lg "
           >
             <button
               onClick={toggleMenu}
@@ -107,6 +119,19 @@ const NavBar = () => {
               {navItems.map((item, index) => (
                 <NavItem key={index} {...item} />
               ))}
+
+              {user && !loading && (
+                <motion.li
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center space-x-2 cursor-pointer"
+                >
+                  <Link to={navIAdmin.to} className="flex gap-2">
+                    <span className="text-xl">{navIAdmin.icon}</span>
+                    <span>{navIAdmin.label}</span>
+                  </Link>
+                </motion.li>
+              )}
             </ul>
           </motion.div>
         )}
