@@ -7,7 +7,7 @@ const slides = [
     id: 1,
     image:
       "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    title: "Summer Collection",
+    title: "Top Collection",
     subtitle: "Discover the hottest trends",
   },
   {
@@ -54,7 +54,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="relative h-[80dvh]  overflow-hidden ">
+    <div className="relative h-[50dvh] xl:h-[80dvh] max-h-[900px]  overflow-hidden ">
       <AnimatePresence initial={false} custom={currentSlide}>
         <motion.div
           key={currentSlide}
