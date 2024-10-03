@@ -20,8 +20,15 @@ const ImageHosting = import.meta.env.VITE_Image_Upload_Key; //!img hosting
 
 //Navbar output...
 const NavBar = () => {
+  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${ImageHosting}`;//!img hosting url.....
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [dbUser, setDbUser] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
+  const [Error, setEror] = useState("");
+  const [resiterModal, setResisterModal] = useState(false);
+
+
   const {
     CreatUSerEmail,
     user,
@@ -31,7 +38,7 @@ const NavBar = () => {
     loading,
     googleCreatUSer,
   } = useContext(AuthContext);
-
+  // const user = { role: "admin" };
   //..for handle mobile and desktop menu..
   useEffect(() => {
     const handleResize = () => {
@@ -65,11 +72,84 @@ const NavBar = () => {
       </Link>
     </motion.li>
   );
+  // DBUSER fetch with current user email.......
+  //user form DB
+  useEffect(() => {
+    fetch(
+      `https://ecommerce-projects-server.vercel.app/user?email=${user?.email}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setDbUser(data);
+      });
+  }, [user]);
 
+  //!Auth firebase.......................
+  //Logout ====>>>
+  const logout = () => {
+    signOutUSer()
+      .then(() => {
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Successfully Logged Out!",
+          showConfirmButton: false,
+          timer: 1500,
+          customClass: {
+            popup: "bg-base-300 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
+            title: "text-sm md:text-2xl font-semibold mb-4",
+            content: "text-gray-700",
+          },
+        });
+
+        setEror("");
+      })
+      .catch((error) => {
+        setEror(error.message);
+      });
+  };
+
+  //!all modals functions........
+  const openModal = () => {
+    // setSelectedId();
+    setEror("");
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    // setSelectedId(null);
+    setIsOpen(false);
+    setEror("");
+  };
+
+  const ModalResister = () => {
+    setResisterModal(true);
+    setIsOpen(false);
+    setEror("");
+  };
+  const closeResisterModal = () => {
+    setResisterModal(false);
+    setEror("");
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ?desktop
   const DesktopNav = () => (
     // <nav className="bg-gradient-to-r bg-[#2f2d31] text-white p-4 shadow-lg">
-    <nav className="bg-[#2f2d31] shadow-md  text-xl md:py-6 text-white p-5 ">
-      <ul className="flex justify-around mx-auto items-center  max-w-5xl ">
+    <nav className="bg-[#2f2d31] shadow-md  text-xl md:py-4 text-white p-5 flex ">
+      <ul className="flex gap-16 mx-auto items-center  max-w-5xl ">
         {navItems.map((item, index) => (
           <NavItem key={index} {...item} />
         ))}
@@ -86,9 +166,67 @@ const NavBar = () => {
           </motion.li>
         )}
       </ul>
+      {user && (
+        <div className="dropdown dropdown-end z-10">
+          <label
+            tabIndex={0}
+            className="btn btn-ghost btn-circle avatar mr-2 md:mr-4"
+          >
+            <div className="md:w-16 w-10 rounded-full">
+              <img
+                src={
+                  user?.photoURL
+                    ? user.photoURL
+                    : "https://i.ibb.co.com/DQgJfhL/images-2.png"
+                }
+              />
+            </div>
+          </label>
+          <ul
+            tabIndex={0}
+            className="menu menu-xs md:menu-sm  bg-[#171618] dropdown-content mt-3 z-10 p-2 shadow  rounded-box w-40  md:w-52"
+          >
+            <li>
+              {dbUser?.role === "user" && (
+                <Link to={"dashboard/orders"}>
+                  <span className="font-semibold flex items-center gap-1">
+                    <FaShoppingCart></FaShoppingCart> Book Mark's
+                  </span>
+                </Link>
+              )}
+              {dbUser?.role === "admin" && (
+                <Link to={"dashboard/myproducts"}>
+                  <span className="font-semibold flex items-center gap-1">
+                    <FaBuffer /> My Product's
+                  </span>
+                </Link>
+              )}
+            </li>
+
+            <li>
+              <span
+                onClick={logout}
+                className="font-semibold flex items-center gap-1"
+              >
+                <BiLogOut />
+                Logout
+              </span>
+            </li>
+          </ul>
+        </div>
+      )}
+      {loading && <span className="loading loading-ring loading-lg"></span>}
+      {!user && !loading && (
+        <button
+          className="btn btn-circle  btn-ghost text-white  md:border-2 md:border-white text-3xl md:mr-2 "
+          onClick={openModal}
+        >
+          <BsBoxArrowInRight></BsBoxArrowInRight>
+        </button>
+      )}
     </nav>
   );
-  //mobile nav
+  //?mobile nav
   const MobileNav = () => (
     <nav className="bg-gradient-to-r bg-[#2f2d31] text-white p-4 shadow-lg flex justify-between items-center z-50">
       <span className="text-xl font-bold">Swift Mart</span>
@@ -115,7 +253,69 @@ const NavBar = () => {
             >
               <FiX />
             </button>
-            <ul className="mt-16 space-y-6 ">
+            <span>
+            {user && (
+              <div className="dropdown dropdown-end z-10 ">
+                <label
+                  tabIndex={0}
+                  className="btn btn-ghost btn-circle avatar mr-2 md:mr-4"
+                >
+                  <div className="md:w-16 w-10 rounded-md">
+                    <img
+                      src={
+                        user?.photoURL
+                          ? user.photoURL
+                          : "https://i.ibb.co.com/DQgJfhL/images-2.png"
+                      }
+                    />
+                  </div>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-xs md:menu-sm  bg-[#171618] dropdown-content mt-3 z-10 p-2 shadow  rounded-box w-40  md:w-52"
+                >
+                  <li>
+                    {dbUser?.role === "user" && (
+                      <Link to={"dashboard/orders"}>
+                        <span className="font-semibold flex items-center gap-1">
+                          <FaShoppingCart></FaShoppingCart> Book Mark's
+                        </span>
+                      </Link>
+                    )}
+                    {dbUser?.role === "admin" && (
+                      <Link to={"dashboard/myproducts"}>
+                        <span className="font-semibold flex items-center gap-1">
+                          <FaBuffer /> My Product's
+                        </span>
+                      </Link>
+                    )}
+                  </li>
+
+                  <li>
+                    <span
+                      onClick={logout}
+                      className="font-semibold flex items-center gap-1"
+                    >
+                      <BiLogOut />
+                      Logout
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            )}
+            {loading && (
+              <span className="loading loading-ring loading-lg"></span>
+            )}
+            {!user && !loading && (
+              <button
+                className="btn btn-circle btn-ghost text-white  border-2 border-white text-2xl mr-2 "
+                onClick={openModal}
+              >
+                <BsBoxArrowInRight></BsBoxArrowInRight>
+              </button>
+            )}
+            </span>
+            <ul className="mt-7 space-y-6 ">
               {navItems.map((item, index) => (
                 <NavItem key={index} {...item} />
               ))}
@@ -126,7 +326,7 @@ const NavBar = () => {
                   whileTap={{ scale: 0.95 }}
                   className="flex items-center space-x-2 cursor-pointer"
                 >
-                  <Link to={navIAdmin.to} className="flex gap-2">
+                  <Link to={navIAdmin.to} >
                     <span className="text-xl">{navIAdmin.icon}</span>
                     <span>{navIAdmin.label}</span>
                   </Link>

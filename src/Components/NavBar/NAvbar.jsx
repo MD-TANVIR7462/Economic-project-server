@@ -33,8 +33,8 @@ const NAvbar = () => {
   //End Image hosting=====>>>>
 
   const [isOpen, setIsOpen] = useState(false);
-  const [resiterModal, setResisterModal] = useState(false);
   const [Error, setEror] = useState("");
+  const [resiterModal, setResisterModal] = useState(false);
   const [dbUser, setDbUser] = useState({});
 
   //Modal function===========>>
@@ -353,7 +353,7 @@ const NAvbar = () => {
               className="btn btn-ghost btn-circle avatar mr-2 md:mr-4"
             >
               <div className="md:w-16 w-10 rounded-full">
-                <img src={user.photoURL} />
+                <img src={user?.photoURL&&user.photoURL} />
               </div>
             </label>
             <ul

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowLeft, FaArrowRight, FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const slides = [
   {
@@ -17,13 +18,7 @@ const slides = [
     title: "Accessories",
     subtitle: "Complete your look",
   },
-  {
-    id: 3,
-    image:
-      "https://i.ibb.co/8MT9p8J/hero4.png",
-    title: "New Arrivals",
-    subtitle: "Be the first to shop",
-  },
+
   {
     id: 3,
     image:
@@ -39,7 +34,7 @@ const HeroSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 7000);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
@@ -87,15 +82,15 @@ const HeroSection = () => {
               >
                 {slides[currentSlide].subtitle}
               </motion.p>
-              <motion.button
+         <Link to={'/shop/all'}>     <motion.button
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.7 }}
-                className="bg-white text-black px-5 py-2 rounded-full font-semibold text-lg hover:bg-gray-200  flex items-center"
+                className="bg-white  text-black px-5 py-2 rounded-full font-semibold text-lg hover:bg-gray-200  flex items-center"
               >
                 <FaShoppingCart className="mr-2" />
                 Shop Now
-              </motion.button>
+              </motion.button></Link>
             </div>
           </div>
         </motion.div>
