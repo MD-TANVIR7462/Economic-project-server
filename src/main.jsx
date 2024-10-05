@@ -28,7 +28,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
-    errorElement:<Error></Error>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/",
@@ -68,13 +68,12 @@ const router = createBrowserRouter([
         <Dashboard></Dashboard>
       </RouteGuard>
     ),
-    errorElement:<Error></Error>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/dashboard",
         element: (
           <RouteGuard>
-    
             <DashboardHome></DashboardHome>
           </RouteGuard>
         ),
@@ -84,7 +83,6 @@ const router = createBrowserRouter([
         path: "/dashboard/orders",
         element: (
           <RouteGuard>
-       
             <OrderPage></OrderPage>
           </RouteGuard>
         ),
@@ -93,7 +91,6 @@ const router = createBrowserRouter([
         path: "/dashboard/payments",
         element: (
           <RouteGuard>
-   
             <Payments></Payments>
           </RouteGuard>
         ),
@@ -102,8 +99,7 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/addaProduct",
         element: (
-          <AdminGuard >
-          
+          <AdminGuard>
             <AddaProduct></AddaProduct>
           </AdminGuard>
         ),
@@ -111,8 +107,7 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/myproducts",
         element: (
-          <AdminGuard >
-         
+          <AdminGuard>
             <MyProducts></MyProducts>
           </AdminGuard>
         ),
@@ -121,8 +116,7 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/ManageUser",
         element: (
-          <AdminGuard >
-           
+          <AdminGuard>
             <ManageUser></ManageUser>
           </AdminGuard>
         ),

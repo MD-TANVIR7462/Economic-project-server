@@ -57,7 +57,8 @@ const NavBar = () => {
     { icon: <FiBook />, label: "Blogs", to: "/blog" },
     // { icon: <FiGrid />, label: "Dashboard" },
   ];
-  // const navIAdmin = { icon: <FiGrid />, label: "Dashboard", to: "/dashboard" };
+  const navIAdmin = { icon: <FiGrid />, label: "Dashboard", to: "/dashboard" };
+  user && navItems.push(navIAdmin);
   //.........navitem with motion....
   const NavItem = ({ icon, label, to }) => (
     <motion.li
@@ -271,11 +272,22 @@ const NavBar = () => {
   const DesktopNav = () => (
     // <nav className="bg-gradient-to-r bg-[#2f2d31] text-white p-4 shadow-lg">
     <nav className="bg-[#2f2d31] shadow-md  text-xl md:py-4 text-white p-5 flex ">
-      <ul className="flex gap-16 mx-auto items-center  max-w-5xl ">
+      <ul className="flex md:gap-10 lg:gap-16 mx-auto items-center  max-w-5xl ">
         {navItems.map((item, index) => (
           <NavItem key={index} {...item} />
         ))}
-
+        {/* {user && !loading && (
+          <motion.li
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center space-x-2 cursor-pointer"
+          >
+            <Link to={navIAdmin.to} className="flex gap-2">
+              <span className="text-xl">{navIAdmin.icon}</span>
+              <span>{navIAdmin.label}</span>
+            </Link>
+          </motion.li>
+        )} */}
       </ul>
       {user && (
         <div className="dropdown dropdown-end z-10">
@@ -299,16 +311,16 @@ const NavBar = () => {
           >
             <li>
               {dbUser?.role === "user" && (
-                <Link to={"dashboard"}>
+                <Link to={"dashboard/orders"}>
                   <span className="font-semibold flex items-center gap-1">
-                    <FiGrid/> Dashboard
+                    <FaShoppingCart></FaShoppingCart> Book Mark's
                   </span>
                 </Link>
               )}
               {dbUser?.role === "admin" && (
-                <Link to={"dashboard"}>
+                <Link to={"dashboard/myproducts"}>
                   <span className="font-semibold flex items-center gap-1">
-                    <FiGrid /> Dashboard
+                    <FaBuffer /> My Product's
                   </span>
                 </Link>
               )}
@@ -387,14 +399,14 @@ const NavBar = () => {
                   >
                     <li>
                       {dbUser?.role === "user" && (
-                        <Link to={"dashboard"}>
+                        <Link to={"dashboard/orders"}>
                           <span className="font-semibold flex items-center gap-1">
                             <FaShoppingCart></FaShoppingCart> Book Mark's
                           </span>
                         </Link>
                       )}
                       {dbUser?.role === "admin" && (
-                        <Link to={"dashboard"}>
+                        <Link to={"dashboard/myproducts"}>
                           <span className="font-semibold flex items-center gap-1">
                             <FaBuffer /> My Product's
                           </span>
@@ -431,8 +443,19 @@ const NavBar = () => {
                 <NavItem key={index} {...item} />
               ))}
 
-              
-              
+              {/* {user && !loading && (
+                <motion.li
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center space-x-2 cursor-pointer"
+                >
+                  <Link to={navIAdmin.to}>
+                    <span className="text-xl">{navIAdmin.icon}</span>
+                    <span>{navIAdmin.label}</span>
+                  </Link>
+                </motion.li>
+              )}
+               */}
             </ul>
           </motion.div>
         )}
@@ -443,196 +466,196 @@ const NavBar = () => {
   return (
     <div className="sticky top-0 left-0 right-0 z-50 ">
       {isMobile ? <MobileNav /> : <DesktopNav />}
-  <div>
-  {isOpen && (
-        <div className={`modal ${isOpen ? "modal-open" : ""}`}>
-          <div className="modal-box bg-base-300">
-            <span className="flex justify-between items-center">
-              <p className="pl-[5%] text-3xl font-bold ">Login</p>
-              <button
-                className="btn btn-square border-none hover:bg-[#11715e]  bg-[#168a73] text-white"
-                onClick={closeModal}
-              >
-                X
-              </button>
-            </span>
-            <form onSubmit={login} className="md:p-[2%]">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text ">Email</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="email"
-                  required
-                  name="email"
-                  className="input input-bordered"
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="password"
-                  required
-                  name="password"
-                  className="input input-bordered"
-                />
-                <span className=" mt-3 flex justify-between">
+      <div>
+        {isOpen && (
+          <div className={`modal ${isOpen ? "modal-open" : ""}`}>
+            <div className="modal-box bg-base-300">
+              <span className="flex justify-between items-center">
+                <p className="pl-[5%] text-3xl font-bold ">Login</p>
+                <button
+                  className="btn btn-square border-none hover:bg-[#11715e]  bg-[#168a73] text-white"
+                  onClick={closeModal}
+                >
+                  X
+                </button>
+              </span>
+              <form onSubmit={login} className="md:p-[2%]">
+                <div className="form-control">
                   <label className="label">
-                    <span
-                      className="label-text-alt text-green-600 hover:text-blue-600"
-                      onClick={ModalResister}
-                    >
-                      {" "}
-                      Resister Now
-                    </span>
+                    <span className="label-text ">Email</span>
                   </label>
+                  <input
+                    type="text"
+                    placeholder="email"
+                    required
+                    name="email"
+                    className="input input-bordered"
+                  />
+                </div>
+                <div className="form-control">
                   <label className="label">
-                    <span className="label-text-alt link link-hover">
-                      Forgot password?
-                    </span>
+                    <span className="label-text">Password</span>
                   </label>
-                </span>
-              </div>
-              <div className="form-control mt-6">
-                <button class="relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-[#11715e] rounded-full shadow-md group">
-                  <span class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-[#11715e] group-hover:translate-x-0 ease">
-                    <svg
-                      class="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      ></path>
-                    </svg>
+                  <input
+                    type="text"
+                    placeholder="password"
+                    required
+                    name="password"
+                    className="input input-bordered"
+                  />
+                  <span className=" mt-3 flex justify-between">
+                    <label className="label">
+                      <span
+                        className="label-text-alt text-green-600 hover:text-blue-600"
+                        onClick={ModalResister}
+                      >
+                        {" "}
+                        Resister Now
+                      </span>
+                    </label>
+                    <label className="label">
+                      <span className="label-text-alt link link-hover">
+                        Forgot password?
+                      </span>
+                    </label>
                   </span>
-                  <span class="absolute flex items-center justify-center w-full h-full text-[#11715e] transition-all duration-300 transform group-hover:translate-x-full ease">
-                    Login
-                  </span>
-                  <span class="relative invisible">Login</span>
+                </div>
+                <div className="form-control mt-6">
+                  <button class="relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-[#11715e] rounded-full shadow-md group">
+                    <span class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-[#11715e] group-hover:translate-x-0 ease">
+                      <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        ></path>
+                      </svg>
+                    </span>
+                    <span class="absolute flex items-center justify-center w-full h-full text-[#11715e] transition-all duration-300 transform group-hover:translate-x-full ease">
+                      Login
+                    </span>
+                    <span class="relative invisible">Login</span>
+                  </button>
+                </div>
+              </form>
+              {Error && (
+                <p className="text-md text-center text-red-500">{Error}</p>
+              )}
+              <div className="mt-4 flex flex-col items-center ">
+                <p className="text-sm text-center  mb-3">Sign Up With</p>
+                <button
+                  onClick={LoginWithGoogle}
+                  className="btn btn-circle border-none hover:bg-[#11715e]  bg-[#168a73] px-4 text-center text-white "
+                >
+                  <FaGoogle></FaGoogle>
                 </button>
               </div>
-            </form>
-            {Error && (
-              <p className="text-md text-center text-red-500">{Error}</p>
-            )}
-            <div className="mt-4 flex flex-col items-center ">
-              <p className="text-sm text-center  mb-3">Sign Up With</p>
-              <button
-                onClick={LoginWithGoogle}
-                className="btn btn-circle border-none hover:bg-[#11715e]  bg-[#168a73] px-4 text-center text-white "
-              >
-                <FaGoogle></FaGoogle>
-              </button>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {resiterModal && (
-        <div className={`modal ${resiterModal ? "modal-open" : ""}`}>
-          <div className="modal-box bg-base-300 ">
-            <span className="flex justify-between items-center">
-              <p className="pl-[5%] text-3xl font-bold ">Resister</p>
-              <button
-                className="btn btn-square border-none hover:bg-[#0d5345]  bg-[#11715e] text-white"
-                onClick={closeResisterModal}
-              >
-                X
-              </button>
-            </span>
-            <form className="md:p-[2%]" onSubmit={handleResister}>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text ">Name</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="text"
-                  required
-                  className="input input-bordered"
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text ">Email</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="email"
-                  required
-                  className="input input-bordered"
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="text"
-                  name="password"
-                  placeholder="password"
-                  required
-                  className="input input-bordered"
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Your Profile</span>
-                </label>
-                <input
-                  type="file"
-                  required
-                  name="image"
-                  className="file-input file-input-bordered file-input-accent file-input-sm w-full max-w-xs"
-                />
-              </div>
-
-              <div className="form-control mt-6">
-                <button class="relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-[#11715e] transition duration-300 ease-out border-2 border-[#11715e] rounded-full shadow-md group">
-                  <span class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-[#11715e] group-hover:translate-x-0 ease">
-                    <svg
-                      class="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      ></path>
-                    </svg>
-                  </span>
-                  <span class="absolute flex items-center justify-center w-full h-full text-[#11715e]transition-all duration-300 transform group-hover:translate-x-full ease">
-                    Resister
-                  </span>
-                  <span class="relative invisible">Resister</span>
+        {resiterModal && (
+          <div className={`modal ${resiterModal ? "modal-open" : ""}`}>
+            <div className="modal-box bg-base-300 ">
+              <span className="flex justify-between items-center">
+                <p className="pl-[5%] text-3xl font-bold ">Resister</p>
+                <button
+                  className="btn btn-square border-none hover:bg-[#0d5345]  bg-[#11715e] text-white"
+                  onClick={closeResisterModal}
+                >
+                  X
                 </button>
-              </div>
-            </form>
-            {Error && (
-              <p className=" text-sm md:text-md text-center text-red-500">
-                {Error}
-              </p>
-            )}
+              </span>
+              <form className="md:p-[2%]" onSubmit={handleResister}>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text ">Name</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="text"
+                    required
+                    className="input input-bordered"
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text ">Email</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="email"
+                    required
+                    className="input input-bordered"
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Password</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="password"
+                    placeholder="password"
+                    required
+                    className="input input-bordered"
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Your Profile</span>
+                  </label>
+                  <input
+                    type="file"
+                    required
+                    name="image"
+                    className="file-input file-input-bordered file-input-accent file-input-sm w-full max-w-xs"
+                  />
+                </div>
+
+                <div className="form-control mt-6">
+                  <button class="relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-[#11715e] transition duration-300 ease-out border-2 border-[#11715e] rounded-full shadow-md group">
+                    <span class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-[#11715e] group-hover:translate-x-0 ease">
+                      <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        ></path>
+                      </svg>
+                    </span>
+                    <span class="absolute flex items-center justify-center w-full h-full text-[#11715e]transition-all duration-300 transform group-hover:translate-x-full ease">
+                      Resister
+                    </span>
+                    <span class="relative invisible">Resister</span>
+                  </button>
+                </div>
+              </form>
+              {Error && (
+                <p className=" text-sm md:text-md text-center text-red-500">
+                  {Error}
+                </p>
+              )}
+            </div>
           </div>
-        </div>
-      )}
-  </div>
+        )}
+      </div>
     </div>
   );
 };

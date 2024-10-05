@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NavBar from "./Components/Nav/NavBar";
 import Loader from "./Components/Loadin/Loader";
+import { ScrollToTop } from "./config";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -26,6 +27,7 @@ const App = () => {
       ) : (
         <>
           <NavBar />
+          <ScrollToTop />
           <div className="max-w-[2000px] mx-auto">
             <ToastContainer />
             <Outlet />

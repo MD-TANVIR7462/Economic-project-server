@@ -5,7 +5,7 @@ import { AuthContext } from "../Provider/Authprovider";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion"; // Import motion
-import LazyLoad from "react-lazyload";
+// import LazyLoad from "react-lazyload";
 import { useEffect } from "react";
 import LazyLoad from "react-lazy-load";
 import UseUsers from "../Hooks/UseUsers";
@@ -35,15 +35,15 @@ const Slidercart = ({ product }) => {
     (signleuser) => signleuser?.email === activeUserEmail
   );
 
-  useEffect(() => {
-    fetch(
-      `https://ecommerce-projects-server.vercel.app/user?email=${user?.email}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setDbUser(data);
-      });
-  }, [user]);
+  // useEffect(() => {
+  //   fetch(
+  //     `https://ecommerce-projects-server.vercel.app/user?email=${user?.email}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setDbUser(data);
+  //     });
+  // }, [user]);
 
   const details = (id) => {
     if (!user) {
@@ -142,9 +142,20 @@ const Slidercart = ({ product }) => {
       });
   };
 
-  const cardAnimation = {
-    hover: { scale: 1.05, boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)" },
-  };
+// Define animation properties
+const cardAnimation = {
+  initial: { scale: 1, boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)" },
+  hover: {
+    scale: 0.9, // Slightly increase the scale
+    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)", // Add a stronger shadow
+    rotate: 2, // Slight rotation effect
+    transition: { duration: 0.3 }, // Transition duration for hover effect
+  },
+  tap: {
+    scale: 0.98, // Scale down when tapped/clicked
+    transition: { duration: 0.1 }, // Quick transition for tap
+  },
+};
 
   const imageAnimation = {
     initial: { opacity: 0, scale: 0.9 },

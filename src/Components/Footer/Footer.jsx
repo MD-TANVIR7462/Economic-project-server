@@ -59,7 +59,7 @@ const Footer = () => {
       </div>
 
       <aside>
-        <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+        <p>Copyright © 2024 - Design & Created By Tanvir </p>
       </aside>
     </footer>
   );
