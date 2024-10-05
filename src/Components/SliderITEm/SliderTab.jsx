@@ -14,7 +14,7 @@ const SliderTab = () => {
     setActiveTabIndex(index);
   };
 
-  const { products: Data, refech, isloading } = UseProducts();
+  const { products: Data } = UseProducts();
 
   useEffect(() => {
     if (Data) {

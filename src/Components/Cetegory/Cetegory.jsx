@@ -19,11 +19,11 @@ const Cetegory = ({ data }) => {
                <img
                   src={image}
                   alt=""
-                  className="w-full  h-auto object-cover opacity-100 scale-100 group-hover:scale-125 transition-transform group-hover:opacity-80 duration-1000"
+                  className="w-full h-auto object-cover opacity-100 scale-100 group-hover:scale-125 transition-transform group-hover:opacity-80 duration-1000"
                />
 
                <div className="p-4 absolute bottom-0  left-0 right-0  transform translate-y-full group-hover:translate-y-0 transition-all duration-1000">
-                  <h3 className="text-xl md:text-3xl font-bold text-white text-center mb-2 md:mb-3">{title}</h3>
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white text-center mb-2 md:mb-3">{title}</h3>
                   <span className='flex justify-center'>
 
                      <span onClick={() => shopbyCategory(Cetegoryname)} className=" relative md:px-5 px-2 py-1 md:py-2 text-xs md:text-sm font-medium text-white group">

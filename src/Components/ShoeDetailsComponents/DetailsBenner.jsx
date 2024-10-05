@@ -4,7 +4,7 @@ const DetailsBenner = ({ name, category }) => {
  
   return (
     <div
-      className="relative bg-cover bg-center  pt-32 pb-20 md:py-48  "
+      className="relative bg-cover bg-center  py-[6%] md:py-[7%] lg:py-[8%%]  "
       style={{ backgroundImage: `url(${"https://i.ibb.co/ByRXQff/banner-1-1.jpg"})` }}
     >
       <div className="container mx-auto">

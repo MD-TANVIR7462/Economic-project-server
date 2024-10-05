@@ -13,7 +13,7 @@ const FreeShoping = () => {
     AOS.init();
   }, []);
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 mb-3 md:mb-20 w-[92%] mx-auto gap-4 md:justify-items-center">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-3 md:mb-20 w-[92%] mx-auto gap-4 md:justify-items-center">
       <Tilt>
         <div
           className="mb-5 md:mb-0 flex flex-col md:flex-row text-center md:text-start justify-center  md:gap-5 items-center "
@@ -26,7 +26,7 @@ const FreeShoping = () => {
             <FaCarAlt></FaCarAlt>
           </p>
           <span>
-            <p className="font-semibold md:text-xl  text-lg">Free Shipping</p>
+            <p className="font-semibold lg:text-xl text-base  md:text-lg">Free Shipping</p>
             <p className="text-slate-500 md:text-base text-sm font-medium">
               For all oder over $99
             </p>

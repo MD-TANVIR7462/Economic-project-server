@@ -23,12 +23,9 @@ const SummerOffer = () => {
                data-aos-mirror="true">
 
                <p className='text-md font-bold text-slate-500'>DISCOUNT</p>
-                <i className=' text-4xl md:text-6xl pb-2 md:pb-4'> <Tilt>Summer 2023 </Tilt></i>
+                <i className=' text-3xl md:text-4xl lg:text-6xl pb-2 md:pb-4'> <Tilt>Summer 2023 </Tilt></i>
                <p className='text-lg font-semibold '>SALE <span className=' pl-1 font-bold text-xl'>50%</span></p>
 
-               <span className='mt-8'>
-                  <button className="btn w-32 text-sm md:text-md md:w-48 text-center btn-outline border-0 border-b-4 border-[#007a72] text-[#007a72]   md:mt-4">Order Now</button>
-               </span>
             </div>
          </div>
       </section>

@@ -18,9 +18,11 @@ const ShowDetails = () => {
   const [selectedSize, setSelectedSize] = useState("M");
   const [sub, setSub] = useState([]);
   const { user } = useContext(AuthContext);
-  const {allUsers}=UseUsers()
+  const { allUsers } = UseUsers();
   const activeUserEmail = user?.email;
-  const DBUser = allUsers?.find((signleuser) => signleuser?.email === activeUserEmail);
+  const DBUser = allUsers?.find(
+    (signleuser) => signleuser?.email === activeUserEmail
+  );
 
   const {
     name,
@@ -111,41 +113,39 @@ const ShowDetails = () => {
       selectedSize,
       email: user?.email,
     };
-   
-      fetch(
-        `https://ecommerce-projects-server.vercel.app/bookmarks?email=${user?.email}`,
-        {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(bookmarkProducts),
+
+    fetch(
+      `https://ecommerce-projects-server.vercel.app/bookmarks?email=${user?.email}`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(bookmarkProducts),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        let title = "Add To cart";
+        let icon = "success";
+        if (data.message) {
+          title = data.message;
+          icon = "error";
         }
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          let title = "Add To cart";
-          let icon = "success";
-          if (data.message) {
-            title = data.message;
-            icon = "error";
-          }
-          Swal.fire({
-            position: "top-center",
-            icon: icon,
-            title: title,
-            showConfirmButton: false,
-            timer: 1500,
-            customClass: {
-              popup:
-                "bg-base-300 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
-              title: "text-sm md:text-2xl  font-semibold mb-4",
-              content: "text-gray-700",
-            },
-          });
-          setQuantity(1);
+        Swal.fire({
+          position: "top-center",
+          icon: icon,
+          title: title,
+          showConfirmButton: false,
+          timer: 1500,
+          customClass: {
+            popup: "bg-base-300 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
+            title: "text-sm md:text-2xl  font-semibold mb-4",
+            content: "text-gray-700",
+          },
         });
-    
+        setQuantity(1);
+      });
   };
 
   return (
@@ -155,7 +155,7 @@ const ShowDetails = () => {
         <DetailsBenner name={name} category={category} />
       </div>
       <div className="md:flex md:justify-center md:items-center md:my-20 my-10 ">
-        <div className="rounded-lg md:py-8 md:px-14 bg-base-200 grid md:grid-cols-2 md:w-5/6 mx-auto  md:gap-8  w-[95%] shadow-xl p-2 m-2 ">
+        <div className="rounded-lg md:py-8 md:px-14 bg-base-200 grid lg:grid-cols-2 sm:w-[75%]  md:w-[70%] lg:w-5/6 mx-auto  md:gap-8  w-[95%] shadow-xl p-2 m-2 ">
           <LazyLoad>
             <img
               src={image}

@@ -141,7 +141,7 @@ const ShopSlider = () => {
             <>
               <TabPanel>
                 <span>
-                  <div className="grid md:grid-cols-4 md:gap-6 grid-cols-1 w-[90%] mx-auto gap-3">
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  md:gap-6 grid-cols-1 w-[90%] mx-auto gap-3">
                     {filteredProducts(smallLength).map((product) => (
                       <Slidercart
                         product={product}

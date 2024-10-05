@@ -183,7 +183,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="relative h-[50dvh] xl:h-[80dvh] max-h-[900px] overflow-hidden">
+    <div className="relative h-[55dvh] xl:h-[80dvh] max-h-[900px] overflow-hidden">
       <AnimatePresence initial={false} custom={currentSlide}>
         <motion.div
           key={currentSlide}

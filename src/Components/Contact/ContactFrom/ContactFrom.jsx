@@ -205,7 +205,7 @@ export default function ContactPage() {
               <div className="flex flex-col">
                 <h2 className="text-2xl">Call Us</h2>
                 <p className="text-gray-300">Tel: 01998863753</p>
-                <p className="text-gray-300">Fax: hellow@tanvir</p>
+                <p className="text-gray-300">Fax: hello@tanvir</p>
               </div>
             </div>
 

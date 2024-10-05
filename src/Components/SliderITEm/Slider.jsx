@@ -20,8 +20,11 @@ const Slider = ({ item }) => {
   useEffect(() => {
     // Function to update slidesPerView based on window width
     const updateSlidesPerView = () => {
-      if (window.innerWidth <= 768) {
+      if (window.innerWidth <= 568) {
         setSlidesPerView(1); // Show only 1 slide on phone devices
+        setSpace(50);
+      } else if (window.innerWidth <= 1150) {
+        setSlidesPerView(2); // Show only 1 slide on phone devices
         setSpace(50);
       } else {
         setSlidesPerView(3); // Show 3 slides on other devices

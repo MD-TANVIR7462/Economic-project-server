@@ -41,7 +41,7 @@ const NavBar = () => {
   //..for handle mobile and desktop menu..
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 800);
     };
     handleResize();
     window.addEventListener("resize", handleResize);

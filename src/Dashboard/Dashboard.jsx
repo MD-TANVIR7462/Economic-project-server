@@ -15,6 +15,7 @@ import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../Components/Provider/Authprovider";
 import UseTitle from "../Components/Hooks/UseTitle";
 import UseUsers from "../Components/Hooks/UseUsers";
+import { ScrollToTop } from "../config";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -51,6 +52,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex ">
+                <ScrollToTop />
       {UseTitle("DASHBOARD")}
       <div
         className={`fixed left-0 z-10 h-screen w-52 md:w-64 bg-[#171618] transition-transform duration-500  ease-in-out ${

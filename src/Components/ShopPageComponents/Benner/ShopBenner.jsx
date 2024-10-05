@@ -3,7 +3,7 @@ import React from "react";
 const ShopBenner = () => {
   return (
     <div
-      className=" bg-cover bg-center  text-white py-[7%] md:py-[10%]  "
+      className=" bg-cover bg-center  text-white py-[6%] md:py-[7%] lg:py-[8%%]  "
       style={{
         backgroundImage: `url(${"https://i.ibb.co/ZKcBXnk/h1-hero1-jpg.webp"})`,
       }}

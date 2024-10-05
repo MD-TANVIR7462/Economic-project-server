@@ -5,10 +5,9 @@ import { AuthContext } from "../Provider/Authprovider";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion"; // Import motion
-// import LazyLoad from "react-lazyload";
-import { useEffect } from "react";
 import LazyLoad from "react-lazy-load";
 import UseUsers from "../Hooks/UseUsers";
+import Loader from "../Loadin/Loader";
 
 const renderStars = (rating) => {
   const stars = [];
@@ -142,29 +141,28 @@ const Slidercart = ({ product }) => {
       });
   };
 
-// Define animation properties
-const cardAnimation = {
-  initial: { scale: 1, boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)" },
-  hover: {
-    scale: 0.9, // Slightly increase the scale
-    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)", // Add a stronger shadow
-    rotate: 2, // Slight rotation effect
-    transition: { duration: 0.3 }, // Transition duration for hover effect
-  },
-  tap: {
-    scale: 0.98, // Scale down when tapped/clicked
-    transition: { duration: 0.1 }, // Quick transition for tap
-  },
-};
+  // Define animation properties
+  const cardAnimation = {
+    initial: { scale: 1, boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)" },
+    hover: {
+      scale: 0.9, // Slightly increase the scale
+      boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)", // Add a stronger shadow
+      rotate: 2, // Slight rotation effect
+      transition: { duration: 0.3 }, // Transition duration for hover effect
+    },
+    tap: {
+      scale: 0.98, // Scale down when tapped/clicked
+      transition: { duration: 0.1 }, // Quick transition for tap
+    },
+  };
 
   const imageAnimation = {
     initial: { opacity: 0, scale: 0.9 },
     animate: { opacity: 1, scale: 1 },
     exit: { opacity: 0, scale: 0.9 },
-    transition: { duration: 0.5 },
   };
 
-  return (
+  return product ? (
     <motion.div
       className="mb-3 md:mb-0 shadow-lg hover:shadow-md transition-shadow duration-300 rounded-lg"
       whileHover="hover"
@@ -172,17 +170,29 @@ const cardAnimation = {
     >
       <div className="relative bg-white rounded-md overflow-hidden cursor-pointer hover:shadow-lg transition-transform duration-700">
         <div className="group">
-          <LazyLoad>
-            <motion.img
-              src={product.image}
-              alt=""
-              className="w-full object-cover object-center h-[270px] md:h-[320px] opacity-100"
-              variants={imageAnimation}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            />
-          </LazyLoad>
+
+            {product?.image ? (
+              <motion.img
+                src={product?.image}
+                alt="product_image"
+                className="w-full object-cover object-center h-[270px] md:h-[320px] opacity-100"
+                variants={imageAnimation}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              />
+            ) : (
+              <div class="h-full bg-white">
+                <div class="flex justify-center items-center h-full">
+                  <img
+                    class="h-16 w-16"
+                    src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif"
+                    alt=""
+                  />
+                </div>
+              </div>
+            )}
+     
           <div className="pb-8 absolute bottom-0 left-0 right-0 transform translate-y-full group-hover:translate-y-0 transition-all duration-1000">
             <span className="flex justify-center items-center gap-5">
               <button
@@ -222,6 +232,12 @@ const cardAnimation = {
         </p>
       </div>
     </motion.div>
+  ) : (
+    <div class="w-full ">
+      <div class="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"></div>
+      <h1 class="w-56 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
+      <p class="w-24 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+    </div>
   );
 };
 export default Slidercart;
