@@ -57,7 +57,7 @@ const NavBar = () => {
     { icon: <FiBook />, label: "Blogs", to: "/blog" },
     // { icon: <FiGrid />, label: "Dashboard" },
   ];
-  const navIAdmin = { icon: <FiGrid />, label: "Dashboard", to: "/dashboard" };
+  // const navIAdmin = { icon: <FiGrid />, label: "Dashboard", to: "/dashboard" };
   //.........navitem with motion....
   const NavItem = ({ icon, label, to }) => (
     <motion.li
@@ -275,18 +275,7 @@ const NavBar = () => {
         {navItems.map((item, index) => (
           <NavItem key={index} {...item} />
         ))}
-        {user && !loading && (
-          <motion.li
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center space-x-2 cursor-pointer"
-          >
-            <Link to={navIAdmin.to} className="flex gap-2">
-              <span className="text-xl">{navIAdmin.icon}</span>
-              <span>{navIAdmin.label}</span>
-            </Link>
-          </motion.li>
-        )}
+
       </ul>
       {user && (
         <div className="dropdown dropdown-end z-10">
@@ -310,16 +299,16 @@ const NavBar = () => {
           >
             <li>
               {dbUser?.role === "user" && (
-                <Link to={"dashboard/orders"}>
+                <Link to={"dashboard"}>
                   <span className="font-semibold flex items-center gap-1">
-                    <FaShoppingCart></FaShoppingCart> Book Mark's
+                    <FiGrid/> Dashboard
                   </span>
                 </Link>
               )}
               {dbUser?.role === "admin" && (
-                <Link to={"dashboard/myproducts"}>
+                <Link to={"dashboard"}>
                   <span className="font-semibold flex items-center gap-1">
-                    <FaBuffer /> My Product's
+                    <FiGrid /> Dashboard
                   </span>
                 </Link>
               )}
@@ -398,14 +387,14 @@ const NavBar = () => {
                   >
                     <li>
                       {dbUser?.role === "user" && (
-                        <Link to={"dashboard/orders"}>
+                        <Link to={"dashboard"}>
                           <span className="font-semibold flex items-center gap-1">
                             <FaShoppingCart></FaShoppingCart> Book Mark's
                           </span>
                         </Link>
                       )}
                       {dbUser?.role === "admin" && (
-                        <Link to={"dashboard/myproducts"}>
+                        <Link to={"dashboard"}>
                           <span className="font-semibold flex items-center gap-1">
                             <FaBuffer /> My Product's
                           </span>
@@ -442,18 +431,8 @@ const NavBar = () => {
                 <NavItem key={index} {...item} />
               ))}
 
-              {user && !loading && (
-                <motion.li
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center space-x-2 cursor-pointer"
-                >
-                  <Link to={navIAdmin.to}>
-                    <span className="text-xl">{navIAdmin.icon}</span>
-                    <span>{navIAdmin.label}</span>
-                  </Link>
-                </motion.li>
-              )}
+              
+              
             </ul>
           </motion.div>
         )}
@@ -462,9 +441,10 @@ const NavBar = () => {
   );
 
   return (
-    <header className="sticky top-0 left-0 right-0 z-50 ">
+    <div className="sticky top-0 left-0 right-0 z-50 ">
       {isMobile ? <MobileNav /> : <DesktopNav />}
-      {isOpen && (
+  <div>
+  {isOpen && (
         <div className={`modal ${isOpen ? "modal-open" : ""}`}>
           <div className="modal-box bg-base-300">
             <span className="flex justify-between items-center">
@@ -652,7 +632,8 @@ const NavBar = () => {
           </div>
         </div>
       )}
-    </header>
+  </div>
+    </div>
   );
 };
 

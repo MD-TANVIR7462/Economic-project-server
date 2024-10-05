@@ -4,7 +4,7 @@ import "react-tabs/style/react-tabs.css";
 import Slidercart from "../../SliderITEm/Slidercart";
 import { useParams } from "react-router-dom";
 import UseProducts from "../../Hooks/UseProducts";
-import { BiSearch } from 'react-icons/bi';
+import Loader from "../../Loadin/Loader";
 const ShopSlider = () => {
   const { cetegory } = useParams();
   const cetegoryList = ["all", "man", "women", "kid"];
@@ -19,12 +19,12 @@ const ShopSlider = () => {
   const [manPruduct, setmanPruduct] = useState([]);
   const [womanPruduct, setwomanPruduct] = useState([]);
   const [kidPruduct, setKIdPruduct] = useState([]);
-  
+
   const [hideAll, setHideALL] = useState(false);
   const [hideMen, setHideMen] = useState(false);
   const [hidewomen, setHidewomen] = useState(false);
   const [hidekid, setHideKid] = useState(false);
-  
+
   const [searchQuery, setSearchQuery] = useState(""); // New state for search query
 
   const handleTabSelect = (index) => {
@@ -66,7 +66,7 @@ const ShopSlider = () => {
     setmanPruduct(man);
     setHideMen(true);
   };
-  
+
   const loadwoMenAll = () => {
     setwomanPruduct(women);
     setHidewomen(true);
@@ -136,6 +136,7 @@ const ShopSlider = () => {
             />
           </div>
 
+          {isLoading && <Loader />}
           {!isLoading ? (
             <>
               <TabPanel>
@@ -242,13 +243,7 @@ const ShopSlider = () => {
               </TabPanel>
             </>
           ) : (
-            <p className="flex items-center justify-center h-[30dvh] md:h-[27dvh]   text-center ">
-              {" "}
-              <button className="btn bg-gray-400 text-white">
-                <span className="loading loading-spinner"></span>
-                loading
-              </button>
-            </p>
+       <Loader/>
           )}
         </Tabs>
       </div>
