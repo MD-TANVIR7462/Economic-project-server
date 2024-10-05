@@ -18,7 +18,7 @@ const ShopBenner = () => {
           </p>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black opacity-50" />
+     
     </div>
   );
 };

@@ -36,7 +36,8 @@ const SliderTab = () => {
   };
 
   return (
-    <div className="w-[90%] my-10 md:my-32 mx-auto h-[60dvh]">
+    <div className="w-[90%] my-10 md:my-32 mx-auto h-[60dvh] max-h-full">
+
       <div>
         <Tabs selectedIndex={activeTabIndex} onSelect={handleTabSelect}>
           <span className="md:flex md:justify-between mb-8">
