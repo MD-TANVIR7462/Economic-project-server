@@ -147,7 +147,7 @@ const Slidercart = ({ product }) => {
     hover: {
       scale: 0.9, // Slightly increase the scale
       boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)", // Add a stronger shadow
-      rotate: 2, // Slight rotation effect
+      rotate: 1, // Slight rotation effect
       transition: { duration: 0.3 }, // Transition duration for hover effect
     },
     tap: {
@@ -170,29 +170,28 @@ const Slidercart = ({ product }) => {
     >
       <div className="relative bg-white rounded-md overflow-hidden cursor-pointer hover:shadow-lg transition-transform duration-700">
         <div className="group">
-
-            {product?.image ? (
-              <motion.img
-                src={product?.image}
-                alt="product_image"
-                className="w-full object-cover object-center h-[270px] md:h-[320px] opacity-100"
-                variants={imageAnimation}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-              />
-            ) : (
-              <div class="h-full bg-white">
-                <div class="flex justify-center items-center h-full">
-                  <img
-                    class="h-16 w-16"
-                    src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif"
-                    alt=""
-                  />
-                </div>
+          {product?.image ? (
+            <motion.img
+              src={product?.image}
+              alt="product_image"
+              className="w-full object-cover object-center h-[270px] md:h-[320px] opacity-100"
+              variants={imageAnimation}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            />
+          ) : (
+            <div class="h-full bg-white">
+              <div class="flex justify-center items-center h-full">
+                <img
+                  class="h-16 w-16"
+                  src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif"
+                  alt=""
+                />
               </div>
-            )}
-     
+            </div>
+          )}
+
           <div className="pb-8 absolute bottom-0 left-0 right-0 transform translate-y-full group-hover:translate-y-0 transition-all duration-1000">
             <span className="flex justify-center items-center gap-5">
               <button
