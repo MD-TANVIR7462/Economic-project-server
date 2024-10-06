@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Components/Provider/Authprovider";
-import { useState } from "react";
-import { useEffect } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import Loader from "../Components/Loadin/Loader";
 
 const MySwal = withReactContent(Swal);
 
@@ -15,13 +14,7 @@ const RouteGuard = ({ children }) => {
 
   if (loading) {
     return (
-      <p className="flex items-center justify-center h-[50dvh] md:h-[80dvh] text-center ">
-        {" "}
-        <button className="btn bg-gray-400 text-white">
-          <span className="loading loading-spinner"></span>
-          loading
-        </button>
-      </p>
+      <Loader/>
     );
   }
 

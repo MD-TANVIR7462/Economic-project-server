@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { AuthContext } from "../Components/Provider/Authprovider";
 import UseUsers from "../Components/Hooks/UseUsers";
+import Loader from "../Components/Loadin/Loader";
 
 const MySwal = withReactContent(Swal);
 
@@ -19,13 +20,7 @@ const AdminGuard = ({ children }) => {
 
   if (loading) {
     return (
-      <p className="flex items-center justify-center h-[50dvh] md:h-[80dvh] text-center ">
-        {" "}
-        <button className="btn bg-gray-400 text-white">
-          <span className="loading loading-spinner"></span>
-          loading
-        </button>
-      </p>
+      <Loader/>
     );
   }
 
@@ -54,13 +49,7 @@ const AdminGuard = ({ children }) => {
 
   if (!DBUser) {
    return (
-     <p className="flex items-center justify-center h-[50dvh] md:h-[80dvh] text-center ">
-       {" "}
-       <button className="btn bg-gray-400 text-white">
-         <span className="loading loading-spinner"></span>
-         loading
-       </button>
-     </p>
+     <Loader/>
    );
  }
   if ( DBUser?.role === "admin") {

@@ -4,6 +4,7 @@ import {
 } from 'recharts';
 import { AuthContext } from '../../Components/Provider/Authprovider';
 import SheardBenner from '../AdminDashRoutes/AddaProduct/SheardBenner';
+import Loader from '../../Components/Loadin/Loader';
 
 
 const Dashboard = () => {
@@ -149,13 +150,7 @@ const Dashboard = () => {
             </div>
          </div>
          </>: (
-        <p className="flex items-center justify-center h-[45dvh] md:h-[60dvh]   text-center ">
-          {" "}
-          <button className="btn bg-gray-400 ">
-            <span className="loading loading-spinner"></span>
-            loading
-          </button>
-        </p>
+        <Loader/>
       )}
       {!user&& (
         <div className="flex items-center h-[45dvh] md:h-[60dvh] justify-center font-semibold text-primary-300 text-center">
