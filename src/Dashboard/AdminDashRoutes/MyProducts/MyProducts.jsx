@@ -6,6 +6,7 @@ import UseProducts from "../../../Components/Hooks/UseProducts";
 import SheardBenner from "../AddaProduct/SheardBenner";
 import UseTitle from "../../../Components/Hooks/UseTitle";
 import Loader from "../../../Components/Loadin/Loader";
+import NoProducts from "../../../Pages/No-products/NoProducts";
 
 const MyProducts = () => {
   const [Adminproducts, setadminProduct] = useState([]);
@@ -320,17 +321,9 @@ const MyProducts = () => {
           )}
         </div>
       ) : (
-        <Loader/>
+        <Loader />
       )}
-      {Adminproducts.length === 0 && (
-        <p className="flex items-center justify-center h-[45dvh] md:h-[60dvh]   text-center ">
-          {" "}
-          <button className="btn bg-gray-400 text-white">
-            <span className=""></span>
-            No Product's
-          </button>
-        </p>
-      )}
+      {Adminproducts.length === 0 && <NoProducts />}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import SheardBenner from "../../AdminDashRoutes/AddaProduct/SheardBenner";
 import { AuthContext } from "../../../Components/Provider/Authprovider";
 import UseTitle from "../../../Components/Hooks/UseTitle";
 import Loader from "../../../Components/Loadin/Loader";
+import Notranjection from "../../../Pages/No-Transaction/Notranjection";
 
 const Payments = () => {
   const [payments, setPayments] = useState([]);
@@ -140,17 +141,9 @@ const Payments = () => {
           )}
         </div>
       ) : (
-        <Loader/>
+        <Loader />
       )}
-      {payments.length === 0 && (
-        <p className="flex items-center justify-center h-[45dvh] md:h-[60dvh]   text-center ">
-          {" "}
-          <button className="btn bg-gray-400 text-white">
-            <span className=""></span>
-            No payment's
-          </button>
-        </p>
-      )}
+      {payments.length === 0 && <Notranjection />}
     </div>
   );
 };

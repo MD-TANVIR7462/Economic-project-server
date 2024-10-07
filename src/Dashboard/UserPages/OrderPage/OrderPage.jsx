@@ -10,6 +10,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import UseTitle from "../../../Components/Hooks/UseTitle";
 import Loader from "../../../Components/Loadin/Loader";
+import NoBookmarks from "../../../Pages/No-BookmarksPage/NobookMarks";
 
 const stripePromise = loadStripe(import.meta.env.VITE_ApiPayment_PK);
 
@@ -203,17 +204,9 @@ const OrderPage = () => {
           )}
         </div>
       ) : (
-        <Loader/>
+        <Loader />
       )}
-      {bookmark.length === 0 && (
-        <p className="flex items-center justify-center h-[45dvh] md:h-[60dvh]   text-center ">
-          {" "}
-          <button className="btn bg-gray-400 text-white">
-            <span className=""></span>
-            No Bookmark's
-          </button>
-        </p>
-      )}
+      {bookmark.length === 0 && <NoBookmarks />}
     </div>
   );
 };
