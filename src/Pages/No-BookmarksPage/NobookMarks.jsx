@@ -5,7 +5,7 @@ const NoBookmarks = () => {
 
     return (
         <div
-            className="boxShadow bg-white p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl">
+            className="boxShadow w-[90%] max-w-3xl mx-auto  my-[10dvh] bg-white p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl">
             <img src="https://i.ibb.co/6nSHrGp/Favorite-illustration.png" alt="empty/image"
                  className="w-full sm:w-[200px]"/>
 
