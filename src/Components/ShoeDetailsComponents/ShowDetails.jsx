@@ -10,6 +10,7 @@ import { AuthContext } from "../Provider/Authprovider";
 import UseTitle from "../Hooks/UseTitle";
 import LazyLoad from "react-lazy-load";
 import UseUsers from "../Hooks/UseUsers";
+import { renderStars } from "../../Utils/RanderStar";
 
 const ShowDetails = () => {
   const Product = useLoaderData();
@@ -56,21 +57,7 @@ const ShowDetails = () => {
       });
   }, [user]);
   //rander star funtion****
-  const renderStars = (rating) => {
-    const stars = [];
-    for (let i = 1; i <= Math.floor(rating); i++) {
-      stars.push(<FaStar key={i} className="text-pink-700" />);
-    }
-    if (rating % 1 !== 0) {
-      stars.push(
-        <FaStarHalfAlt key={Math.ceil(rating)} className="text-pink-700" />
-      );
-    }
-    for (let i = Math.ceil(rating) + 1; i <= 5; i++) {
-      stars.push(<FaStar key={i} className="text-gray-300" />);
-    }
-    return stars;
-  };
+
 
   //minus button
   const decreaseQuantity = () => {
