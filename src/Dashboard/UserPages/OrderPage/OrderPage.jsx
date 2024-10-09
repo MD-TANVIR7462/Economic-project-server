@@ -206,7 +206,8 @@ const OrderPage = () => {
       ) : (
         <Loader />
       )}
-      {bookmark.length === 0 && <NoBookmarks />}
+      {isLoading && <Loader />}
+      {bookmark?.length === 0 && <NoBookmarks />}
     </div>
   );
 };
