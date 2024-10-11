@@ -1,3 +1,6 @@
+{
+  /* notranjection page  */
+}
 import React from "react";
 
 const Notranjection = () => {
