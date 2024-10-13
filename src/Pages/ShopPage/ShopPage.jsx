@@ -1,4 +1,3 @@
-import React from 'react';
 import ShopSlider from '../../Components/ShopPageComponents/ShopSLider/ShopSlider';
 import ShopBenner from '../../Components/ShopPageComponents/Benner/ShopBenner';
 import UseTitle from '../../Components/Hooks/UseTitle';
