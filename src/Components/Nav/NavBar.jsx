@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/Authprovider";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Swal from "sweetalert2";
 import { BsBoxArrowInRight } from "react-icons/bs";
@@ -289,12 +289,16 @@ useEffect(() => {
 }, []);
 
 
+const location = useLocation()
+
+
+
 
 
   // ?desktop
   const DesktopNav = () => (
     // <nav className="bg-gradient-to-r bg-[#2f2d31] text-white p-4 shadow-lg">
-    <nav className={`${isScrolled ? "bg-indigo-950":""} shadow-md  text-xl md:py-4 text-white p-5 flex `}>
+    <nav className={`${isScrolled ? "bg-[#1a012b]":""} shadow-md  text-xl md:py-4 text-white p-5 flex`}>
       <ul className="flex md:gap-10 lg:gap-16 mx-auto items-center  max-w-5xl ">
         {navItems.map((item, index) => (
           <NavItem key={index} {...item} />
@@ -374,7 +378,7 @@ useEffect(() => {
   );
   //?mobile nav
   const MobileNav = () => (
-    <nav className="bg-gradient-to-r bg-[#2f2d31] text-white p-4 shadow-lg flex justify-between items-center z-50">
+    <nav className={`${isScrolled ? "bg-[#1a012b]":"bg-'"} text-white p-4 shadow-lg flex justify-between items-center z-50`}>
       <span className="text-xl font-bold">Swift Mart</span>
       <button
         onClick={toggleMenu}
@@ -487,7 +491,7 @@ useEffect(() => {
   );
 
   return (
-    <div className="sticky top-0 left-0 right-0 z-50 ">
+    <div className={`${location.pathname === "/" ? "fixed" : "sticky bg-[#1a012b]"}  top-0 left-0 right-0 z-50`}>
       {isMobile ? <MobileNav /> : <DesktopNav />}
       <div>
         {isOpen && (

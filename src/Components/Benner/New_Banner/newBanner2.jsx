@@ -1,7 +1,4 @@
-'use client'
-
 import React, { useState, useEffect, useRef } from 'react'
-
 import { motion, AnimatePresence, useAnimation, useInView } from 'framer-motion'
 import { ShoppingBag, ChevronRight, Star, Truck, Zap, RotateCcw, ArrowRight } from 'lucide-react'
 
@@ -36,7 +33,7 @@ const toBase64 = (str) =>
     ? Buffer.from(str).toString('base64')
     : window.btoa(str)
 
-export default function EnhancedGorgeousHeroSection() {
+export default function NewBanner_2() {
   const [currentImage, setCurrentImage] = useState(0)
   const controls = useAnimation()
   const ref = useRef(null)
@@ -127,7 +124,7 @@ export default function EnhancedGorgeousHeroSection() {
           className="w-full lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0 lg:pr-8"
         >
           <motion.div variants={itemVariants}>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6 leading-tight">
+            <h1 className="text-4xl mt-10 sm:mt-0 sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6 leading-tight">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 animate-gradient-x">Step into</span>
               <br />
               <span className="text-white relative">
@@ -149,12 +146,12 @@ export default function EnhancedGorgeousHeroSection() {
             variants={itemVariants}
             className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mb-12"
           >
-            <Button size="lg" className="bg-gradient-to-r from-pink-500 to-indigo-500 text-white hover:from-pink-600 hover:to-indigo-600 text-base sm:text-lg px-6 sm:px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg group">
+            <button size="lg" className="bg-gradient-to-r from-pink-500 to-indigo-500 text-white hover:from-pink-600 hover:to-indigo-600 text-base sm:text-lg px-6 sm:px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg group">
               <ShoppingBag className="mr-2 h-5 w-5 group-hover:animate-bounce" /> Shop Now
-            </Button>
-            <Button size="lg" variant="outline" className="text-white border-purple-300 hover:bg-purple-300 hover:text-purple-900 text-base sm:text-lg px-6 sm:px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 group">
+            </button>
+            <button size="lg" variant="outline" className="text-white border-purple-300 hover:bg-purple-300 hover:text-purple-900 text-base sm:text-lg px-6 sm:px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 group">
               Explore Collection <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            </button>
           </motion.div>
           
           {/* Enhanced Trust indicators and features */}
@@ -230,10 +227,10 @@ export default function EnhancedGorgeousHeroSection() {
             <p className="text-purple-200 mb-4 text-sm sm:text-base">Experience unparalleled comfort and style with our latest innovation.</p>
             <div className="flex flex-wrap justify-between items-center">
               <span className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-indigo-300 mb-2 sm:mb-0 animate-pulse">$199.99</span>
-              <Button size="lg" className="w-full sm:w-auto bg-white text-purple-900 hover:bg-purple-100 transition-all duration-300 transform hover:scale-105 group">
+              <button size="lg" className="w-full sm:w-auto bg-white text-purple-900 hover:bg-purple-100 transition-all duration-300 transform hover:scale-105 group">
                 View Details
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              </button>
             </div>
           </motion.div>
 

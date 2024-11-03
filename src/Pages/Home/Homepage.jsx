@@ -8,6 +8,7 @@ import UseTitle from "../../Components/Hooks/UseTitle";
 import TestimonialsSection from "../../Components/Gelery/TestimonialsSection";
 import PromotionalSection from "../../Components/LandingSection/Landing";
 import NewBanner from "../../Components/Benner/New_Banner/newBanner";
+import NewBanner_2 from "../../Components/Benner/New_Banner/newBanner2";
 
 
 const Homepage = () => {
@@ -16,7 +17,8 @@ const Homepage = () => {
       {UseTitle("HOME")}
       {/* <Benner></Benner> */}
       {/* <Banner2></Banner2> */}
-      <NewBanner/>
+      {/* <NewBanner/> */}
+      <NewBanner_2/>
       <CategoryMain></CategoryMain>
       <PromotionalSection/>
       <SliderTab></SliderTab>
