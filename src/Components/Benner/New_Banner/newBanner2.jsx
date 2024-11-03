@@ -14,10 +14,13 @@ import {
   RotateCcw,
   ArrowRight,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const images = [
+  "https://i.ibb.co.com/SB3LD8G/1000-F-713719196-Gs8gay-Xk-WK3-Q8-MUPa0ek9vd-Uz8u-Gh-GKD.jpg",
+  "https://i.ibb.co.com/WKFXm4p/1000-F-145214161-c-NI4v-Y3-GFH3-R8-SXe-Ljr-Flmlnk46-JGdhi.jpg",
+  "https://i.ibb.co.com/880Qj13/1000-F-120368458-j-M1r-Sc1-O5k58-W6-KM4aaex-Jn-Vp-Ta-D768g.jpg",
   "https://images.pexels.com/photos/19090/pexels-photo.jpg",
-  "https://img.freepik.com/free-photo/pair-trainers_144627-3799.jpg?w=826",
   "https://images.unsplash.com/photo-1591950845424-4d3ef17c72d8?w=1964",
 ];
 
@@ -85,7 +88,7 @@ export default function NewBanner_2() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
+    <div className="relative max-h-[1000px] overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
       {/* Enhanced animated background */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-50" />
@@ -162,15 +165,20 @@ export default function NewBanner_2() {
             variants={itemVariants}
             className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mb-12"
           >
-            <button className="flex bg-gradient-to-r from-pink-500 to-indigo-500 text-white text-base sm:text-lg px-6 sm:px-8 py-3 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:from-pink-600 hover:to-indigo-600">
-              <ShoppingBag className="mr-2 h-5 w-5 animate-bounce-once" />
+            <Link
+              to={"/shop/all"}
+              className="flex   bg-gradient-to-r from-pink-500 to-indigo-500 text-white text-base sm:text-lg px-6 justify-center  sm:px-8 py-3 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:from-pink-600 hover:to-indigo-600"
+            >
+              <ShoppingBag className="mr-2 h-5 w-5 animate-bounce-once " />
               Shop Now
-            </button>
-
-            <button className="flex items-center group text-white border border-purple-300 text-base sm:text-lg px-6 sm:px-8 py-3 rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-purple-300 hover:text-purple-900">
+            </Link>
+            <Link
+              to={"/shop/all"}
+              className="flex items-center group text-white border border-purple-300 text-base sm:text-lg px-6 sm:px-8 justify-center  py-3 rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-purple-300 hover:text-purple-900"
+            >
               Explore Collection
               <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
-            </button>
+            </Link>
           </motion.div>
 
           {/* Enhanced Trust indicators and features */}
@@ -224,9 +232,9 @@ export default function NewBanner_2() {
             <motion.div
               key={currentImage}
               className="absolute inset-0"
-              initial={{ opacity: 0, scale: 0.9, rotateY: -90 }}
+              initial={{ opacity: 0, scale: 0.9, rotateY: -40 }}
               animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-              exit={{ opacity: 0, scale: 1.1, rotateY: 90 }}
+              exit={{ opacity: 0, scale: 0.7, rotateY: -20 }}
               transition={{ duration: 0.7 }}
             >
               <img
@@ -277,10 +285,13 @@ export default function NewBanner_2() {
               <span className=" text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-indigo-300 mb-2 sm:mb-0 animate-pulse">
                 $199.99
               </span>
-              <button className=" flex items-center justify-center w-full sm:w-auto bg-white text-purple-900 hover:bg-purple-100 transition-all duration-300 transform hover:scale-105  group rounded-full px-5 py-2 sm:px-6 sm:py-3">
+              <Link
+                to={"/shop/all"}
+                className=" flex items-center justify-center w-full sm:w-auto bg-white text-purple-900 hover:bg-purple-100 transition-all duration-300 transform hover:scale-105  group rounded-full px-5 py-2 sm:px-6 sm:py-3"
+              >
                 View Details
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:translate-x-1 " />
-              </button>
+              </Link>
             </div>
           </motion.div>
 
