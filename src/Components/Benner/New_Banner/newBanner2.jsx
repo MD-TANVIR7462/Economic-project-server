@@ -1,18 +1,30 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence, useAnimation, useInView } from 'framer-motion'
-import { ShoppingBag, ChevronRight, Star, Truck, Zap, RotateCcw, ArrowRight } from 'lucide-react'
-
+import React, { useState, useEffect, useRef } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useAnimation,
+  useInView,
+} from "framer-motion";
+import {
+  ShoppingBag,
+  ChevronRight,
+  Star,
+  Truck,
+  Zap,
+  RotateCcw,
+  ArrowRight,
+} from "lucide-react";
 
 const images = [
   "https://images.pexels.com/photos/19090/pexels-photo.jpg",
   "https://img.freepik.com/free-photo/pair-trainers_144627-3799.jpg?w=826",
-  "https://images.unsplash.com/photo-1591950845424-4d3ef17c72d8?w=1964"
-]
+  "https://images.unsplash.com/photo-1591950845424-4d3ef17c72d8?w=1964",
+];
 
 const features = [
   { icon: Zap, text: "Lightning-fast comfort" },
   { icon: RotateCcw, text: "360° support system" },
-]
+];
 
 const shimmer = (w, h) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -26,31 +38,31 @@ const shimmer = (w, h) => `
   <rect width="${w}" height="${h}" fill="#333" />
   <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
   <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
-</svg>`
+</svg>`;
 
 const toBase64 = (str) =>
-  typeof window === 'undefined'
-    ? Buffer.from(str).toString('base64')
-    : window.btoa(str)
+  typeof window === "undefined"
+    ? Buffer.from(str).toString("base64")
+    : window.btoa(str);
 
 export default function NewBanner_2() {
-  const [currentImage, setCurrentImage] = useState(0)
-  const controls = useAnimation()
-  const ref = useRef(null)
-  const isInView = useInView(ref)
+  const [currentImage, setCurrentImage] = useState(0);
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentImage((prevImage) => (prevImage + 1) % images.length)
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [])
+      setCurrentImage((prevImage) => (prevImage + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     if (isInView) {
-      controls.start('visible')
+      controls.start("visible");
     }
-  }, [controls, isInView])
+  }, [controls, isInView]);
 
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -59,18 +71,18 @@ export default function NewBanner_2() {
       y: 0,
       transition: {
         delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
-  }
+        staggerChildren: 0.2,
+      },
+    },
+  };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
-      opacity: 1
-    }
-  }
+      opacity: 1,
+    },
+  };
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
@@ -125,7 +137,9 @@ export default function NewBanner_2() {
         >
           <motion.div variants={itemVariants}>
             <h1 className="text-4xl mt-10 sm:mt-0 sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6 leading-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 animate-gradient-x">Step into</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 animate-gradient-x">
+                Step into
+              </span>
               <br />
               <span className="text-white relative">
                 the Future
@@ -138,31 +152,50 @@ export default function NewBanner_2() {
               </span>
             </h1>
             <p className="text-lg sm:text-xl text-purple-100 mb-8 max-w-xl mx-auto lg:mx-0">
-              Discover our revolutionary collection that blends cutting-edge design with unparalleled comfort. Elevate your footwear game today.
+              Discover our revolutionary collection that blends cutting-edge
+              design with unparalleled comfort. Elevate your footwear game
+              today.
             </p>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             variants={itemVariants}
             className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mb-12"
           >
-            <button size="lg" className="bg-gradient-to-r from-pink-500 to-indigo-500 text-white hover:from-pink-600 hover:to-indigo-600 text-base sm:text-lg px-6 sm:px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg group">
-              <ShoppingBag className="mr-2 h-5 w-5 group-hover:animate-bounce" /> Shop Now
+            <button className="flex bg-gradient-to-r from-pink-500 to-indigo-500 text-white text-base sm:text-lg px-6 sm:px-8 py-3 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:from-pink-600 hover:to-indigo-600">
+              <ShoppingBag className="mr-2 h-5 w-5 animate-bounce-once" />
+              Shop Now
             </button>
-            <button size="lg" variant="outline" className="text-white border-purple-300 hover:bg-purple-300 hover:text-purple-900 text-base sm:text-lg px-6 sm:px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 group">
-              Explore Collection <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+
+            <button className="flex items-center group text-white border border-purple-300 text-base sm:text-lg px-6 sm:px-8 py-3 rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-purple-300 hover:text-purple-900">
+              Explore Collection
+              <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
             </button>
           </motion.div>
-          
+
           {/* Enhanced Trust indicators and features */}
-          <motion.div 
+          <motion.div
             variants={containerVariants}
             className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto lg:mx-0"
           >
             {[
-              { icon: Star, text: "4.9/5 Rating", subtext: "From 10k+ Customers", color: "text-yellow-300" },
-              { icon: Truck, text: "Free Shipping", subtext: "On Orders Over $100", color: "text-green-300" },
-              ...features.map(f => ({ ...f, color: "text-blue-300", subtext: "" }))
+              {
+                icon: Star,
+                text: "4.9/5 Rating",
+                subtext: "From 10k+ Customers",
+                color: "text-yellow-300",
+              },
+              {
+                icon: Truck,
+                text: "Free Shipping",
+                subtext: "On Orders Over $100",
+                color: "text-green-300",
+              },
+              ...features.map((f) => ({
+                ...f,
+                color: "text-blue-300",
+                subtext: "",
+              })),
             ].map((feature, index) => (
               <motion.div
                 key={index}
@@ -171,10 +204,14 @@ export default function NewBanner_2() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <feature.icon className={`h-8 w-8 ${feature.color} mr-4 group-hover:animate-pulse`} />
+                <feature.icon
+                  className={`h-8 w-8 ${feature.color} mr-4 group-hover:animate-pulse`}
+                />
                 <div>
                   <p className="text-white font-semibold">{feature.text}</p>
-                  {feature.subtext && <p className="text-purple-200 text-sm">{feature.subtext}</p>}
+                  {feature.subtext && (
+                    <p className="text-purple-200 text-sm">{feature.subtext}</p>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -200,9 +237,11 @@ export default function NewBanner_2() {
                 className="object-cover object-center rounded-3xl shadow-2xl w-full h-full"
                 priority={currentImage === 0}
                 placeholder="blur"
-                blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
+                blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                  shimmer(700, 475)
+                )}`}
               />
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 bg-gradient-to-t from-purple-900/70 to-transparent rounded-3xl"
                 animate={{
                   background: [
@@ -211,11 +250,15 @@ export default function NewBanner_2() {
                     "linear-gradient(to top, rgba(88, 28, 135, 0.7), transparent)",
                   ],
                 }}
-                transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
               />
             </motion.div>
           </AnimatePresence>
-          
+
           {/* Enhanced Product info card */}
           <motion.div
             className="absolute bottom-4 left-4 right-4 bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-xl p-6 border border-white/20"
@@ -223,27 +266,34 @@ export default function NewBanner_2() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">UltraBoost X</h3>
-            <p className="text-purple-200 mb-4 text-sm sm:text-base">Experience unparalleled comfort and style with our latest innovation.</p>
+            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+              UltraBoost X
+            </h3>
+            <p className="text-purple-200 mb-4 text-sm sm:text-base">
+              Experience unparalleled comfort and style with our latest
+              innovation.
+            </p>
             <div className="flex flex-wrap justify-between items-center">
-              <span className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-indigo-300 mb-2 sm:mb-0 animate-pulse">$199.99</span>
-              <button size="lg" className="w-full sm:w-auto bg-white text-purple-900 hover:bg-purple-100 transition-all duration-300 transform hover:scale-105 group">
+              <span className=" text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-indigo-300 mb-2 sm:mb-0 animate-pulse">
+                $199.99
+              </span>
+              <button className=" flex items-center justify-center w-full sm:w-auto bg-white text-purple-900 hover:bg-purple-100 transition-all duration-300 transform hover:scale-105  group rounded-full px-5 py-2 sm:px-6 sm:py-3">
                 View Details
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:translate-x-1 " />
               </button>
             </div>
           </motion.div>
 
           {/* Enhanced image navigation dots */}
-          <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex space-x-2">
+          <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex space-x-2 mb-3 sm:mb-0">
             {images.map((_, index) => (
               <motion.button
                 key={index}
                 onClick={() => setCurrentImage(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentImage ? 'bg-white' : 'bg-white/50'
+                  index === currentImage ? "bg-white" : "bg-white/50"
                 }`}
-                whileHover={{ scale:  1.2 }}
+                whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.8 }}
                 aria-label={`Go to image ${index + 1}`}
               />
@@ -252,5 +302,5 @@ export default function NewBanner_2() {
         </div>
       </div>
     </div>
-  )
+  );
 }

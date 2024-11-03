@@ -378,7 +378,7 @@ const location = useLocation()
   );
   //?mobile nav
   const MobileNav = () => (
-    <nav className={`${isScrolled ? "bg-[#1a012b]":"bg-'"} text-white p-4 shadow-lg flex justify-between items-center z-50`}>
+    <nav className={`${isScrolled ? "bg-[#1a012b]":""} text-white p-4 shadow-lg flex justify-between items-center z-50`}>
       <span className="text-xl font-bold">Swift Mart</span>
       <button
         onClick={toggleMenu}
@@ -394,7 +394,7 @@ const location = useLocation()
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed top-0 right-0 h-full w-64 bg-gradient-to-b bg-[#2f2d31]  p-4 shadow-lg "
+            className="fixed top-0 right-0 h-full w-64 bg-gradient-to-b bg-[#1a012b]  p-4 shadow-lg "
           >
             <button
               onClick={toggleMenu}
