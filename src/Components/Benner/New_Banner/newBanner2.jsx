@@ -88,7 +88,7 @@ export default function NewBanner_2() {
   };
 
   return (
-    <div className="relative max-h-[1000px] overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
+    <div className="relative  overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
       {/* Enhanced animated background */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-50" />
