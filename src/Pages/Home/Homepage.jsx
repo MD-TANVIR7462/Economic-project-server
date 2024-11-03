@@ -7,6 +7,7 @@ import FreeShoping from "../../Components/FreeShoping/FreeShoping";
 import UseTitle from "../../Components/Hooks/UseTitle";
 import TestimonialsSection from "../../Components/Gelery/TestimonialsSection";
 import PromotionalSection from "../../Components/LandingSection/Landing";
+import NewBanner from "../../Components/Benner/New_Banner/newBanner";
 
 
 const Homepage = () => {
@@ -14,7 +15,8 @@ const Homepage = () => {
     <>
       {UseTitle("HOME")}
       {/* <Benner></Benner> */}
-      <Banner2></Banner2>
+      {/* <Banner2></Banner2> */}
+      <NewBanner/>
       <CategoryMain></CategoryMain>
       <PromotionalSection/>
       <SliderTab></SliderTab>

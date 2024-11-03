@@ -268,10 +268,33 @@ const NavBar = () => {
     setEror("");
   };
 
+//?scroll nav.....
+const [isScrolled, setIsScrolled] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    const scrollY = window.scrollY;
+    if (scrollY > 10) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, []);
+
+
+
+
   // ?desktop
   const DesktopNav = () => (
     // <nav className="bg-gradient-to-r bg-[#2f2d31] text-white p-4 shadow-lg">
-    <nav className="bg-[#2f2d31] shadow-md  text-xl md:py-4 text-white p-5 flex ">
+    <nav className={`${isScrolled ? "bg-indigo-950":""} shadow-md  text-xl md:py-4 text-white p-5 flex `}>
       <ul className="flex md:gap-10 lg:gap-16 mx-auto items-center  max-w-5xl ">
         {navItems.map((item, index) => (
           <NavItem key={index} {...item} />
