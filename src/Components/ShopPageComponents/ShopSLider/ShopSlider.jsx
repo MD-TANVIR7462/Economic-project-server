@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import UseProducts from "../../Hooks/UseProducts";
 import Loader from "../../Loadin/Loader";
 import PaginationMenu from "../../PaginationMenu/PaginationMenu";
+import NO_Product from "../../No-Products/NO_Product";
 
 const ShopSlider = () => {
   const { cetegory } = useParams();
@@ -19,7 +20,6 @@ const ShopSlider = () => {
   const [page, setPage] = useState(1); // New state for pagination
   const [itemsPerPage, setItemsPerPage] = useState(8); // Default to large devices
   const [searchQuery, setSearchQuery] = useState(""); // New state for search query
-
   const { products, isLoading } = UseProducts();
 
   // Handle responsive number of items per page
@@ -62,10 +62,12 @@ const ShopSlider = () => {
   // Paginate the products
   const paginatedProducts = (categoryProducts) => {
     const startIndex = (page - 1) * itemsPerPage;
-    return filteredProducts(categoryProducts).slice(
+    const searchAndPaginatedProducts = filteredProducts(categoryProducts).slice(
       startIndex,
       startIndex + itemsPerPage
     );
+    // console.log(searchAndPaginatedProducts, "hlw");
+    return searchAndPaginatedProducts;
   };
 
   // Handle pagination navigation

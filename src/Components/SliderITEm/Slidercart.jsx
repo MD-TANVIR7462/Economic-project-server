@@ -19,6 +19,8 @@ const Slidercart = ({ product }) => {
   );
 
 
+console.log(product)
+
   const details = (id) => {
     if (!user) {
       return toast.error("Login First ", {
