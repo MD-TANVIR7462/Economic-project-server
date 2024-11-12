@@ -19,7 +19,9 @@ const Slidercart = ({ product }) => {
   );
 
 
-console.log(product)
+
+
+
 
   const details = (id) => {
     if (!user) {
