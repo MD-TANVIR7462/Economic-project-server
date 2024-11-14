@@ -58,7 +58,6 @@ const ShowDetails = () => {
   }, [user]);
   //rander star funtion****
 
-
   //minus button
   const decreaseQuantity = () => {
     if (quantity > 1) {
