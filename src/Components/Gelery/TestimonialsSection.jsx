@@ -94,8 +94,7 @@ const TestimonialsSection = () => {
   }, []);
 
   return (
-    <div>
-
+    <div className="mt-[3%]">
       <Parallax bgImage="https://i.ibb.co/Zh0pSWb/b4.jpg" strength={width}>
         <div className="bg-opacity-70 bg-gray-900 py-[10%] md:py-[8%] lg:py-[7%]  ">
           <div className="container mx-auto text-center relative">

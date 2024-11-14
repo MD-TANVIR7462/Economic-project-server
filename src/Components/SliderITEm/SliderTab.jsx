@@ -5,6 +5,7 @@ import { motion } from "framer-motion"; // Import motion
 import Slider from "./Slider";
 import UseProducts from "../Hooks/UseProducts";
 import Loader from "../Loadin/Loader";
+import SectionTitle from "../SectionTitle/Section_Title";
 
 const SliderTab = () => {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -41,15 +42,7 @@ const SliderTab = () => {
         <div>
           <Tabs selectedIndex={activeTabIndex} onSelect={handleTabSelect}>
             <span className="md:flex md:justify-between mb-8">
-              <h2 className=" text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 animate-gradient-x text-center md:text-start">
-                Trending This Week
-                {/* <motion.span
-                  className="absolute -bottom-0.5 left-0 w-full h-1 bg-gradient-to-r from-pink-500 to-indigo-500"
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                /> */}
-              </h2>
+          <SectionTitle title={" Trending This Week"}/>
               <TabList className="flex justify-center md:justify-normal md:space-x-4 p-2 rounded-lg mb-5">
                 <Tab
                   className={`cursor-pointer text-md md:text-xl font-semibold px-4 py-2 transition-colors duration-300 ease-in-out border-b-4 border-transparent hover:border-[#FF2020] ${
@@ -119,9 +112,9 @@ const SliderTab = () => {
           </Tabs>
         </div>
       </div>
-      <h2 className=" text-2xl mb-[2%] md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 animate-gradient-x text-center md:text-start">
-        What Our Customers Say
-      </h2>
+    
+      <SectionTitle title={" What Our Customers Say"}/>
+
     </div>
   );
 };
