@@ -143,7 +143,7 @@ const Slidercart = ({ product }) => {
 
   return product ? (
     <motion.div
-      className="mb-3 md:mb-0 shadow-lg hover:shadow-md transition-shadow duration-300 rounded-lg"
+      className="mb-3 md:mb-0 shadow-2xl   hover:shadow-md transition-shadow duration-300 rounded-lg"
       whileHover="hover"
       variants={cardAnimation}
     >
@@ -192,15 +192,15 @@ const Slidercart = ({ product }) => {
       </div>
       <div className="flex justify-between py-6 px-2">
         <span>
-          <p className="text-md md:text-xl text-slate-600 font-semibold">
+          <p className="text-md md:text-xl text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 animate-gradient-x  font-semibold">
             {product?.name}
           </p>
-          <p className="text-md md:text-xl text-slate-600 font-medium">
+          <p className="text-md md:text-xl text-slate-300 font-medium">
             For {product?.category}
           </p>
-          <p className="md:text-xl text-[#168a73]">
+          <p className="md:text-xl text-">
             {product?.price}{" "}
-            <span className="text-[#168a73] font-semibold">$</span>
+            <span className="text-yellow-500 font-semibold">$</span>
           </p>
         </span>
         {/* <StarRating rating={product.rating} /> */}

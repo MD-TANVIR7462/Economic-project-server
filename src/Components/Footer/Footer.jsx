@@ -19,7 +19,7 @@ const Footer = () => {
     </>
   );
   return (
-    <footer className="footer footer-center p-10  bg-[#2f2d31] text-base-content rounded ">
+    <footer className="footer footer-center p-10  text-base-content rounded ">
       <ul className="grid grid-flow-col gap-4">{navOptions}</ul>
 
       <div className="grid grid-flow-col gap-4">

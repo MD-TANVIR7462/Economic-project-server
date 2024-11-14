@@ -8,7 +8,7 @@ const PromotionalSection = () => {
         <div className="justify-center text-center gap-6 md:text-left md:flex lg:items-center lg:gap-16">
           <div className="order-last mb-6 space-y-6 md:mb-0 md:w-6/12 lg:w-6/12">
             <h1 className="text-4xl text-gray-100 font-bold md:text-5xl">
-              Buy now and benefit up to <span className="text-blue-500">30% off</span>
+              Buy now and benefit up to <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 animate-gradient-x">30% off</span>
             </h1>
             <p className="text-lg text-gray-100">
               Be part of millions of people around the world using tailus in modern User Interfaces.
