@@ -129,7 +129,7 @@ export default function NewBanner_2() {
         ))}
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 py-12 min-h-screen flex flex-col lg:flex-row items-center justify-center">
+      <div className="relative z-10 container mx-auto px-4  py-12 lg:pt-[8%] lg:pb-[5%]   flex flex-col lg:flex-row items-center justify-center">
         {/* Enhanced Content */}
         <motion.div
           ref={ref}

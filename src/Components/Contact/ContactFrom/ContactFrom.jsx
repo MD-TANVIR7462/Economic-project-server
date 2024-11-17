@@ -21,17 +21,6 @@ export default function ContactPage() {
       message: "",
     },
   });
-
-
-
-
-
-
-
-
-
-
-
   // Handle form submission
   const onSubmit = async (formData) => {
     try {
@@ -66,7 +55,7 @@ export default function ContactPage() {
       <div className="container mx-auto my-4 px-4 lg:px-20">
         <div className="my-4 mr-auto w-full rounded-3xl p-8 shadow-2xl md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40">
           <div className="flex">
-            <h1 className="text-2xl md:text-5xl font-bold uppercase">
+            <h1 className="text-2xl md:text-5xl font-bold uppercase text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 animate-gradient-x">
               Send us a message
             </h1>
           </div>

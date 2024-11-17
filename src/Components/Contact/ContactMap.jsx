@@ -8,20 +8,20 @@ const ContactMap = () => {
   return (
     <div className="my-8  md:my-20 p-4 md:p-12 bg-base-200 shadow-2xl md:w-[90%] md:flex justify-around mx-auto items-center  ">
       <div className="mb-5 md:mb-0">
-        <p className="text-lg md:text-2xl font-bold mb-1">GET IN TOUCH</p>
+        <p className="text-lg md:text-2xl font-bold mb-1 text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 animate-gradient-x">GET IN TOUCH</p>
         <h1 className="text-xs md:text-sm  font-medium mb-4 md:mb-5">
           Visit One Of Our Agency Locations Or Contact us Today{" "}
         </h1>
-        <p className=" md:text-lg font-bold  mb-1">Head office</p>
-        <p className="flex items-center text-sm md:text-md gap-2 md:gap-4 font-semibold text-gray-600">
+        <p className=" md:text-lg font-bold  mb-1 text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 animate-gradient-x">Head office</p>
+        <p className="flex items-center text-sm md:text-md gap-2 md:gap-4 font-semibold text-gray-400">
           <AiFillMail className="text-yellow-700"></AiFillMail>{" "}
           mdtanvir7462@gmail.com
         </p>
-        <p className="flex items-center text-sm md:text-md gap-2 md:gap-4 font-semibold text-gray-600">
+        <p className="flex items-center text-sm md:text-md gap-2 md:gap-4 font-semibold text-gray-400">
           <AiFillPhone className="text-green-500"></AiFillPhone>{" "}
           (+880)1998863753
         </p>
-        <p className="flex items-center text-sm md:text-md gap-2 md:gap-4 font-semibold text-gray-600">
+        <p className="flex items-center text-sm md:text-md gap-2 md:gap-4 font-semibold text-gray-400">
           {" "}
           <AiFillInfoCircle className="text-blue-500"></AiFillInfoCircle> Monday
           To Saturday,9.00 am to 10.00 pm

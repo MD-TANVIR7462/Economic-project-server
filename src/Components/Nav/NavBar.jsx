@@ -66,8 +66,7 @@ const NavBar = () => {
       whileTap={{ scale: 0.95 }}
       className="flex items-center space-x-2 cursor-pointer"
     >
-      
-      <Link to={to} className="flex gap-2">
+      <Link to={to} className="flex gap-2 ">
         <span className="text-xl">{icon}</span>
         <span>{label}</span>
       </Link>
@@ -300,7 +299,7 @@ const NavBar = () => {
         isScrolled ? "bg-[#1a012b]" : ""
       } shadow-md  text-xl md:py-4 text-white p-5 flex`}
     >
-      <ul className="flex md:gap-10 lg:gap-16 mx-auto items-center  max-w-5xl ">
+      <ul className="flex md:gap-10 lg:gap-16 mx-auto items-center  max-w-5xl  ">
         {navItems.map((item, index) => (
           <NavItem key={index} {...item} />
         ))}
@@ -473,20 +472,22 @@ const NavBar = () => {
                 </button>
               )}
             </span>
-            <ul className="mt-7 space-y-6 ">
+            <ul className="mt-7 space-y-6  ">
               {navItems.map((item, index) => (
                 <NavItem key={index} {...item} />
               ))}
-              <motion.li
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center space-x-2 cursor-pointer"
-              >
-                <Link to={"/"} onClick={logout} className="flex gap-2">
-                  <span className="text-xl">{<BiLogOut />}</span>
-                  <span>{"Logout"}</span>
-                </Link>
-              </motion.li>
+              {user && (
+                <motion.li
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center space-x-2 cursor-pointer"
+                >
+                  <Link to={"/"} onClick={logout} className="flex gap-2">
+                    <span className="text-xl">{<BiLogOut />}</span>
+                    <span>{"Logout"}</span>
+                  </Link>
+                </motion.li>
+              )}
             </ul>
           </motion.div>
         )}

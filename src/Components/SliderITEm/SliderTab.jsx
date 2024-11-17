@@ -42,7 +42,7 @@ const SliderTab = () => {
         <div>
           <Tabs selectedIndex={activeTabIndex} onSelect={handleTabSelect}>
             <span className="md:flex md:justify-between mb-8">
-          <SectionTitle title={" Trending This Week"}/>
+              <SectionTitle title={" Trending This Week"} />
               <TabList className="flex justify-center md:justify-normal md:space-x-4 p-2 rounded-lg mb-5">
                 <Tab
                   className={`cursor-pointer text-md md:text-xl font-semibold px-4 py-2 transition-colors duration-300 ease-in-out border-b-4 border-transparent hover:border-[#FF2020] ${
@@ -112,9 +112,8 @@ const SliderTab = () => {
           </Tabs>
         </div>
       </div>
-    
-      <SectionTitle title={" What Our Customers Say"}/>
 
+      <SectionTitle title={" What Our Customers Say"} />
     </div>
   );
 };
