@@ -16,15 +16,20 @@ import { AuthContext } from "../Components/Provider/Authprovider";
 import UseTitle from "../Components/Hooks/UseTitle";
 import UseUsers from "../Components/Hooks/UseUsers";
 import { ScrollToTop } from "../config";
+import { BiLogOut } from "react-icons/bi";
 
 const Dashboard = () => {
-  const { user } = useContext(AuthContext);
+  const { user,signOutUSer } = useContext(AuthContext);
   const { allUsers } = UseUsers();
   const [menuOpen, setMenuOpen] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+
+
   const activeUserEmail = user?.email;
-  const DBUser = allUsers?.find((signleuser) => signleuser?.email === activeUserEmail);
+  const DBUser = allUsers?.find(
+    (signleuser) => signleuser?.email === activeUserEmail
+  );
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -50,9 +55,30 @@ const Dashboard = () => {
     }
   }, [windowWidth]);
 
+  //Logout ====>>>
+  const logout = () => {
+    signOutUSer()
+      .then(() => {
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Successfully Logged Out!",
+          showConfirmButton: false,
+          timer: 1500,
+          customClass: {
+            popup: "bg-base-300 rounded-lg shadow-md p-3 md:p-8   md:max-w-md",
+            title: "text-sm md:text-2xl font-semibold mb-4",
+            content: "text-gray-700",
+          },
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="flex ">
-                <ScrollToTop />
+      <ScrollToTop />
       {UseTitle("DASHBOARD")}
       <div
         className={`fixed left-0 z-10 h-screen w-52 md:w-64 bg-[#171618] transition-transform duration-500  ease-in-out ${
@@ -126,7 +152,6 @@ const Dashboard = () => {
 
               {DBUser?.role === "admin" && (
                 <span>
-                
                   <Link
                     to={"/dashboard/myproducts"}
                     className="block py-2 hover:bg-gray-600 rounded-lg"
@@ -181,6 +206,15 @@ const Dashboard = () => {
           >
             <FiPhoneOutgoing className="h-5 w-5 mr-2 inline" />
             Contact
+          </Link>
+          <Link to={'/'} className="block py-2 hover:bg-gray-600 rounded-lg">
+            <span
+              onClick={logout}
+              className="font-semibold flex items-center gap-2"
+            >
+              <BiLogOut className="h-5 w-5" />
+              Logout
+            </span>
           </Link>
         </div>
       </div>

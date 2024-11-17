@@ -33,7 +33,7 @@ const PromotionalSection = () => {
           <div className="grid grid-cols-5 grid-rows-4 gap-4 md:w-5/12 lg:w-6/12">
             <div className="col-span-2 row-span-4">
               <img
-                src="https://tailus.io/sources/blocks/ecommerce-site/preview/images/products/kushagra.webp"
+                src="https://i.ibb.co.com/3rf6vJK/Screenshot-3.png"
                 className="rounded-full"
                 width="640"
                 height="960"
@@ -43,7 +43,7 @@ const PromotionalSection = () => {
             </div>
             <div className="col-span-2 row-span-2">
               <img
-                src="https://tailus.io/sources/blocks/ecommerce-site/preview/images/products/iman.webp"
+                src="https://i.ibb.co.com/4TyttB4/iman.webp"
                 className="w-full h-full object-cover object-top rounded-xl"
                 width="640"
                 height="640"
@@ -53,7 +53,7 @@ const PromotionalSection = () => {
             </div>
             <div className="col-span-3 row-span-3">
               <img
-                src="https://tailus.io/sources/blocks/ecommerce-site/preview/images/products/daniel.webp"
+                src="https://i.ibb.co.com/b1RQFj3/Screenshot-2.png"
                 className="w-full h-full object-cover object-top rounded-xl"
                 width="640"
                 height="427"
