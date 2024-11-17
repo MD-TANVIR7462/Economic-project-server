@@ -37,10 +37,10 @@ const FreeShopping = () => {
             animate={{ opacity: 1 }}  // Animate to fully visible
             transition={{ duration: 0.8, delay: index * 0.2 }} // Stagger animation with a slight delay
           >
-            <p className="text-4xl md:text-5xl text-[#ca1515] md:mb-3 mb-1">{icon}</p>
+            <p className="text-4xl md:text-5xl  md:mb-3 mb-1">{icon}</p>
             <span>
-              <p className="font-semibold md:text-xl text-lg">{title}</p>
-              <p className="text-slate-500 md:text-base text-sm font-medium">{subtitle}</p>
+              <p className="font-semibold md:text-xl text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 animate-gradient-x text-lg">{title}</p>
+              <p className="text-slate-400 md:text-base text-sm font-medium">{subtitle}</p>
             </span>
           </motion.div>
         </Tilt>

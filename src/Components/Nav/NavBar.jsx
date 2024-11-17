@@ -27,7 +27,7 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [Error, setEror] = useState("");
   const [resiterModal, setResisterModal] = useState(false);
-
+  const location = useLocation();
   const {
     CreatUSerEmail,
     user,
@@ -48,7 +48,7 @@ const NavBar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   const toggleMenu = () => setIsNavOpen(!isNavOpen);
-
+  // console.log(toggleMenu,isNavOpen)
   //navitems......
   const navItems = [
     { icon: <FiHome />, label: "Home", to: "/" },
@@ -66,6 +66,7 @@ const NavBar = () => {
       whileTap={{ scale: 0.95 }}
       className="flex items-center space-x-2 cursor-pointer"
     >
+      
       <Link to={to} className="flex gap-2">
         <span className="text-xl">{icon}</span>
         <span>{label}</span>
@@ -224,6 +225,9 @@ const NavBar = () => {
 
   //Logout ====>>>
   const logout = () => {
+    if (!user) {
+      return;
+    }
     signOutUSer()
       .then(() => {
         Swal.fire({
@@ -268,37 +272,34 @@ const NavBar = () => {
     setEror("");
   };
 
-//?scroll nav.....
-const [isScrolled, setIsScrolled] = useState(false);
+  //?scroll nav.....
+  const [isScrolled, setIsScrolled] = useState(false);
 
-useEffect(() => {
-  const handleScroll = () => {
-    const scrollY = window.scrollY;
-    if (scrollY > 10) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
-    }
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      if (scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
 
-  window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
-  };
-}, []);
-
-
-const location = useLocation()
-
-
-
-
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   // ?desktop
   const DesktopNav = () => (
     // <nav className="bg-gradient-to-r bg-[#2f2d31] text-white p-4 shadow-lg">
-    <nav className={`${isScrolled ? "bg-[#1a012b]":""} shadow-md  text-xl md:py-4 text-white p-5 flex`}>
+    <nav
+      className={`${
+        isScrolled ? "bg-[#1a012b]" : ""
+      } shadow-md  text-xl md:py-4 text-white p-5 flex`}
+    >
       <ul className="flex md:gap-10 lg:gap-16 mx-auto items-center  max-w-5xl ">
         {navItems.map((item, index) => (
           <NavItem key={index} {...item} />
@@ -334,7 +335,7 @@ const location = useLocation()
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-xs md:menu-sm  bg-[#171618] dropdown-content mt-3 z-10 p-2 shadow  rounded-box w-40  md:w-52"
+            className="menu menu-xs md:menu-sm  bg-[#1a012b] dropdown-content mt-3 z-10 p-2 shadow  rounded-box w-40  md:w-52"
           >
             <li>
               {dbUser?.role === "user" && (
@@ -378,8 +379,15 @@ const location = useLocation()
   );
   //?mobile nav
   const MobileNav = () => (
-    <nav className={`${isScrolled ? "bg-[#1a012b]":""} text-white p-4 shadow-lg flex justify-between items-center z-50`}>
-      <span className="text-xl font-bold">Swift Mart</span>
+    <nav
+      className={`${
+        isScrolled ? "bg-[#1a012b]" : ""
+      } text-white p-4 shadow-lg flex justify-between items-center z-50`}
+    >
+      <Link to={"/"}>
+        {" "}
+        <span className="text-xl font-bold cursor-pointer">Swift Mart</span>
+      </Link>
       <button
         onClick={toggleMenu}
         className="text-2xl focus:outline-none"
@@ -469,20 +477,16 @@ const location = useLocation()
               {navItems.map((item, index) => (
                 <NavItem key={index} {...item} />
               ))}
-
-              {/* {user && !loading && (
-                <motion.li
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center space-x-2 cursor-pointer"
-                >
-                  <Link to={navIAdmin.to}>
-                    <span className="text-xl">{navIAdmin.icon}</span>
-                    <span>{navIAdmin.label}</span>
-                  </Link>
-                </motion.li>
-              )}
-               */}
+              <motion.li
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center space-x-2 cursor-pointer"
+              >
+                <Link to={"/"} onClick={logout} className="flex gap-2">
+                  <span className="text-xl">{<BiLogOut />}</span>
+                  <span>{"Logout"}</span>
+                </Link>
+              </motion.li>
             </ul>
           </motion.div>
         )}
@@ -491,7 +495,11 @@ const location = useLocation()
   );
 
   return (
-    <div className={`${location.pathname === "/" ? "fixed" : "sticky bg-[#1a012b]"}  top-0 left-0 right-0 z-50`}>
+    <div
+      className={`${
+        location.pathname === "/" ? "fixed" : "sticky bg-[#1a012b]"
+      }  top-0 left-0 right-0 z-50`}
+    >
       {isMobile ? <MobileNav /> : <DesktopNav />}
       <div>
         {isOpen && (

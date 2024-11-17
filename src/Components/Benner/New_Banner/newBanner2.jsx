@@ -139,7 +139,7 @@ export default function NewBanner_2() {
           className="w-full lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0 lg:pr-8"
         >
           <motion.div variants={itemVariants}>
-            <h1 className="text-4xl mt-10 sm:mt-0 sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6 leading-tight">
+            <h1 className="text-4xl mt-[7%] lg:mt-10 sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6 leading-tight">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 animate-gradient-x">
                 Step into
               </span>
