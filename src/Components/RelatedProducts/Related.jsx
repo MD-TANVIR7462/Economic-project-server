@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import Slidercart from "../SliderITEm/Slidercart";
 import { useEffect } from "react";
-import SubProductCarousel from "../Carousel_Subproduct/SubProductCarousel";
+import Related_carousel from "./Related_carosel";
+import SectionTitle from "../SectionTitle/Section_Title";
 
 const Related = ({ sub, id }) => {
   const [finalSub, setFinalSub] = useState([]);
@@ -21,18 +21,9 @@ const Related = ({ sub, id }) => {
 
   return (
     <div className="my-16">
-      <h1 className="text-center text-2xl md:text-3xl font-bold mt-8 mb-6 md:mb-12 ">
-        {text}
-      </h1>
-      <div className=" ">
-    <div className="flex flex-col md:flex-row flex-wrap gap-6 mx-auto w-[80%]">
-    {
-                finalSub.map(product => <Slidercart product={product} key={product._id}></Slidercart>) 
-            }
-    </div>
-        {/* {finalSub?.length > 0 && (
-          <SubProductCarousel finalSub={finalSub} key={1} />
-        )} */}
+      <div className="mx-auto w-[91%]">
+        <SectionTitle title={text} />
+        <Related_carousel products={finalSub} key={111} />
       </div>
     </div>
   );

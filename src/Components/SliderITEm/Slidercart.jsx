@@ -143,7 +143,7 @@ const Slidercart = ({ product }) => {
 
   return product ? (
     <motion.div
-      className="mb-3 md:mb-0 shadow-2xl w-full md:w-[30%] lg:w-[30%]  hover:shadow-md transition-shadow duration-300 rounded-lg"
+      className="mb-3 md:mb-0 shadow-2xl w-full   hover:shadow-md transition-shadow duration-300 rounded-lg"
       whileHover="hover"
       variants={cardAnimation}
     >

@@ -3,7 +3,7 @@ import { FaShoppingCart, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 import DetailsBenner from "./DetailsBenner";
 import Cetegory from "../Cetegory/Cetegory";
-import Related from "../Reviews/Related";
+import Related from "../RelatedProducts/Related";
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/Authprovider";
