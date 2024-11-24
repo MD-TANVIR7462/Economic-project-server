@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import NavBar from "./Components/Nav/NavBar";
 import Loader from "./Components/Loadin/Loader";
 import { ScrollToTop } from "./config";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -27,6 +28,7 @@ const App = () => {
       ) : (
         <>
           <NavBar />
+          <Toaster position="bottom-right" reverseOrder={false} />
           <ScrollToTop />
           <div className="max-w-[2000px] mx-auto">
             <ToastContainer />
@@ -40,9 +42,3 @@ const App = () => {
 };
 
 export default App;
-// <div className="flex justify-center items-center h-screen">
-//   <div className="flex flex-col items-center">
-//     <div className="loader"></div> {/* Custom loading spinner */}
-//     <p className="text-white mt-4">Loading, please wait...</p>
-//   </div>
-// </div>

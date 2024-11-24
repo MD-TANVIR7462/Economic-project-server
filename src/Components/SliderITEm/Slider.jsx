@@ -26,9 +26,14 @@ const Slider = ({ item }) => {
       } else if (window.innerWidth <= 1150) {
         setSlidesPerView(2); // Show only 1 slide on phone devices
         setSpace(50);
-      } else {
-        setSlidesPerView(3); // Show 3 slides on other devices
-        setSpace(40);
+      } 
+      else if (window.innerWidth <= 1500) {
+        setSlidesPerView(3); // Show only 1 slide on phone devices
+        setSpace(35);
+      }
+      else {
+        setSlidesPerView(4); // Show 3 slides on other devices
+        setSpace(25);
       }
     };
 

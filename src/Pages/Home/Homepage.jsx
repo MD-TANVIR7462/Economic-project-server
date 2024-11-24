@@ -7,6 +7,7 @@ import UseTitle from "../../Components/Hooks/UseTitle";
 import TestimonialsSection from "../../Components/Gelery/TestimonialsSection";
 import PromotionalSection from "../../Components/LandingSection/Landing";
 import NewBanner_2 from "../../Components/Benner/New_Banner/newBanner2";
+import Newsletter from "../../Components/NewsLatter/NewsLatter";
 
 
 const Homepage = () => {
@@ -19,6 +20,7 @@ const Homepage = () => {
       <SliderTab></SliderTab>
       <TestimonialsSection></TestimonialsSection>
       <SummerOffer></SummerOffer>
+      <Newsletter/>
       <FreeShoping></FreeShoping>
     </>
   );
