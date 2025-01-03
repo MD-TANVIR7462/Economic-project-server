@@ -17,7 +17,7 @@ import { FaBuffer } from "react-icons/fa6";
 const ImageHosting = import.meta.env.VITE_Image_Upload_Key;
 
 const NAvbar = () => {
-  const {   
+  const {
     CreatUSerEmail,
     user,
     SignInUSer,
@@ -143,7 +143,8 @@ const NAvbar = () => {
           showConfirmButton: false,
           timer: 1500,
           customClass: {
-            popup: "rounded-lg text-base-300 shadow-md p-3 md:p-8   md:max-w-md",
+            popup:
+              "rounded-lg text-base-300 shadow-md p-3 md:p-8   md:max-w-md",
             title: "text-sm  md:text-2xl  font-semibold mb-4",
             content: "text-gray-700",
           },
@@ -353,7 +354,7 @@ const NAvbar = () => {
               className="btn btn-ghost btn-circle avatar mr-2 md:mr-4"
             >
               <div className="md:w-16 w-10 rounded-full">
-                <img src={user?.photoURL&&user.photoURL} />
+                <img src={user?.photoURL && user.photoURL} />
               </div>
             </label>
             <ul

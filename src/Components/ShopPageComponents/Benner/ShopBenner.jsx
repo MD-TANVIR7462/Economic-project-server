@@ -10,7 +10,7 @@ const ShopBenner = () => {
     >
       <div className="container mx-auto">
         <div className="text-center">
-          <h1 className="text-2xl md:text-3xl lg:text-4xl text-[#168a73] font-bold mb-2 md:mb-4">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl text-[#6a2171] font-bold mb-2 md:mb-4">
             Summer Sale
           </h1>
           <p className="text-md font-semibold  md:text-xl mb-6 text-black">

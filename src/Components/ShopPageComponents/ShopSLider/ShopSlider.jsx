@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import UseProducts from "../../Hooks/UseProducts";
 import Loader from "../../Loadin/Loader";
 import PaginationMenu from "../../PaginationMenu/PaginationMenu";
+import NO_Product from "../../No-Products/NO_Product";
 
 const ShopSlider = () => {
   const { cetegory } = useParams();
@@ -19,7 +20,6 @@ const ShopSlider = () => {
   const [page, setPage] = useState(1); // New state for pagination
   const [itemsPerPage, setItemsPerPage] = useState(8); // Default to large devices
   const [searchQuery, setSearchQuery] = useState(""); // New state for search query
-
   const { products, isLoading } = UseProducts();
 
   // Handle responsive number of items per page
@@ -62,10 +62,11 @@ const ShopSlider = () => {
   // Paginate the products
   const paginatedProducts = (categoryProducts) => {
     const startIndex = (page - 1) * itemsPerPage;
-    return filteredProducts(categoryProducts).slice(
+    const searchAndPaginatedProducts = filteredProducts(categoryProducts).slice(
       startIndex,
       startIndex + itemsPerPage
     );
+    return searchAndPaginatedProducts;
   };
 
   // Handle pagination navigation
@@ -151,106 +152,122 @@ const ShopSlider = () => {
           {!isLoading && products && (
             <>
               <TabPanel>
-                <span>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 grid-cols-1 w-[90%] mx-auto gap-3">
-                    {paginatedProducts(productsmain).map((product) => (
-                      <Slidercart
-                        product={product}
-                        key={product.id}
-                      ></Slidercart>
-                    ))}
-                  </div>
-                  <div className="flex justify-center mt-4">
-                    <div className="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
-                      <PaginationMenu
-                        item={productsmain}
-                        filteredProducts={filteredProducts}
-                        handlePrevPage={handlePrevPage}
-                        handleNextPage={handleNextPage}
-                        setPage={setPage}
-                        page={page}
-                        itemsPerPage={itemsPerPage}
-                      />
+                {paginatedProducts(productsmain).length > 0 ? (
+                  <span>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 grid-cols-1 w-[90%] mx-auto gap-3">
+                      {paginatedProducts(productsmain)?.map((product) => (
+                        <Slidercart
+                          product={product}
+                          key={product.id}
+                        ></Slidercart>
+                      ))}
                     </div>
-                  </div>
-                </span>
+                    <div className="flex justify-center mt-4">
+                      <div className="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
+                        <PaginationMenu
+                          item={productsmain}
+                          filteredProducts={filteredProducts}
+                          handlePrevPage={handlePrevPage}
+                          handleNextPage={handleNextPage}
+                          setPage={setPage}
+                          page={page}
+                          itemsPerPage={itemsPerPage}
+                        />
+                      </div>
+                    </div>
+                  </span>
+                ) : (
+                  <NO_Product />
+                )}
               </TabPanel>
               <TabPanel>
-                <span>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 grid-cols-1 w-[90%] mx-auto gap-3">
-                    {paginatedProducts(man).map((product) => (
-                      <Slidercart
-                        product={product}
-                        key={product.id}
-                      ></Slidercart>
-                    ))}
-                  </div>
-                  <div className="flex justify-center mt-4">
-                    <div className="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
-                      <PaginationMenu
-                        item={man}
-                        filteredProducts={filteredProducts}
-                        handlePrevPage={handlePrevPage}
-                        handleNextPage={handleNextPage}
-                        setPage={setPage}
-                        page={page}
-                        itemsPerPage={itemsPerPage}
-                      />
+                {paginatedProducts(productsmain).length > 0 ? (
+                  <span>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 grid-cols-1 w-[90%] mx-auto gap-3">
+                      {paginatedProducts(man).map((product) => (
+                        <Slidercart
+                          product={product}
+                          key={product.id}
+                        ></Slidercart>
+                      ))}
                     </div>
-                  </div>
-                </span>
+                    <div className="flex justify-center mt-4">
+                      <div className="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
+                        <PaginationMenu
+                          item={man}
+                          filteredProducts={filteredProducts}
+                          handlePrevPage={handlePrevPage}
+                          handleNextPage={handleNextPage}
+                          setPage={setPage}
+                          page={page}
+                          itemsPerPage={itemsPerPage}
+                        />
+                      </div>
+                    </div>
+                  </span>
+                ) : (
+                  <NO_Product />
+                )}
               </TabPanel>
 
               <TabPanel>
-                <span>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 grid-cols-1 w-[90%] mx-auto gap-3">
-                    {paginatedProducts(women).map((product) => (
-                      <Slidercart
-                        product={product}
-                        key={product.id}
-                      ></Slidercart>
-                    ))}
-                  </div>
-                  <div className="flex justify-center mt-4">
-                    <div className="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
-                      <PaginationMenu
-                        item={women}
-                        filteredProducts={filteredProducts}
-                        handlePrevPage={handlePrevPage}
-                        handleNextPage={handleNextPage}
-                        setPage={setPage}
-                        page={page}
-                        itemsPerPage={itemsPerPage}
-                      />
+                {paginatedProducts(productsmain).length > 0 ? (
+                  <span>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 grid-cols-1 w-[90%] mx-auto gap-3">
+                      {paginatedProducts(women).map((product) => (
+                        <Slidercart
+                          product={product}
+                          key={product.id}
+                        ></Slidercart>
+                      ))}
                     </div>
-                  </div>
-                </span>
+                    <div className="flex justify-center mt-4">
+                      <div className="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
+                        <PaginationMenu
+                          item={women}
+                          filteredProducts={filteredProducts}
+                          handlePrevPage={handlePrevPage}
+                          handleNextPage={handleNextPage}
+                          setPage={setPage}
+                          page={page}
+                          itemsPerPage={itemsPerPage}
+                        />
+                      </div>
+                    </div>
+                  </span>
+                ) : (
+                  <NO_Product />
+                )}
               </TabPanel>
               {/* // Kid's Products Tab Panel */}
               <TabPanel>
-                <span>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 grid-cols-1 w-[90%] mx-auto gap-3">
-                    {paginatedProducts(kid).map((product) => (
-                      <Slidercart
-                        product={product}
-                        key={product.id}
-                      ></Slidercart>
-                    ))}
-                  </div>
-                  <div className="flex justify-center mt-4">
-                    <div className="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
-                      <PaginationMenu
-                        item={kid}
-                        filteredProducts={filteredProducts}
-                        handlePrevPage={handlePrevPage}
-                        handleNextPage={handleNextPage}
-                        setPage={setPage}
-                        page={page}
-                        itemsPerPage={itemsPerPage}
-                      />
+                {paginatedProducts(productsmain).length > 0 ? (
+                  <span>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 grid-cols-1 w-[90%] mx-auto gap-3">
+                      {paginatedProducts(kid).map((product) => (
+                        <Slidercart
+                          product={product}
+                          key={product.id}
+                        ></Slidercart>
+                      ))}
                     </div>
-                  </div>
-                </span>
+                    <div className="flex justify-center mt-4">
+                      <div className="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
+                        <PaginationMenu
+                          item={kid}
+                          filteredProducts={filteredProducts}
+                          handlePrevPage={handlePrevPage}
+                          handleNextPage={handleNextPage}
+                          setPage={setPage}
+                          page={page}
+                          itemsPerPage={itemsPerPage}
+                        />
+                      </div>
+                    </div>
+                  </span>
+                ) : (
+                  <NO_Product />
+                )}
               </TabPanel>
             </>
           )}

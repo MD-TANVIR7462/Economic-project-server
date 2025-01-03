@@ -1,29 +1,13 @@
 import { useContext } from "react";
-import { FaRegEye, FaCartPlus, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { FaRegEye, FaCartPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/Authprovider";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion"; // Import motion
-import LazyLoad from "react-lazy-load";
 import UseUsers from "../Hooks/UseUsers";
-import Loader from "../Loadin/Loader";
+import { renderStars } from "../../Utils/RanderStar";
 
-const renderStars = (rating) => {
-  const stars = [];
-  for (let i = 1; i <= Math.floor(rating); i++) {
-    stars.push(<FaStar key={i} className="text-pink-700" />);
-  }
-  if (rating % 1 !== 0) {
-    stars.push(
-      <FaStarHalfAlt key={Math.ceil(rating)} className="text-pink-700" />
-    );
-  }
-  for (let i = Math.ceil(rating) + 1; i <= 5; i++) {
-    stars.push(<FaStar key={i} className="text-gray-300" />);
-  }
-  return stars;
-};
 
 const Slidercart = ({ product }) => {
   const { user } = useContext(AuthContext);
@@ -34,15 +18,10 @@ const Slidercart = ({ product }) => {
     (signleuser) => signleuser?.email === activeUserEmail
   );
 
-  // useEffect(() => {
-  //   fetch(
-  //     `https://ecommerce-projects-server.vercel.app/user?email=${user?.email}`
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setDbUser(data);
-  //     });
-  // }, [user]);
+
+
+
+
 
   const details = (id) => {
     if (!user) {
@@ -164,7 +143,7 @@ const Slidercart = ({ product }) => {
 
   return product ? (
     <motion.div
-      className="mb-3 md:mb-0 shadow-lg hover:shadow-md transition-shadow duration-300 rounded-lg"
+      className="mb-3 md:mb-0 shadow-2xl w-full   hover:shadow-md transition-shadow duration-300 rounded-lg"
       whileHover="hover"
       variants={cardAnimation}
     >
@@ -213,15 +192,15 @@ const Slidercart = ({ product }) => {
       </div>
       <div className="flex justify-between py-6 px-2">
         <span>
-          <p className="text-md md:text-xl text-slate-600 font-semibold">
+          <p className="text-md md:text-xl text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 animate-gradient-x  font-semibold">
             {product?.name}
           </p>
-          <p className="text-md md:text-xl text-slate-600 font-medium">
+          <p className="text-md md:text-xl text-slate-300 font-medium">
             For {product?.category}
           </p>
-          <p className="md:text-xl text-[#168a73]">
+          <p className="md:text-xl text-">
             {product?.price}{" "}
-            <span className="text-[#168a73] font-semibold">$</span>
+            <span className="text-yellow-500 font-semibold">$</span>
           </p>
         </span>
         {/* <StarRating rating={product.rating} /> */}

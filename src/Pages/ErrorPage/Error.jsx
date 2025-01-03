@@ -1,17 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useRouteError } from "react-router-dom";
 
 const Error = () => {
   const error = useRouteError();
+  const [width, setWidth] = useState(630);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setWidth(630);
+      } else if (window.innerWidth >= 768) {
+        setWidth(400);
+      } else {
+        setWidth(300);
+      }
+    };
 
+    handleResize(); // Set initial value
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <section>
       <div className="bg-black text-white">
-        <div className="flex h-screen">
+        <div className="flex h-screen ">
           <div className="m-auto text-center">
             <div>
               <svg
-                width="631"
+                width={width}
                 height="379"
                 viewBox="0 0 631 379"
                 fill="none"
@@ -270,10 +286,10 @@ const Error = () => {
               </svg>
             </div>
             <p className="text-sm md:text-base text-yellow-300 p-2 mb-4">
-              {error?.error.message}
+              {error?.error?.message}
             </p>
             <p className="text-sm md:text-base text-yellow-300 p-2 mb-4">
-              {error.status}
+              {error?.status}
             </p>
             <Link
               to="/"
