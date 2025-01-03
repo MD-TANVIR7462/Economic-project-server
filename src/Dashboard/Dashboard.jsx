@@ -19,12 +19,10 @@ import { ScrollToTop } from "../config";
 import { BiLogOut } from "react-icons/bi";
 
 const Dashboard = () => {
-  const { user,signOutUSer } = useContext(AuthContext);
+  const { user, signOutUSer } = useContext(AuthContext);
   const { allUsers } = UseUsers();
   const [menuOpen, setMenuOpen] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-
 
   const activeUserEmail = user?.email;
   const DBUser = allUsers?.find(
@@ -207,11 +205,12 @@ const Dashboard = () => {
             <FiPhoneOutgoing className="h-5 w-5 mr-2 inline" />
             Contact
           </Link>
-          <Link to={'/'} className="block py-2 hover:bg-gray-600 rounded-lg">
-            <span
-              onClick={logout}
-              className="font-semibold flex items-center gap-2"
-            >
+          <Link
+            to={"/"}
+            onClick={logout}
+            className="block py-2 hover:bg-gray-600 rounded-lg"
+          >
+            <span className="font-semibold flex items-center gap-2">
               <BiLogOut className="h-5 w-5" />
               Logout
             </span>

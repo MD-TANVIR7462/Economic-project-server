@@ -19,7 +19,8 @@ const Footer = () => {
     </>
   );
   return (
-    <footer className="footer footer-center shadow-2xl bg-[#1a012b] shadow-black p-10  text-base-content rounded ">
+    <footer className="relative footer footer-center shadow-2xl bg-[#3b2040]/70   p-10  text-base-content rounded ">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-50" />
       <ul className="grid grid-flow-col gap-4">{navOptions}</ul>
 
       <div className="grid grid-flow-col gap-4">

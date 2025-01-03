@@ -22,7 +22,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="bg-[#291334] font-JosefinSans">
+    <div className="bg-pink-500/20 font-JosefinSans">
       {loading ? (
         <Loader />
       ) : (

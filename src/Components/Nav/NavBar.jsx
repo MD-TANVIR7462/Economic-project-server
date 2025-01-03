@@ -296,8 +296,8 @@ const NavBar = () => {
     // <nav className="bg-gradient-to-r bg-[#2f2d31] text-white p-4 shadow-lg">
     <nav
       className={`${
-        isScrolled ? "bg-[#1a012b]" : ""
-      } shadow-md  text-xl md:py-4 text-white p-5 flex`}
+        isScrolled ? "shadow-sm backdrop-blur-md bg-[#3b2040]/70 " : "bg-transparent"
+      }   text-xl md:py-4 text-white p-5 flex`}
     >
       <ul className="flex md:gap-10 lg:gap-16 mx-auto items-center  max-w-5xl  ">
         {navItems.map((item, index) => (
@@ -334,7 +334,7 @@ const NavBar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-xs md:menu-sm  bg-[#1a012b] dropdown-content mt-3 z-10 p-2 shadow  rounded-box w-40  md:w-52"
+            className="menu menu-xs md:menu-sm  bg-pink-500 backdrop-blur-3xl dropdown-content mt-3 z-10 p-2 shadow  rounded-box w-40  md:w-52"
           >
             <li>
               {dbUser?.role === "user" && (
@@ -498,7 +498,7 @@ const NavBar = () => {
   return (
     <div
       className={`${
-        location.pathname === "/" ? "fixed" : "sticky bg-[#1a012b]"
+        location.pathname === "/" ? "fixed" : "sticky "
       }  top-0 left-0 right-0 z-50`}
     >
       {isMobile ? <MobileNav /> : <DesktopNav />}
